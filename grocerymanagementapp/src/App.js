@@ -5,7 +5,7 @@ function App() {
   return (
     <div >
       <header >
-        <p> GMS </p>
+        <P> Welcome to my Project Grocery Management System </P>
       </header>
     </div>
   );
