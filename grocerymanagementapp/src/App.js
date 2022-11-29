@@ -5,7 +5,7 @@ function App() {
   return (
     <div >
       <header >
-        <P> Welcome to my Project Grocery Management System </P>
+        <p> Welcome to My project Grocery Management System </p>
       </header>
     </div>
   );
