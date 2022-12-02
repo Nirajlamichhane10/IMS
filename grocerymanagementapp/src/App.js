@@ -1,13 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import {Route,Routes,Navigate } from 'react-router-dom';
+import Main from './components/Main';
+import Signup from './components/Signup'
+import Login from './components/Login';
+
+
 
 function App() {
+ // const user = localStorage("token")
+
   return (
-    <div >
-      <header >
-        <p> Welcome to My project Grocery Management System </p>
-      </header>
-    </div>
+    <Routes>
+      {/* {user && <Route path= "/" exact element={<Main/>}/>} */}
+      <Route path ="/signup"  element ={<Signup/>}/>
+      <Route path ="/login" element ={<Login/>}/> 
+      <Route path ="/"  element ={<Navigate replace to="/login"/>}/>
+    </Routes>
+   
   );
 }
 
