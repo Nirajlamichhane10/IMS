@@ -1,18 +1,40 @@
-import { Route, Routes, Navigate } from "react-router-dom";
-import Main from "./components/Main";
+import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+import List from "./pages/list/List";
+import Single from "./pages/single/Single";
+import New from "./pages/new/New";
+import Firstpage from"./components/Firstpage/index";
 
-import Login from "./components/Login";
 
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+  
 function App() {
-	const user = localStorage.getItem("token");
-
+	
 	return (
-		<Routes>
-			{user && <Route path="/" exact element={<Main />} />}
-			
-			<Route path="/login" exact element={<Login />} />
-			<Route path="/" element={<Navigate replace to="/login" />} />
-		</Routes>
+		<Router>
+		<div className="App">
+			<Routes>
+				<Route path="/" exact element={<Home/>} />
+				<Route path="/Homepage" exact element={<Firstpage/>} />
+				<Route path="/login" element={<Login/>} />
+				<Route path="users">
+					<Route index element={<List/>} />
+					<Route path=":userId" element={<Single/>}/>
+					<Route path="new" element={<New/>}/>
+					</Route>
+					<Route path="product">
+					<Route index element={<List/>} />
+					<Route path=":productId" element={<Single/>}/>
+					<Route path="new" element={<New/>}/>
+					</Route>
+
+			</Routes>
+		</div>
+	</Router>
+        
+		
 	);
 }
 
