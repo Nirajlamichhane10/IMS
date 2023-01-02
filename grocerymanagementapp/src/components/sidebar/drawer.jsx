@@ -86,7 +86,7 @@ margin:"0px 0px 0px 500px",
 // table
 table:{
   // margin:"80% 0% 0% 150%",
-  width:"850px",
+  width:"750px",
   margin:"150px 0px 0px 350px",
   height:"500px",
   boxShadow: "10px 10px 5px lightblue",
