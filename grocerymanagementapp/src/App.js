@@ -1,5 +1,8 @@
 import Firstpage from"./components/Firstpage/index";
 import Drawer from "./components/sidebar/drawer";
+import DataTable from "./components/sidebar/table";
+
+
 
 
 
@@ -14,9 +17,16 @@ function App() {
 		<div className="App">
 			<Routes>
 			
-				<Route path="/Homepage" exact element={<Firstpage/>} />
+				<Route path="/homepage" exact element={<Firstpage/>} />
 				
 				<Route path="/drawer" element={<Drawer/>}/>
+
+				<Route path="/table" element={<DataTable/>}/>
+
+
+
+
+			
 				
 
 

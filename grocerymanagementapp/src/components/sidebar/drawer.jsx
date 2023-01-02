@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { Typography } from '@mui/material';
+import DataTable from './table';
+
+
 // import User_Appbar from "./appbar";
 
-import { styled, useTheme,alpha} from '@mui/material/styles';
+import { styled, useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
@@ -20,18 +23,10 @@ import ListItemText from '@mui/material/ListItemText';
 //appbar
 
 
-import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-
-
-
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AddIcon from '@mui/icons-material/Add';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
@@ -40,47 +35,6 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(3),
-    width: 'auto',
-  },
-}));
-
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
-}));
 
 //css 
 
@@ -91,7 +45,12 @@ const  Styles={
       display: "flex",
   },
 
+  appbar:{
+    display: "flex",
+    justifyContent :"space-around",
+    
 
+  },
   //for all icon text
   icond: {
     margin: "0px 0px 0px 25px",   
@@ -116,15 +75,27 @@ const  Styles={
 
 //appbar css
 
-search:{
-  marginright: "auto",
-},
+
 
 // grocery 
 grocery:{
-marginright:"0px 0px 0px 10px",
+margin:"0px 0px 0px 500px",
+
+
+},
+// table
+table:{
+  // margin:"80% 0% 0% 150%",
+  width:"850px",
+  margin:"150px 0px 0px 350px",
+  height:"500px",
+  boxShadow: "10px 10px 5px lightblue",
+ 
+
 }
+
 };
+
 
 
 
@@ -158,6 +129,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
+
+
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -203,6 +176,8 @@ export default function MiniDrawer() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+ 
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -222,7 +197,7 @@ export default function MiniDrawer() {
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
-    <Menu
+    <Menu 
       anchorEl={anchorEl}
       anchorOrigin={{
         vertical: 'top',
@@ -244,7 +219,7 @@ export default function MiniDrawer() {
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
-    <Menu
+    <Menu 
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
         vertical: 'top',
@@ -259,28 +234,10 @@ export default function MiniDrawer() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 1 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
+      
+        
+      <MenuItem onClick={handleProfileMenuOpen} style={Styles.profile}>
+        <IconButton 
           size="large"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
@@ -304,12 +261,16 @@ export default function MiniDrawer() {
   };
 
   return (
-    <div>
+    <div style={Styles.root}> 
     <Box >
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+
+    
+     
+     <AppBar position="fixed" open={open} >
+     < div styles={Styles.appbar}>
         <Toolbar>
-          <IconButton
+          <IconButton 
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -321,35 +282,14 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Grocery Managenemt System
+          <Typography variant="h6"  style={Styles.grocery}>
+            GROCERY MANAGEMENT SYSTEM 
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-
-            <StyledInputBase 
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+         
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            
+            
             <IconButton
               size="large"
               edge="end"
@@ -375,8 +315,11 @@ export default function MiniDrawer() {
             </IconButton>
           </Box>
         </Toolbar>
+        </div>
       </AppBar>
-        
+    {renderMobileMenu}
+      {renderMenu}
+     
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
         
@@ -386,6 +329,10 @@ export default function MiniDrawer() {
           </IconButton>
            </div>
         </DrawerHeader>
+
+      
+
+
         {/* <div className="top">
             <span style={Styles.drawer}>Grocery Admin</span>
             </div> */}
@@ -473,6 +420,9 @@ export default function MiniDrawer() {
  
         </List>
       </Drawer>
+      <div style={Styles.table}>
+      <DataTable/>
+      </div>
     </Box>
     </div>
   );
