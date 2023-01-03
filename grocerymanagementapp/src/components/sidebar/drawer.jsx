@@ -286,7 +286,7 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6"  style={Styles.grocery}>
-            GROCERY MANAGEMENT SYSTEM 
+            WELCOME TO GROCERY MANAGEMENT SYSTEM 
           </Typography>
          
           <Box sx={{ flexGrow: 1 }} />
