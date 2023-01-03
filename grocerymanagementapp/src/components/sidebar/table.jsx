@@ -13,16 +13,24 @@ const columns = [
 ];
 
 const rows = [
-  { id: 0, productName: 'Veg', stockIn:35, stockOut: 35, stockAvailable: 35},
-  { id: 1, productName: 'Veg', stockIn:35, stockOut: 35, stockAvailable: 35},
-  { id: 2, productName: 'Veg', stockIn:35, stockOut: 35, stockAvailable: 35},
-  { id: 3, productName: 'Veg', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 0, productName: 'Fruits', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 1, productName: 'Vegtable', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 2, productName: 'Rice', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 3, productName: 'Cold Drinks', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 4, productName: 'Fruits', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 5, productName: 'Vegtable', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 2, productName: 'Rice', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 6, productName: 'Cold Drinks', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 7, productName: 'Fruits', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 8, productName: 'Vegtable', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 9, productName: 'Rice', stockIn:35, stockOut: 35, stockAvailable: 35},
+  { id: 10, productName: 'Cold Drinks', stockIn:35, stockOut: 35, stockAvailable: 35},
   
 ];
 
 export default function DataTable() {
   return (
-    <div >
+    <div style={{ height: 400, }}>
       <DataGrid
         rows={rows}
         columns={columns}

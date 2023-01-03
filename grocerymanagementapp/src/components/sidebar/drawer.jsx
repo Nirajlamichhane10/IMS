@@ -86,13 +86,16 @@ margin:"0px 0px 0px 500px",
 // table
 table:{
   // margin:"80% 0% 0% 150%",
-  width:"750px",
-  margin:"150px 0px 0px 350px",
+  width:"850px",
+  margin:"200px 30px 50px 350px",
   height:"500px",
   boxShadow: "10px 10px 5px lightblue",
  
 
-}
+},
+dasdboardback:{
+  color:"#D9E5D6",
+},
 
 };
 
