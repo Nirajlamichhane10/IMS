@@ -3,9 +3,10 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import { useEffect } from "react";
+import { v4 as uuid } from 'uuid';
 
-const Login = () => {
-	const [data, setData] = useState({ email: "", password: "" });
+const Login = (props) => {
+	const [data, setData] = useState({ username: "", password: "" });
 	const [error, setError] = useState("");
 
 	const handleChange = ({ currentTarget: input }) => {
@@ -15,14 +16,35 @@ const Login = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		
 		try {
+			console.log("Hey submit button worked");
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+					'username':data.username,
+					'password':data.password,
+				}
+			  };
 			const url = " http://localhost:5000/auth/authDetails";
-			const response = await axios.post(url, data);
-			if (response=="User Not Found"|| response=="password incorrect"){
-				localStorage.setItem("token", "");
-			}else{
-				localStorage.setItem("token", response);
+			const response = await axios.get(url,options );
+
+			if (response.data.message === "authenticated"){
+
+				// unique key generated 
+				const unique_id = uuid();
+  				const small_id = unique_id.slice(0,8);
+				localStorage.setItem("token", small_id);
+				// props.setUniqueId(small_id);
+				props.tokenId.current=small_id;
+				props.setLogin(true);
+				console.log(small_id);
+
 			}
+			// else{
+			// 	localStorage.setItem("token", "not_authenticated");
+			// }
+			console.log(response.message);
 			
 			window.location = "/";
 		} catch (error) {
@@ -43,7 +65,7 @@ const Login = () => {
 					<form className={styles.form_container} >
 						<h1> Welcome to Grocery Management System </h1>
 						<input
-							type="Username"
+							type="username"
 							placeholder="UserName:"
 							name="username"
 							onChange={handleChange}
@@ -61,11 +83,11 @@ const Login = () => {
 							className={styles.input}
 						/>
 						
-						<button type="submit" className={styles.green_btn}>
+						<button type="submit" onClick={handleSubmit} className={styles.green_btn}>
 							Sign In
 						</button>
 
-						<button type="submit" className={styles.forget_btn}>
+						<button type="submit" onClick={handleSubmit} className={styles.forget_btn}>
 							Forgot Password ?
 						</button>
 
