@@ -22,10 +22,8 @@ export default function BasicCard() {
         <Typography sx={{ fontSize: 18  }} color="text.secondary"   gutterBottom>
         STOCK IN 
         </Typography>
-        
         <Typography variant="body2">
-          1150
-          
+          1150   
         </Typography>
       </CardContent>
       <CardActions>
