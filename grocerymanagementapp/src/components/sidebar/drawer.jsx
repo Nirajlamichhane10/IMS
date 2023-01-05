@@ -91,17 +91,19 @@ margin:"0px 0px 0px 500px",
 table:{
   // margin:"80% 0% 0% 150%",
   width:"850px",
-  margin:"200px 30px 50px 350px",
+  margin:"50px 30px 50px 400px",
   height:"500px",
-  boxShadow: "10px 10px 5px lightblue",
- 
+  boxShadow: "15px 15px 8px lightblue",
+  
 
 },
 cards:{
-  flexGrow: "1",
-  textAlign: "center",
-  margin:"5px",
-  boxShadow: "10px 10px 5px lightblue",
+
+  borderRadius:"10px",
+  width:"220px",
+  textAlign:"center",
+  margin:"120px 30px 50px 400px",
+  boxShadow: "15px 15px 8px lightblue",
 
 
 },
@@ -430,17 +432,17 @@ export default function MiniDrawer() {
             
   
         <div className="bottom">color options</div>
-
-
  
         </List>
+        
       </Drawer>
-      <div style={Styles.table}>
-        <div style={Styles.cards}>
+      <div style={Styles.cards}>
         <BasicCard/>
         </div>
+      <div style={Styles.table}>
       <DataTable/>
       </div>
+     
     </Box>
     </div>
   );
