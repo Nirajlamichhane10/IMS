@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+import { useEffect } from "react";
 
 const Login = () => {
 	const [data, setData] = useState({ email: "", password: "" });
@@ -10,12 +11,19 @@ const Login = () => {
 	const handleChange = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.value });
 	};
+
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8080/api/auth";
-			const { data: res } = await axios.post(url, data);
-			localStorage.setItem("token", res.data);
+			const url = " http://localhost:5000/auth/authDetails";
+			const response = await axios.post(url, data);
+			if (response=="User Not Found"|| response=="password incorrect"){
+				localStorage.setItem("token", "");
+			}else{
+				localStorage.setItem("token", response);
+			}
+			
 			window.location = "/";
 		} catch (error) {
 			if (

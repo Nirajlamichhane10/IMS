@@ -1,20 +1,36 @@
-require('dotenv').config();
 const express = require('express');
-const app = express();
 const cors = require("cors");
-require("./database");
+const mongoose = require('mongoose');
+require('dotenv').config();
 
+//Importing Routes
+const userRoute = require("./Routes/userRoute");
 
+const app = express();
 
+async function connect(){
+    try{
+        await mongoose.connect(process.env.uri,
+            {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                
+            },
+            
+            );
 
+        console.log("Connected to MongoDB");
+    } catch (error){
+        console.error(error);
+    }
+}
+ 
+connect();
 
-// middlewares 
-
-app.use(express.json())
 app.use(cors());
+app.use(express.json());
+app.use("/auth",userRoute);
 
-
-
-
-const port = process.env.PORT || 8080;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+app.listen(5000, () => {
+    console.log("Server strated on port 5000");
+});

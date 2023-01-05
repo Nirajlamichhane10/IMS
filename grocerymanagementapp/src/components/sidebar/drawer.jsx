@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Typography } from '@mui/material';
 import DataTable from './table';
+import BasicCard from'./cards';
+
 
 
 // import User_Appbar from "./appbar";
@@ -54,6 +56,7 @@ const  Styles={
   //for all icon text
   icond: {
     margin: "0px 0px 0px 25px",   
+
  
   },
 
@@ -62,6 +65,7 @@ const  Styles={
     height:"4vw",
     color:"#4c00b0",
     transform: "scale(1)",
+    cursor: "pointer",
     
 
   },
@@ -91,6 +95,14 @@ table:{
   height:"500px",
   boxShadow: "10px 10px 5px lightblue",
  
+
+},
+cards:{
+  flexGrow: "1",
+  textAlign: "center",
+  margin:"5px",
+  boxShadow: "10px 10px 5px lightblue",
+
 
 },
 dasdboardback:{
@@ -424,6 +436,9 @@ export default function MiniDrawer() {
         </List>
       </Drawer>
       <div style={Styles.table}>
+        <div style={Styles.cards}>
+        <BasicCard/>
+        </div>
       <DataTable/>
       </div>
     </Box>
