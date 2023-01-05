@@ -6,21 +6,23 @@ const User = require("../models/user");
 
 router.get('/authDetails',async (req,res)=>{
 try{
-  const password= req.body.password;
  
-  const userDetails= await User.find({username:req.body.username});
+  const userDetails= await User.find({username:req.headers.username});
  
   if(userDetails.length==0){
-    res.send("User Not Found");
+    res.send({message:"User Not Found"});
   }
-  else if(userDetails[0].password==password){
-  res.send("authenticated");
+  else if(userDetails[0].password === req.headers.password){
+  res.send({message:"authenticated"});
  }
  else{
-  res.send("password incorrect");
-
+  res.send({message:"password incorrect"});
  }
 
+//  console.log(userDetails);
+//  console.log(req.headers.username);
+//  console.log(req.headers.password);
+//  console.log(userDetails[0].password === req.headers.password);
 }
 
 catch(e){

@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import DataTable from './table';
 import BasicCard from'./cards';
 
-
+ 
 
 // import User_Appbar from "./appbar";
 
@@ -113,10 +113,6 @@ dasdboardback:{
 
 };
 
-
-
-
-
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
@@ -146,8 +142,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
-
-
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -231,6 +225,7 @@ export default function MiniDrawer() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
     </Menu>
   );
 
@@ -252,7 +247,6 @@ export default function MiniDrawer() {
       onClose={handleMobileMenuClose}
     >
       
-        
       <MenuItem onClick={handleProfileMenuOpen} style={Styles.profile}>
         <IconButton 
           size="large"
