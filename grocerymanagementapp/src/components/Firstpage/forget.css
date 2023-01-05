@@ -1,0 +1,17 @@
+.input{
+    margin-top: 20px;
+    height: 60px;
+    width: 70%; 
+    font-size: 40px;
+  }
+  .button{
+    height: 70px;
+    width: 60%;
+    font-size: 60px;
+  }
+  .box{
+    
+    background-color:aqua;
+    text-align: center;
+    margin-top: 250px;
+  }

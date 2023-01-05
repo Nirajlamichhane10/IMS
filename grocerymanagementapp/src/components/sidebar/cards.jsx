@@ -25,10 +25,10 @@ export default function BasicCard() {
         <Typography variant="body2">
           1150   
         </Typography>
-      </CardContent>
       <CardActions>
         <Button size="small">See ALL details</Button>
       </CardActions>
+      </CardContent>
     </Card>
   );
 }
