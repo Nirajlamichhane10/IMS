@@ -6,10 +6,6 @@ import DataTable from "./components/sidebar/table";
 import BasicCard from "./components/sidebar/cards";
 
 
-
-
-
-
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
   
@@ -25,13 +21,14 @@ function App() {
 		<div className="App">
 		<Drawer/>
 			<Routes>
-				{/* <Route path="/homepage" exact element={<Firstpage/>} /> */}
+				<Route path="/homepage" exact element={<Firstpage/>} />
 				
-				{/* <Route path="/drawer" element={<Drawer/>}/> */}
+				<Route path="/drawer" element={<Drawer/>}/>
 
 				<Route path="/table" element={<DataTable/>}/>
 
 				<Route path="/cards" element={<BasicCard/>}/>
+
 
 			</Routes>
 		</div>
