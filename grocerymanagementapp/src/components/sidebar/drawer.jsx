@@ -38,6 +38,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 
 
+
 //css 
 
 const drawerWidth = 240;
@@ -91,25 +92,29 @@ margin:"0px 0px 0px 500px",
 table:{
   // margin:"80% 0% 0% 150%",
   width:"850px",
-  margin:"50px 30px 50px 400px",
-  height:"500px",
+  margin:"50px 10px 10px 400px",
+  height:"400px",
   boxShadow: "15px 15px 8px lightblue",
+
   
 
 },
 cards:{
 
-  borderRadius:"10px",
+  borderRadius:"20px",
   width:"220px",
   textAlign:"center",
-  margin:"120px 30px 50px 400px",
+  margin:"110px 30px 50px 400px",
   boxShadow: "15px 15px 8px lightblue",
+ 
 
 
 },
 dasdboardback:{
   color:"#D9E5D6",
 },
+
+
 
 };
 
@@ -435,6 +440,9 @@ export default function MiniDrawer() {
         </div>
       <div style={Styles.table}>
       <DataTable/>
+      </div>
+      <div>
+        <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
       </div>
      
     </Box>

@@ -30,7 +30,7 @@ const rows = [
 
 export default function DataTable() {
   return (
-    <div style={{height: 500, }}>
+    <div style={{height: 400, }}>
       <DataGrid
         rows={rows}
         columns={columns}
