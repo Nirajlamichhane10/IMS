@@ -4,7 +4,8 @@ import Drawer from "./components/sidebar/drawer";
 import DataTable from "./components/sidebar/table";
 // import Forgetpassword from "./components/Firstpage/forgetpassword";
 import BasicCard from "./components/sidebar/cards";
-
+import AddItem from './components/pages/addItem';
+import PurchaseItem from './components/pages/purchaseItem';
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -19,7 +20,7 @@ function App() {
     return isLogin ? ( 
 		<Router>
 		<div className="App">
-		<Drawer/>
+		{/* <Drawer/> */}
 			<Routes>
 				<Route path="/homepage" exact element={<Firstpage/>} />
 				
@@ -28,6 +29,10 @@ function App() {
 				<Route path="/table" element={<DataTable/>}/>
 
 				<Route path="/cards" element={<BasicCard/>}/>
+
+				<Route path="/addItem" element={<AddItem/>}/>
+
+				<Route path="/purchaseItem" element={<PurchaseItem/>}/>
 
 
 			</Routes>

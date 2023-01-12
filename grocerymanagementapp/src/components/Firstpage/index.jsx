@@ -33,7 +33,7 @@ const Login = (props) => {
 
 				// unique key generated 
 				const unique_id = uuid();
-  				const small_id = unique_id.slice(0,8);
+  				const small_id = unique_id.slice(0,32);
 				localStorage.setItem("token", small_id);
 				// props.setUniqueId(small_id);
 				props.tokenId.current=small_id;

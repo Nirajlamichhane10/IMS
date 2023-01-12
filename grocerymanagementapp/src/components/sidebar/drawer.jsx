@@ -110,6 +110,28 @@ cards:{
 
 
 },
+cards1:{
+
+  borderRadius:"20px",
+  width:"220px",
+  textAlign:"center",
+  margin:"-190px 30px 50px 700px",
+  boxShadow: "15px 15px 8px lightblue",
+ 
+
+
+},
+cards2:{
+
+  borderRadius:"20px",
+  width:"220px",
+  textAlign:"center",
+  margin:"-190px 30px 50px 1000px",
+  boxShadow: "15px 15px 8px lightblue",
+ 
+
+
+},
 dasdboardback:{
   color:"#D9E5D6",
 },
@@ -436,6 +458,12 @@ export default function MiniDrawer() {
         
       </Drawer>
       <div style={Styles.cards}>
+        <BasicCard/>
+        </div>
+        <div style={Styles.cards1}>
+        <BasicCard/>
+        </div>
+        <div style={Styles.cards2}>
         <BasicCard/>
         </div>
       <div style={Styles.table}>
