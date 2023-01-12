@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Typography } from '@mui/material';
-import DataTable from './table';
-import BasicCard from'./cards';
+import { Link } from 'react-router-dom';
 
  
 
@@ -380,7 +379,7 @@ export default function MiniDrawer() {
         <Divider />
         </div>
         <List>
-                <ListItem style={Styles.icont}>
+                <ListItem component={Link} to ={"/"} onClick={handleDrawerClose} style={Styles.icont}>
                     <DashboardIcon/>
                     <ListItemText>
                     <Typography> 
@@ -390,7 +389,7 @@ export default function MiniDrawer() {
                             </Typography>
                       </ListItemText>
                 </ListItem>
-                <ListItem style={Styles.icont}>
+                <ListItem component={Link} to ={"/addItem"} onClick={handleDrawerClose} style={Styles.icont}>
                     <AddIcon/>
                     <ListItemText>
                     <Typography>
@@ -457,21 +456,6 @@ export default function MiniDrawer() {
         </List>
         
       </Drawer>
-      <div style={Styles.cards}>
-        <BasicCard/>
-        </div>
-        <div style={Styles.cards1}>
-        <BasicCard/>
-        </div>
-        <div style={Styles.cards2}>
-        <BasicCard/>
-        </div>
-      <div style={Styles.table}>
-      <DataTable/>
-      </div>
-      <div>
-        <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
-      </div>
      
     </Box>
     </div>

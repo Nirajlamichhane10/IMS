@@ -3,7 +3,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import MatTable from './materialtable';
+
+
 
  // adding css 
     const  Styles={
@@ -41,19 +42,19 @@ import MatTable from './materialtable';
       width:"220px",
 
      },
- 
+
 
 
     };
 
-export default function AddItem() {
+export default function EditItem() {
     return (
-   <div>
+   
 
           <Box sx={{ width: '100%', maxWidth: 500, }}>
             
            <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.addItem}>
-           Add Item:
+           Edit Item:
            </Typography>
            
           <Typography variant="h5" gutterBottom style={Styles.item}>
@@ -87,20 +88,13 @@ export default function AddItem() {
     </Box>
     <div style={Styles.button}>
         <Button variant="contained" size="large">
-          ADD ITEM
+          UPDATE ITEM
         </Button>
       </div>
          
         </Box>
-        <div>
-      <MatTable/>
-      </div>
-      </div>
-      
+        
       );
-  
-     
-   
     }
 
   

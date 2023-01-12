@@ -15,12 +15,12 @@ const bull = (
   </Box>
 );
 
-export default function BasicCard() {
+export default function BasicCard(props) {
   return (
     <Card sx={{ minWidth: 150 }}>
       <CardContent>
         <Typography sx={{ fontSize: 18  }} color="text.secondary"   gutterBottom>
-        STOCK IN 
+        {props.text}
         </Typography>
         <Typography variant="body2">
           1150   
