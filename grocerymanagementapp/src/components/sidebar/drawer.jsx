@@ -399,7 +399,7 @@ export default function MiniDrawer() {
                             </Typography>
                       </ListItemText>
                 </ListItem>
-                <ListItem style={Styles.icont}>
+                <ListItem component={Link} to ={"/purchaseItem"} onClick={handleDrawerClose} style={Styles.icont}>
                     <LocalGroceryStoreIcon/>
                     <ListItemText>
                     <Typography >

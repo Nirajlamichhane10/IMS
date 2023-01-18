@@ -50,9 +50,13 @@ const tableIcons = {
   
     },
     table:{
-        wight:"450px",
-        margin:"30px 10px 10px 300px",
+      alignItems: "center",
+      textAlign: "center",
+      width:"80%",
+      margin:"30px 10px 10px 200px",
+    
     }
+
 };
 
 export default function MatTable() {
@@ -61,39 +65,35 @@ export default function MatTable() {
 
   
     const [columns, setColumns] = useState([
-      { title: 'Name', field: 'name' },
-      { title: 'Surname', field: 'surname', initialEditValue: 'initial edit value' },
-      { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-      {
-        title: 'Birth Place',
-        field: 'birthCity',
-        lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-      },
+   
+      { title: 'ItemName', field: 'itemname', initialEditValue: 'initial edit value' },
+      { title: 'SupplierName', field: 'suppliername', initialEditValue: 'initial edit value' },
+      
     ]);
   
     const [data, setData] = useState([
-      { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
+      {  itemname: 'Rice', suppliername:"Nirajlamichhane" },
+      { itemname: 'Cold drinks', suppliername:"Nirajlamichhane"},
     ]);
   
     return (
 
         <ThemeProvider theme={defaultMaterialTheme}>
       <MaterialTable style={Styles.table}
-        title="Editable Preview"
+        title="Added Items"
         icons={tableIcons}
         columns={columns}
         
         data={data}
         editable={{
-          onRowAdd: newData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                setData([...data, newData]);
+          // onRowAdd: newData =>
+          //   new Promise((resolve, reject) => {
+          //     setTimeout(() => {
+          //       setData([...data, newData]);
                 
-                resolve();
-              }, 1000)
-            }),
+          //       resolve();
+          //     }, 1000)
+          //   }),
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {

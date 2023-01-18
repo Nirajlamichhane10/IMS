@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import MatTable from './materialtable';
+import MatTable from '../Firstpage/materialtable';
 
  // adding css 
     const  Styles={
@@ -16,29 +16,40 @@ import MatTable from './materialtable';
         textAlign:"center",
          margin:"90px 0px 50px 700px",
          width:"220px",
+         display:"flex",
     },
      item:{
       margin:"80px 0px 50px 500px",
       width:"220px",
+      alignItems: "center",
+      display:"flx",
 
      },
      itembox:{
-      margin:"-90px 0px 50px 650px",
+      margin:"-90px 0px 50px 680px",
+      alignItems: "center",
+      display:"flx",
 
      },
 
-     price:{
+     supplier:{
       margin:"40px 0px 50px 500px",
       width:"220px",
+      alignItems: "center",
+      display:"flx",
 
      },
-     pricebox:{
-      margin:"-100px 0px 50px 650px",
+     supplierbox:{
+      margin:"-100px 0px 50px 680px",
+      alignItems: "center",
+      display:"flx",
 
      },
      button:{
       margin:"30px 0px 50px 500px",
       width:"220px",
+      alignItems: "center",
+      display:"flx",
 
      },
  
@@ -47,6 +58,7 @@ import MatTable from './materialtable';
     };
 
 export default function AddItem() {
+  
     return (
    <div>
 
@@ -72,19 +84,19 @@ export default function AddItem() {
     </Box>
 
       
-          <Typography variant="h5" gutterBottom style={Styles.price}>
-            Price:
+          <Typography variant="h5" gutterBottom style={Styles.supplier}>
+            Supplier Name:
           </Typography>
           
-          <Box style={Styles.pricebox}
+          <Box style={Styles.supplierbox}
       sx={{
         width: 400,
         maxWidth: '70%',
       }}
     >
     
-      <TextField fullWidth label="Price Name" id="Price Name" />
-    </Box>
+      <TextField fullWidth label="Suppliers Name" id="Suppliers Name" />
+    </Box> 
     <div style={Styles.button}>
         <Button variant="contained" size="large">
           ADD ITEM
@@ -95,7 +107,11 @@ export default function AddItem() {
         <div>
       <MatTable/>
       </div>
+      <div>
+        <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
       </div>
+      </div>
+
       
       );
   

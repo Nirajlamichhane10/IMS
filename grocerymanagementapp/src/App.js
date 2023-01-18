@@ -7,7 +7,7 @@ import BasicCard from "./components/sidebar/cards";
 import AddItem from './components/pages/addItem';
 import PurchaseItem from './components/pages/purchaseItem';
 import EditItem from './components/pages/editItem';
-import MatTable from './components/pages/materialtable';
+// import MatTable from './components/pages/materialtable';
 import Dashboard from './components/pages/Dashboard';
 
 
@@ -42,7 +42,7 @@ function App() {
 				
 				<Route path="/editItem" element={<EditItem/>}/>
 
-				<Route path="/materialtable" element={<MatTable/>}/>
+				{/* <Route path="/materialtable" element={<MatTable/>}/> */}
 
 
 			</Routes>
