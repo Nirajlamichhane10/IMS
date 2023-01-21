@@ -53,7 +53,7 @@ const tableIcons = {
       alignItems: "center",
       textAlign: "center",
       width:"80%",
-      margin:"30px 10px 10px 200px",
+      margin:"30px 10px 10px 250px",
     
     }
 
@@ -67,13 +67,13 @@ export default function MatTable() {
     const [columns, setColumns] = useState([
    
       { title: 'ItemName', field: 'itemname', initialEditValue: 'initial edit value' },
-      { title: 'SupplierName', field: 'suppliername', initialEditValue: 'initial edit value' },
+      { title: 'Quantity', field: 'quantity', initialEditValue: 'initial edit value' },
       
     ]);
   
     const [data, setData] = useState([
-      {  itemname: 'Rice', suppliername:"Nirajlamichhane" },
-      { itemname: 'Cold drinks', suppliername:"Nirajlamichhane"},
+      {  itemname: 'Rice', quantity:100 },
+      { itemname: 'Cold drinks', quantity:200},
     ]);
   
     return (

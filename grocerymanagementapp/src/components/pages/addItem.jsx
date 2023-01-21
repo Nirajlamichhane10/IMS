@@ -22,27 +22,29 @@ import MatTable from '../Firstpage/materialtable';
       margin:"80px 0px 50px 500px",
       width:"220px",
       alignItems: "center",
-      display:"flx",
+      display:"flex",
 
      },
      itembox:{
-      margin:"-90px 0px 50px 680px",
+      margin:"-90px 0px 50px 650px",
       alignItems: "center",
-      display:"flx",
+      display:"flex",
+      textAlign:"center",
 
      },
 
-     supplier:{
+     quantity:{
       margin:"40px 0px 50px 500px",
       width:"220px",
       alignItems: "center",
-      display:"flx",
+      display:"flex",
 
      },
-     supplierbox:{
-      margin:"-100px 0px 50px 680px",
+     quantitybox:{
+      margin:"-100px 0px 50px 650px",
       alignItems: "center",
-      display:"flx",
+      display:"flex",
+      textAlign:"center",
 
      },
      button:{
@@ -84,18 +86,18 @@ export default function AddItem() {
     </Box>
 
       
-          <Typography variant="h5" gutterBottom style={Styles.supplier}>
-            Supplier Name:
+          <Typography variant="h5" gutterBottom style={Styles.quantity}>
+            Quantity:
           </Typography>
           
-          <Box style={Styles.supplierbox}
+          <Box style={Styles.quantitybox}
       sx={{
         width: 400,
         maxWidth: '70%',
       }}
     >
     
-      <TextField fullWidth label="Suppliers Name" id="Suppliers Name" />
+      <TextField fullWidth label="Quantity" id="quantity" />
     </Box> 
     <div style={Styles.button}>
         <Button variant="contained" size="large">

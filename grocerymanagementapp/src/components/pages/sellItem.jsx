@@ -3,16 +3,13 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import { flexbox } from '@mui/system';
+
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MatTablePurchase from '../Firstpage/materialTablePurchase';
 
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
 // css 
@@ -54,7 +51,7 @@ button:{
 
 
 };
-export default function PurchaseItem() {
+export default function SellItem() {
 
   const [invoiceNumber,setInvoiceNumber]= React.useState('');
   const [billDate,setBillDate]= React.useState('');
@@ -96,7 +93,7 @@ export default function PurchaseItem() {
       >
         <div>
         <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.purchaseItem}>
-           Purchase Item:
+           Sell Item:
            </Typography>
 
 {/* // invoice no  */}

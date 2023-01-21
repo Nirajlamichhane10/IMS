@@ -6,12 +6,17 @@ import DataTable from "./components/sidebar/table";
 import BasicCard from "./components/sidebar/cards";
 import AddItem from './components/pages/addItem';
 import PurchaseItem from './components/pages/purchaseItem';
-import EditItem from './components/pages/editItem';
+
 // import MatTable from './components/pages/materialtable';
 import Dashboard from './components/pages/Dashboard';
+import SellItem from './components/pages/sellItem';
+
+
+
 
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 
   
 function App() {
@@ -39,8 +44,10 @@ function App() {
 
 				<Route path="/purchaseItem" element={<PurchaseItem/>}/>
 
+			
+				<Route path="/sellItem" element={<SellItem/>}/>
+
 				
-				<Route path="/editItem" element={<EditItem/>}/>
 
 				{/* <Route path="/materialtable" element={<MatTable/>}/> */}
 
