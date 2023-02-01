@@ -35,7 +35,7 @@ import SellIcon from '@mui/icons-material/Sell';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
-
+import StoreIcon from '@mui/icons-material/Store';
 
 
 //css 
@@ -389,6 +389,7 @@ export default function MiniDrawer() {
                             </Typography>
                       </ListItemText>
                 </ListItem>
+                
                 <ListItem component={Link} to ={"/addItem"} onClick={handleDrawerClose} style={Styles.icont}>
                     <AddIcon/>
                     <ListItemText>
@@ -399,6 +400,7 @@ export default function MiniDrawer() {
                             </Typography>
                       </ListItemText>
                 </ListItem>
+
                 <ListItem component={Link} to ={"/purchaseItem"} onClick={handleDrawerClose} style={Styles.icont}>
                     <LocalGroceryStoreIcon/>
                     <ListItemText>
@@ -409,21 +411,33 @@ export default function MiniDrawer() {
                             </Typography>
                     </ListItemText>
                 </ListItem>
-                <ListItem style={Styles.icont}>
+
+                <ListItem component={Link} to ={"/myStock"} onClick={handleDrawerClose} style={Styles.icont}>
+                    <StoreIcon/>
+                    <ListItemText>
+                    <Typography >
+                    <span  style={Styles.icond}>
+                              My Stock 
+                               </span>
+                            </Typography>
+                      </ListItemText>
+                </ListItem>
+
+                <ListItem  component={Link} to ={"/sellItem"} onClick={handleDrawerClose} style={Styles.icont}>
                     <SellIcon/>
                     <ListItemText>
                     <Typography >
-                    <span style={Styles.icond}>
+                    <span  style={Styles.icond}>
                                Sell Item
                                </span>
                             </Typography>
                      </ListItemText>
                     </ListItem>
-                <ListItem style={Styles.icont}>
+                <ListItem  component={Link} to ={"/addSuppliers"} onClick={handleDrawerClose} style={Styles.icont}>
                     <AddBoxIcon/>
                     <ListItemText>
                     <Typography >
-                    <span style={Styles.icond}>
+                    <span  style={Styles.icond}>
                                Add Suppliers
                                </span>
                             </Typography>
@@ -449,6 +463,9 @@ export default function MiniDrawer() {
                             </Typography>
                       </ListItemText>
                 </ListItem>
+
+            
+            
             
   
         <div className="bottom">color options</div>

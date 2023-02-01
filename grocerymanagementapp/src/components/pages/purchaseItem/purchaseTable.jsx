@@ -1,5 +1,7 @@
+
 import * as React from 'react';
-import MaterialTable from 'material-table';
+import MaterialTable , { MTableToolbar } from 'material-table';
+
 
 import { ThemeProvider, createTheme } from '@mui/material';
 
@@ -20,6 +22,7 @@ import SaveAlt from '@mui/icons-material/SaveAlt';
 import Search from '@mui/icons-material/Search';
 import ViewColumn from '@mui/icons-material/ViewColumn';
 import { useEffect } from 'react';
+
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -50,51 +53,39 @@ const tableIcons = {
     table:{
       alignItems: "center",
       textAlign: "center",
-      width:"70%",
-      margin:"30px 10px 10px 250px",
+      width:"55%",
+      height:"35%",
+      margin:"-35px 10px 10px 250px",
     
     }
 
 };
 
-export default function MatTablePurchase(props) {
+export default function PurchasedTable() {
     const { useState } = React;
     const defaultMaterialTheme = createTheme();
 
   
     const [columns, setColumns] = useState([
    
-      { title: 'InvoiceNo', field: 'invoiceno', initialEditValue: 'initial edit value' },
-      { title: 'BillDate', field: 'billdate', initialEditValue: 'initial edit value' },
-      { title: 'SuppliersName', field: 'suppliersname', initialEditValue: 'initial edit value' },
-      { title: 'CarringCharge', field: 'carryingcharge',type:'numeric', initialEditValue: 'initial edit value' },
-      { title: 'ItemName', field: 'itemname', initialEditValue: 'initial edit value' },
-      { title: 'Quantity', field: 'quantity',type:'numeric', initialEditValue: 'initial edit value' },
-      { title: 'price', field: 'price', type:'numeric',initialEditValue: 'initial edit value' },
-      { title: 'Total', field: 'total',type:'numeric', initialEditValue: 'initial edit value' },
+      { title: 'Item Name', field: 'itemname', initialEditValue: 'initial edit value' },
+      { title: 'Unit', field: 'unit', initialEditValue: 'initial edit value' },
+      { title: 'Quantity', field: 'quantity', initialEditValue: 'initial edit value' },
+      { title: 'Price', field: 'price', initialEditValue: 'initial edit value' },
+      { title: 'Total', field: 'total', initialEditValue: 'initial edit value' },
+     
       
 
       
     ]);
 
-      const [propsData, setPropsData] = useState(props.purchaseData.current.value? [props.purchaseData.current.value]:[]);
   
     const [data, setData] = useState([
-      {  invoiceno: 1, billdate:"11/12/2023", suppliersname:"Niraj Lamichhane", carryingcharge:120,itemname:"Cold Drinks", quantity:12, price:1200, total:1500 },
-      {  invoiceno: 1, billdate:"11/12/2023", suppliersname:"Niraj Lamichhane", carryingcharge:120,itemname:"Cold Drinks", quantity:12, price:1200, total:1500 },
+     { itemname:"Cold Drinks", unit:"ml", quantity:12, price:1200, total:1500 },
+      
+    
     ]);
 
-    const [overAlldata, setoverallData] = useState(data.concat(propsData))
-    console.log(overAlldata);
-    
-    console.log(propsData);
-
-    useEffect(()=>{
-      setPropsData(props.purchaseData.current.value? [props.purchaseData.current.value]:[]);
-      console.log(overAlldata);
-    console.log("hello");
-      console.log(propsData);
-    },[props.purchaseData.current.value])
   
   
     return (
@@ -102,19 +93,37 @@ export default function MatTablePurchase(props) {
         <ThemeProvider theme={defaultMaterialTheme}>
       <MaterialTable style={Styles.table}
         title="Added Items"
+        
         icons={tableIcons}
         columns={columns}
         
-        data={overAlldata}
+        data={data}
+
+        options={{
+          search:false,
+          paging:false,
+        }}
+
+        components={{
+          Toolbar: props => (
+            <div>
+              <MTableToolbar {...props} />
+              <div style={{padding: '0px 10px'}}>
+                <hr/>
+              </div>
+            </div>
+          ),
+        }}
+
         editable={{
-          // onRowAdd: newData =>
-          //   new Promise((resolve, reject) => {
-          //     setTimeout(() => {
-          //       setData([...data, newData]);
+          onRowAdd: newData =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                setData([...data, newData]);
                 
-          //       resolve();
-          //     }, 1000)
-          //   }),
+                resolve();
+              }, 1000)
+            }),
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
@@ -140,6 +149,7 @@ export default function MatTablePurchase(props) {
         }}
       />
       </ThemeProvider>
+     
       </div>
     )
   }

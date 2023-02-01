@@ -1,21 +1,23 @@
 import * as React from 'react';
 import Firstpage from"./components/Firstpage/index";
-import Drawer from "./components/sidebar/drawer";
-import DataTable from "./components/sidebar/table";
+import Drawer from "./components/dashboard/drawer";
+import DataTable from "./components/dashboard/table";
+
 // import Forgetpassword from "./components/Firstpage/forgetpassword";
-import BasicCard from "./components/sidebar/cards";
-import AddItem from './components/pages/addItem';
-import PurchaseItem from './components/pages/purchaseItem';
+import BasicCard from "./components/dashboard/cards";
+import AddItem from './components/pages/addItem/addItem';
+import PurchaseItem from './components/pages/purchaseItem/purchaseItem';
+import SellItem from './components/pages/sellItem/sellItem';
 
 // import MatTable from './components/pages/materialtable';
-import Dashboard from './components/pages/Dashboard';
-import SellItem from './components/pages/sellItem';
-
-
-
-
+import Dashboard from './components/dashboard/Dashboard';
+import AddSuppliers from './components/pages/addSupplier/addSuppliers';
+import CollapsibleTable from './components/pages/purchaseItem/newTable';
+import MyStock from './components/pages/myStock/myStock';
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+
 
 
   
@@ -42,10 +44,18 @@ function App() {
 
 				<Route path="/addItem" element={<AddItem/>}/>
 
+				<Route path="/testTable" element={<CollapsibleTable/>}/>
+
 				<Route path="/purchaseItem" element={<PurchaseItem/>}/>
 
-			
+				<Route path="/addSuppliers" element={<AddSuppliers/>}/>
+    
+				
+				<Route path="/myStock" element={<MyStock/>}/>
+				
 				<Route path="/sellItem" element={<SellItem/>}/>
+			
+				
 
 				
 

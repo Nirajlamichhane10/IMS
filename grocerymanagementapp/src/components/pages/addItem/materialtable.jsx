@@ -67,13 +67,15 @@ export default function MatTable() {
     const [columns, setColumns] = useState([
    
       { title: 'ItemName', field: 'itemname', initialEditValue: 'initial edit value' },
-      { title: 'Quantity', field: 'quantity', initialEditValue: 'initial edit value' },
+      { title: 'Unit', field: 'unit', initialEditValue: 'initial edit value' },
+      { title: 'In Stock', field: 'inStock', initialEditValue: 'initial edit value' },
+      { title: 'Minimum', field: 'minimum', initialEditValue: 'initial edit value' },
       
     ]);
   
     const [data, setData] = useState([
-      {  itemname: 'Rice', quantity:100 },
-      { itemname: 'Cold drinks', quantity:200},
+      {  itemname: 'Rice', unit:"kg", inStock:55, minimum:20,},
+      { itemname: 'Cold drinks', unit:"litre", inStock:55, minimum:20,},
     ]);
   
     return (

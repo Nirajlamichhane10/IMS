@@ -1,6 +1,6 @@
 import React from 'react';
-import DataTable from '../sidebar/table';
-import BasicCard from'../sidebar/cards';
+import DataTable from './table';
+import BasicCard from'./cards';
 
 const  Styles={
     root: {

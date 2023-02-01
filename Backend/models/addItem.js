@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
 
 const addItemSchema = new mongoose.Schema({
-  username: { type: String, required: true },
-  password: { type: String, required: true },
+ 
+  itemName: { type: String, required: true },
+  unitOfItem: { type: String, required: true },
+  quantity: { type: Number, required: true },
+  minimum: { type: Number, required: true },
+
 
 });
 
-module.exports = mongoose.model("AddItem", addItemSchema);
+module.exports = mongoose.model("addItem", addItemSchema);
