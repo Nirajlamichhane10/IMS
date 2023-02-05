@@ -5,7 +5,7 @@ const router = express.Router();
 
 const addSuppliers= require("../models/addSuppliers")
 
-router.post('/supplier', async (req, res) => {
+router.post('/suppliers', async (req, res) => {
     
     const newAddSuppliers= new addSuppliers({supplierName:req.body.supplierName,supplierContact:req.body.supplierContact,supplierEmail:req.body.supplierEmail,supplierAddress:req.body.supplierAddress});
     
