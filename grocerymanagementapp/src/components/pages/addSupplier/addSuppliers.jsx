@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SupplierTable from './addSupplierTable';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
 
 
 const Styles={
@@ -29,6 +30,41 @@ const Styles={
  
 };
 export default function AddSuppliers() {
+
+  const[supplierName, setSupplierName]= React.useState("");
+  const[supplierContact, setSupplierContact]= React.useState(0);
+  const[supplierEmail, setSupplierEmail]= React.useState("");
+  const[supplierAddress, setSupplierAddress]= React.useState("");
+  const[supplier, setSupplier]= React.useState({});
+
+
+  const handleChangeSupplierName =(event)=>{
+    setSupplierName(event.target.value)
+  };
+
+  const handleChangeSupplierContact =(event)=>{
+    setSupplierContact(event.target.value)
+  };
+
+  const handleChangeSupplierEmail =(event)=>{
+    setSupplierEmail(event.target.value)
+  };
+
+  const handleChangeSupplierAddress =(event)=>{
+    setSupplierAddress(event.target.value)
+  };
+
+  const handleOnclick =()=>{
+    try{
+      const response = axios.post(" http://localhost:5000/addSupplier/supplier",{supplierName,supplierContact,supplierEmail,supplierAddress});
+      console.log(response);
+    }
+    catch(e){
+      console.log(e);
+    }
+
+  };
+
   return (
     <div>
 
@@ -43,15 +79,27 @@ export default function AddSuppliers() {
            SUPPLIER DETAILS
            </Typography>
 
-      <TextField label={"Supplier Name"} id="suppliername" />
+      <TextField 
+      onChange={handleChangeSupplierName}
+      label={"Supplier Name"}
+       id="suppliername" 
+       />
      
-      <TextField label={"Supplier Contact"} id="suppliercontact" margin="dense" />
+      <TextField
+      onChange={handleChangeSupplierContact}
+       label={"Supplier Contact"} id="suppliercontact" margin="dense" />
      
-      <TextField label={"Supplier Email"} id="supplieremail" margin="normal" />
+      <TextField
+      onChange={handleChangeSupplierEmail}
+      label={"Supplier Email"} id="supplieremail" margin="normal" />
 
-      <TextField label={"Supplier Address"} id="supplieraddress" />
+      <TextField 
+      onChange={handleChangeSupplierAddress}
+      label={"Supplier Address"} id="supplieraddress" />
       <div style={Styles.button}>
-        <Button variant="contained" size="large" style={Styles.botton}>
+        <Button 
+        onClick={handleOnclick}
+        variant="contained" size="large" style={Styles.botton}>
           ADD SUPPLIER
         </Button>
       </div>

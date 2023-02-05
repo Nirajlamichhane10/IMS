@@ -67,18 +67,20 @@ button:{
 export default function PurchaseItem() {
 
   const [invoiceNumber,setInvoiceNumber]= React.useState('');
-  const [itemName, setItemName]= React.useState("");
-  const [quantity, setQuantity]= React.useState(0);
-  const [price, setPrice ]= React.useState(0);
-  const [total, setTotal ]=React.useState(0);
   const [supplierName, setSupplierName] = React.useState('');
   const [items, setItems] = React.useState([{}]);
   //   // for calender
   const [billDate, setBillDate] = React.useState(null);
 
-  // const [purchaseData,setPurchaseData] = React.useState({});
 
-  const purchaseData = React.useRef({});
+
+  const handleChnageInvoiceNumber =(event)=>{
+    setInvoiceNumber(event.target.value);
+  };
+
+  const handleChnageBillDate =(event)=>{
+    setBillDate(event.target.value);
+  };
 
 
   const handleChangeSupplier = (event) => {
@@ -109,6 +111,7 @@ export default function PurchaseItem() {
             id="outlined-error"
             label="Invoice.No"
             defaultValue=""
+            
             onChange={(event) => {
               setInvoiceNumber(event.target.value);
             }}
@@ -122,6 +125,7 @@ export default function PurchaseItem() {
           openTo="year"
           views={['year', 'month', 'day']}
           value={billDate}
+        
           onChange={(newValue) => {
             setBillDate(newValue);
           }}
@@ -158,7 +162,7 @@ export default function PurchaseItem() {
         </div>
       
       <div  style={Styles.table1}>
-        <PurchasedTable itemName={itemName} price={price} quantity={quantity} total={total} items={items} purchaseData={purchaseData}/>
+        {/* <PurchasedTable itemName={itemName} price={price} quantity={quantity} total={total} items={items} purchaseData={purchaseData}/> */}
         </div>
         <div style={Styles.button}>
         <Button onClick={handleOnclick} variant="contained" size="large">
