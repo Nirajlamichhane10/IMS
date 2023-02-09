@@ -6,6 +6,7 @@ require('dotenv').config();
 //Importing Routes
 const userRoute = require("./Routes/userRoute");
 const addItemRoute = require("./Routes/addItemRoute");
+const addSupplierRoute = require("./Routes/addSupplierRoute");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/auth",userRoute);
 app.use("/addItem",addItemRoute);
+app.use("/addSupplier",addSupplierRoute);
 
 app.listen(5000, () => {
     console.log("Server strated on port 5000");

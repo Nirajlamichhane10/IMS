@@ -4,7 +4,7 @@ import MaterialTable from 'material-table';
 import { ThemeProvider, createTheme } from '@mui/material';
 
 import { forwardRef } from 'react';
-
+import axios from 'axios';
 import AddBox from '@mui/icons-material/AddBox';
 import ArrowDownward from '@mui/icons-material/ArrowDownward';
 import Check from '@mui/icons-material/Check';
@@ -58,7 +58,7 @@ const tableIcons = {
 };
 
 export default function SupplierTable() {
-    const { useState } = React;
+    const { useState,useEffect } = React;
     const defaultMaterialTheme = createTheme();
 
   
@@ -72,11 +72,17 @@ export default function SupplierTable() {
     ]);
   
     const [data, setData] = useState([
-      {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk", },
-      {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk", },
-      {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk",  },
-      {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk", },
+      // {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk", },
+      // {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk", },
+      // {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk",  },
+      // {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk", },
     ]);
+
+    useEffect(async() => {
+      const SupplierData= await axios.get("http://localhost:5000/addSupplier/getSupplier");
+      setData([...SupplierData]);
+    },[]);
+  
   
     return (
 

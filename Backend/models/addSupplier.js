@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const addSuppliersSchema = new mongoose.Schema({
+const addSupplierSchema = new mongoose.Schema({
  
   supplierName: { type: String, required: true },
   supplierContact: { type: Number, required: true },
@@ -10,4 +10,4 @@ const addSuppliersSchema = new mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("addSuppliers", addSuppliersSchema);
+module.exports = mongoose.model("addSupplier", addSupplierSchema);

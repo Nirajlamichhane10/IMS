@@ -54,9 +54,9 @@ export default function AddSuppliers() {
     setSupplierAddress(event.target.value)
   };
 
-  const handleOnclick =()=>{
+  const handleOnclick =async()=>{
     try{
-      const response = axios.post(" http://localhost:5000/addSuppliers/suppliers",{supplierName,supplierContact,supplierEmail,supplierAddress});
+      const response = await axios.post(" http://localhost:5000/addSupplier/supplier",{supplierName,supplierContact,supplierEmail,supplierAddress});
       console.log(response);
     }
     catch(e){
