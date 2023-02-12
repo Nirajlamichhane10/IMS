@@ -64,25 +64,29 @@ export default function SupplierTable() {
   
     const [columns, setColumns] = useState([
    
-      { title: 'Supplier Name', field: 'suppliername', initialEditValue: 'initial edit value' },
-      { title: 'Supplier Contact', field: 'suppliercontact', initialEditValue: 'initial edit value' },
-      { title: 'Supplier Email', field: 'supplieremail', initialEditValue: 'initial edit value' },
-      { title: 'Supplier Address', field: 'supplieraddress', initialEditValue: 'initial edit value' },
+      { title: 'Supplier Name', field: 'supplierName', initialEditValue: 'initial edit value' },
+      { title: 'Supplier Contact', field: 'supplierContact', initialEditValue: 'initial edit value' },
+      { title: 'Supplier Email', field: 'supplierEmail', initialEditValue: 'initial edit value' },
+      { title: 'Supplier Address', field: 'supplierAddress', initialEditValue: 'initial edit value' },
       
     ]);
   
     const [data, setData] = useState([
-      // {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk", },
-      // {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk", },
-      // {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk",  },
-      // {suppliername:"Niraj Lamichhane", suppliercontact: 9865323265, supplieremail:"abc@gmail.com",supplieraddress:"shivachowk", },
+      
     ]);
 
-    useEffect(async() => {
-      const SupplierData= await axios.get("http://localhost:5000/addSupplier/getSupplier");
-      setData([...SupplierData]);
+    useEffect(() => {
+      fetchData();
+      
     },[]);
-  
+
+ 
+    const fetchData = async()=>{
+      const SupplierData= await axios.get("http://localhost:5000/addSupplier/getSupplier");
+      setData([...SupplierData.data]);
+      console.log(SupplierData.data);
+      
+    }
   
     return (
 

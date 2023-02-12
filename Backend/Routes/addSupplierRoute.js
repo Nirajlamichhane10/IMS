@@ -20,7 +20,7 @@ router.post('/supplier', async (req, res) => {
 
   router.get('/getSupplier', async (req, res) => {
     
-    //const newAddSupplier= new addSupplier({supplierName:req.body.supplierName,supplierContact:req.body.supplierContact,supplierEmail:req.body.supplierEmail,supplierAddress:req.body.supplierAddress});
+    
     try{
      const response= await addSupplier.find();
       res.json(response);

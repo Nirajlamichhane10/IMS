@@ -7,6 +7,7 @@ import MatTable from './materialtable';
 import axios from 'axios';
 
 
+
  // adding css 
     const  Styles={
         root: {
@@ -70,7 +71,14 @@ const[quantity , setQuantity]=React.useState(0);
 const[minimum, setMinimum]=React.useState(0);
 const[item, setItem]=React.useState({});
 
+const reset =()=>{
+    
+  setItemName("");
+  setUnitOfItem("");
+  setQuantity("");
+  setMinimum("");
 
+}
 
 const handleChangeItemName =(event)=>{
   setItemName(event.target.value);
@@ -93,6 +101,7 @@ const handleOnclick=()=>
   try{
     const response = axios.post(" http://localhost:5000/addItem/add",{itemName,unitOfItem,quantity,minimum});
     console.log(response);
+    reset();
   }
   catch(e){
     console.log(e);
@@ -122,7 +131,9 @@ const handleOnclick=()=>
       }}
     >
     
-      <TextField  onChange={handleChangeItemName} fullWidth label="Item Name" id="Item Name" />
+      <TextField  onChange={handleChangeItemName}
+      value={itemName}
+      fullWidth label="Item Name" id="Item Name" />
     </Box>
 
       
@@ -137,7 +148,9 @@ const handleOnclick=()=>
       }}
     >
     
-      <TextField onChange={handleChangeUnitOfItem} fullWidth label="Unit of Item" id="unit" />
+      <TextField onChange={handleChangeUnitOfItem}
+      value={unitOfItem}
+      fullWidth label="Unit of Item" id="unit" />
     </Box> 
 
     <Typography variant="h5" gutterBottom style={Styles.quantity}>
@@ -153,7 +166,8 @@ const handleOnclick=()=>
     
     <TextField
     onChange={handleChangeQuantity}
-          fullWidth label="Quantity" id="quantity" 
+    value={quantity}
+          fullWidth label="In Stock" id="quantity" 
           type="number"
           defaultValue=""
           InputLabelProps={{
@@ -175,7 +189,9 @@ const handleOnclick=()=>
       }}
     >
     
-      <TextField onChange={handleChangeMinimum} fullWidth label="Minimum" id="minimum" />
+      <TextField onChange={handleChangeMinimum}
+      value={minimum}
+      fullWidth label="Minimum" id="minimum" />
     </Box> 
 
 

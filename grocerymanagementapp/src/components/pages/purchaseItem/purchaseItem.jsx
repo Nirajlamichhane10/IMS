@@ -68,17 +68,16 @@ export default function PurchaseItem() {
 
   const [invoiceNumber,setInvoiceNumber]= React.useState('');
   const [supplierName, setSupplierName] = React.useState('');
-  const [items, setItems] = React.useState([{}]);
-  //   // for calender
   const [billDate, setBillDate] = React.useState(null);
 
+  const [items, setItems] = React.useState([{}]);
 
 
-  const handleChnageInvoiceNumber =(event)=>{
+  const handleChangeInvoiceNumber =(event)=>{
     setInvoiceNumber(event.target.value);
   };
 
-  const handleChnageBillDate =(event)=>{
+  const handleChangeBillDate =(event)=>{
     setBillDate(event.target.value);
   };
 
@@ -162,7 +161,7 @@ export default function PurchaseItem() {
         </div>
       
       <div  style={Styles.table1}>
-        {/* <PurchasedTable itemName={itemName} price={price} quantity={quantity} total={total} items={items} purchaseData={purchaseData}/> */}
+        <PurchasedTable/>
         </div>
         <div style={Styles.button}>
         <Button onClick={handleOnclick} variant="contained" size="large">

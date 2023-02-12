@@ -17,5 +17,18 @@ router.post('/add', async (req, res) => {
       res.send(e);
     }
   })
+  
+  router.get('/add', async (req, res) => {
+    
+    try{
+     const response= await addItem.find();
+      res.json(response);
+     
+    }
+    catch(error){ 
+      res.send(error);
+    }
+  })
+
 
   module.exports = router;

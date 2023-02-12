@@ -63,11 +63,11 @@ const tableIcons = {
 
 export default function PurchasedTable() {
   const { useState } = React;
-  const [itemName, setItemName]= React.useState("");
-  const [quantity, setQuantity]= React.useState(0);
-  const [price, setPrice ]= React.useState(0);
-  const [total, setTotal ]=React.useState(0);
-  const[unit, setUnit] =React.useState("");
+  // const [itemName, setItemName]= React.useState("");
+  // const [quantity, setQuantity]= React.useState(0);
+  // const [price, setPrice ]= React.useState(0);
+  // const [total, setTotal ]=React.useState(0);
+  // const[unit, setUnit] =React.useState("");
 
 
     const defaultMaterialTheme = createTheme();
@@ -75,7 +75,7 @@ export default function PurchasedTable() {
   
     const [columns, setColumns] = useState([
    
-      { title: 'Item Name', field: 'itemname', initialEditValue: 'initial edit value' },
+      { title: 'Item Name', field: 'itemName', initialEditValue: 'initial edit value' },
       { title: 'Unit', field: 'unit', initialEditValue: 'initial edit value' },
       { title: 'Quantity', field: 'quantity', initialEditValue: 'initial edit value' },
       { title: 'Price', field: 'price', initialEditValue: 'initial edit value' },
@@ -88,7 +88,7 @@ export default function PurchasedTable() {
 
   
     const [data, setData] = useState([
-     { itemname:"Cold Drinks", unit:"ml", quantity:12, price:1200, total:1500 },
+     { itemName:"Cold Drinks", unit:"ml", quantity:12, price:1200, total:1500 },
       
     
     ]);

@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material';
 
 
 import { forwardRef } from 'react';
-
+import axios from 'axios';
 import AddBox from '@mui/icons-material/AddBox';
 import ArrowDownward from '@mui/icons-material/ArrowDownward';
 import Check from '@mui/icons-material/Check';
@@ -60,23 +60,35 @@ const tableIcons = {
 };
 
 export default function MatTable() {
-    const { useState } = React;
+    const { useState,useEffect } = React;
     const defaultMaterialTheme = createTheme();
 
   
     const [columns, setColumns] = useState([
    
-      { title: 'ItemName', field: 'itemname', initialEditValue: 'initial edit value' },
-      { title: 'Unit', field: 'unit', initialEditValue: 'initial edit value' },
-      { title: 'In Stock', field: 'inStock', initialEditValue: 'initial edit value' },
+      { title: 'Item Name', field: 'itemName', initialEditValue: 'initial edit value' },
+      { title: 'Unit Of Item', field: 'unitOfItem', initialEditValue: 'initial edit value' },
+      { title: 'In Stock', field: 'quantity', initialEditValue: 'initial edit value' },
       { title: 'Minimum', field: 'minimum', initialEditValue: 'initial edit value' },
       
     ]);
   
     const [data, setData] = useState([
-      {  itemname: 'Rice', unit:"kg", inStock:55, minimum:20,},
-      { itemname: 'Cold drinks', unit:"litre", inStock:55, minimum:20,},
+      
     ]);
+    
+    useEffect(() => {
+      fetchData();
+      
+    },[]);
+
+ 
+    const fetchData = async()=>{
+      const AddItemData= await axios.get("http://localhost:5000/addItem/add");
+      setData([...AddItemData.data]);
+      console.log(AddItemData.data);
+      
+    }
   
     return (
 

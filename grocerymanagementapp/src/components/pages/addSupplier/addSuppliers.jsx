@@ -36,7 +36,16 @@ export default function AddSuppliers() {
   const[supplierEmail, setSupplierEmail]= React.useState("");
   const[supplierAddress, setSupplierAddress]= React.useState("");
   const[supplier, setSupplier]= React.useState({});
+   const[label, setLabel] = React.useState("");
+  
+  const reset =()=>{
+    
+    setSupplierName("");
+    setSupplierContact(0);
+    setSupplierEmail("");
+    setSupplierAddress("");
 
+  }
 
   const handleChangeSupplierName =(event)=>{
     setSupplierName(event.target.value)
@@ -53,16 +62,22 @@ export default function AddSuppliers() {
   const handleChangeSupplierAddress =(event)=>{
     setSupplierAddress(event.target.value)
   };
+  const handleChange = (event) => {
+    setLabel(event.target.value);
+  };
+
 
   const handleOnclick =async()=>{
     try{
       const response = await axios.post(" http://localhost:5000/addSupplier/supplier",{supplierName,supplierContact,supplierEmail,supplierAddress});
       console.log(response);
+      reset();
     }
+    
     catch(e){
       console.log(e);
     }
-
+   
   };
 
   return (
@@ -81,27 +96,34 @@ export default function AddSuppliers() {
 
       <TextField 
       onChange={handleChangeSupplierName}
+      value={supplierName}
       label={"Supplier Name"}
        id="suppliername" 
        />
      
       <TextField
       onChange={handleChangeSupplierContact}
+      value={supplierContact}
        label={"Supplier Contact"} id="suppliercontact" margin="dense" />
      
       <TextField
       onChange={handleChangeSupplierEmail}
+      value={supplierEmail}
       label={"Supplier Email"} id="supplieremail" margin="normal" />
 
       <TextField 
       onChange={handleChangeSupplierAddress}
+      value={supplierAddress}
       label={"Supplier Address"} id="supplieraddress" />
       <div style={Styles.button}>
+      
         <Button 
         onClick={handleOnclick}
         variant="contained" size="large" style={Styles.botton}>
+        
           ADD SUPPLIER
         </Button>
+       
       </div>
     </Box>
     <div >
