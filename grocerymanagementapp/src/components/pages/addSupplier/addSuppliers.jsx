@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import SupplierTable from './addSupplierTable';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
+import Alertbar from '../../Alertbar';
 
 
 const Styles={
@@ -36,8 +37,14 @@ export default function AddSuppliers() {
   const[supplierEmail, setSupplierEmail]= React.useState("");
   const[supplierAddress, setSupplierAddress]= React.useState("");
   const[supplier, setSupplier]= React.useState({});
-   const[label, setLabel] = React.useState("");
+  const[label, setLabel] = React.useState("");
   
+  const[message, setMessage] = React.useState("");
+  const[status, setStatus] = React.useState("");
+  const[open, setOpen] = React.useState(false);
+
+
+
   const reset =()=>{
     
     setSupplierName("");
@@ -66,16 +73,34 @@ export default function AddSuppliers() {
     setLabel(event.target.value);
   };
 
+  
+   
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+    
+  };
+
 
   const handleOnclick =async()=>{
     try{
       const response = await axios.post(" http://localhost:5000/addSupplier/supplier",{supplierName,supplierContact,supplierEmail,supplierAddress});
       console.log(response);
+      setMessage("Supplier added successfully");
+      setStatus("success");
+      setOpen(true);
       reset();
+     
     }
     
     catch(e){
       console.log(e);
+      setMessage("Error Occurred ! Supplier can't be added ");
+      setStatus("error");
+      setOpen(true);
     }
    
   };
@@ -132,6 +157,12 @@ export default function AddSuppliers() {
       <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
       </div>
+<Alertbar
+message={message}
+status={status}
+open={open}
+handleClose={handleClose}
+/>
 
     </div>
   );
