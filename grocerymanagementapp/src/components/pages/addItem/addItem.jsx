@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import MatTable from './materialtable';
 import axios from 'axios';
+import Alertbar from '../../Alertbar';
 
 
 
@@ -71,6 +72,11 @@ const[quantity , setQuantity]=React.useState(0);
 const[minimum, setMinimum]=React.useState(0);
 const[item, setItem]=React.useState({});
 
+const[message, setMessage]= React.useState("");
+const[status, setStatus]= React.useState("");
+const[open, setOpen]= React.useState(false);
+
+
 const reset =()=>{
     
   setItemName("");
@@ -94,6 +100,18 @@ const handleChangeMinimum =(event)=>{
 };
 
 
+ // for Alertbar of Snackbar
+   
+const handleClose = (event, reason) => {
+  if (reason === 'clickaway') {
+    return;
+  }
+
+  setOpen(false);
+  
+};
+
+
 
 const handleOnclick=()=>
 {
@@ -101,10 +119,16 @@ const handleOnclick=()=>
   try{
     const response = axios.post(" http://localhost:5000/addItem/add",{itemName,unitOfItem,quantity,minimum});
     console.log(response);
+    setMessage("Items added successfully");
+    setStatus("success");
+    setOpen(true);
     reset();
   }
   catch(e){
     console.log(e);
+    setMessage("Error Occurred ! Supplier can't be added ");
+    setStatus("error");
+    setOpen(true);
   }
 }
     return (
@@ -209,6 +233,12 @@ const handleOnclick=()=>
       <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
       </div>
+      <Alertbar
+      message={message}
+      status={status}
+      open={open}
+      handleClose={handleClose}
+      />
       </div>
 
       

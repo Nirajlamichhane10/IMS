@@ -63,11 +63,31 @@ const tableIcons = {
 
 export default function PurchasedTable() {
   const { useState } = React;
-  // const [itemName, setItemName]= React.useState("");
-  // const [quantity, setQuantity]= React.useState(0);
-  // const [price, setPrice ]= React.useState(0);
-  // const [total, setTotal ]=React.useState(0);
-  // const[unit, setUnit] =React.useState("");
+  const [itemName, setItemName]= React.useState("");
+  const [quantity, setQuantity]= React.useState(0);
+  const [price, setPrice ]= React.useState(0);
+  const [total, setTotal ]=React.useState(0);
+  const[unit, setUnit] =React.useState("");
+
+  const handleChangeItemName =(event)=>{
+    setItemName(event.target.value)
+  };
+
+  const handleChangeQuantity =(event)=>{
+    setQuantity(event.target.value)
+  };
+
+  const handleChangePrice =(event)=>{
+    setPrice(event.target.value)
+  };
+
+  const handleChangeUnit =(event)=>{
+    setUnit(event.target.value)
+  };
+
+  const handleChangeTotal =(event)=>{
+    setTotal(event.target.value)
+  };
 
 
     const defaultMaterialTheme = createTheme();

@@ -36,7 +36,7 @@ table:{
     width:"900px",
     margin:"80px 10px 10px 300px",
     height:"350px",
-    boxShadow: "15px 15px 8px lightblue",
+    
 },
 
 };
