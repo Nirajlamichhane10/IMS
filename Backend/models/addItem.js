@@ -4,7 +4,7 @@ const addItemSchema = new mongoose.Schema({
  
   itemName: { type: String, required: true },
   unitOfItem: { type: String, required: true },
-  inStock: { type: Number, required: true },
+  quantity: { type: Number, required: true },
   minimum: { type: Number, required: true },
 
 
