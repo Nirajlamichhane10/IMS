@@ -110,7 +110,7 @@ export default function PurchasedTable() {
 
   
     const [data, setData] = useState([
-     { itemName:"Cold Drinks", unit:"ml", quantity:12, price:1200, total:1500 },
+      { itemName:"Cold Drinks", unit:"ml", quantity:12, price:1200, total:1500 },
       
     
     ]);

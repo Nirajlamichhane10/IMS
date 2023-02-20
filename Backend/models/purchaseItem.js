@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const purchaseItemSchema = new mongoose.Schema({
-    invoiceNumber: { type: Number, required: true },
+    invoiceNumber: { type: String , required: true },
     billDate:{type: Date, required:true},
     supplierName: { type: String, required: true },
 

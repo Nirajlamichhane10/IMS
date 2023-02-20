@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const addItem = require("../models/purchaseItem");
+const purchaseItem = require("../models/purchaseItem");
 
 
 router.post('/purchaseItem', async (req, res) => {
    
-    const newPurchaseItem= new purchaseItem({invoiceNumber:req.body.invoiceNumber,billDate:req.body.billDate,supplierName:req.body.supplierName,itemName:req.body.itemName,unit:req.body.unit,quantity:req.body.quantity,price:req.body.price,total:req.body.total});
+    const newPurchaseItem= new purchaseItem({invoiceNumber:req.body.invoiceNumber,billDate:req.body.billDate,supplierName:req.body.supplierName,items:req.body.items});
 
     try{
      const response= await newPurchaseItem.save();

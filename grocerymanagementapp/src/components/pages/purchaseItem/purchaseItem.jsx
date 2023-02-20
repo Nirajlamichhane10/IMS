@@ -9,7 +9,7 @@ import Select from '@mui/material/Select';
 
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-
+import axios from 'axios';
 import PurchasedTable from './purchaseTable';
 import CollapsibleTable from './newTable';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -69,10 +69,22 @@ export default function PurchaseItem() {
   const [invoiceNumber,setInvoiceNumber]= React.useState('');
   const [supplierName, setSupplierName] = React.useState('');
   const [billDate, setBillDate] = React.useState(null);
-
   const [items, setItems] = React.useState([{}]);
 
 
+  
+const[message, setMessage]= React.useState("");
+const[status, setStatus]= React.useState("");
+const[open, setOpen]= React.useState(false);
+
+const reset =()=>{
+    
+  setInvoiceNumber("");
+  setSupplierName("");
+  setBillDate(null);
+  setItems([{}]);
+
+}
   const handleChangeInvoiceNumber =(event)=>{
     setInvoiceNumber(event.target.value);
   };
@@ -86,11 +98,12 @@ export default function PurchaseItem() {
     setSupplierName(event.target.value);
   };
 
-  const handleOnclick=()=>{
+  const handleOnclick= async ()=>{
+    
     try{
-      const response = axios.post(" http://localhost:5000/addItem/add",{itemName,unitOfItem,quantity,minimum});
+      const response = await axios.post(" http://localhost:5000/purchaseItem",{invoiceNumber,billDate,supplierName,items});
       console.log(response);
-      setMessage("Items added successfully");
+      setMessage("Items purchased successfully");
       setStatus("success");
       setOpen(true);
       reset();
@@ -101,8 +114,6 @@ export default function PurchaseItem() {
       setStatus("error");
       setOpen(true);
     }
-
-
   }
 
     return (
@@ -196,4 +207,5 @@ export default function PurchaseItem() {
     );
     
   }
+
 
