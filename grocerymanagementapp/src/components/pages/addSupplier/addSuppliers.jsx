@@ -6,6 +6,9 @@ import SupplierTable from './addSupplierTable';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import Alertbar from '../../Alertbar';
+import {supplierSchema} from '../../validationJoi/Validation';
+
+
 
 
 const Styles={
@@ -87,14 +90,25 @@ export default function AddSuppliers() {
 
   const handleOnclick =async()=>{
     try{
+      const supplierData ={supplierName,supplierContact,supplierEmail,supplierAddress};
+      const result=supplierSchema(supplierData);
+      if (result){
+        setMessage("Validation Error");
+        console.log(result.data._message);
+        setStatus("error");
+        setOpen(true);
+      }
+      if (!result){
+
       const response = await axios.post(" http://localhost:5000/addSupplier/supplier",{supplierName,supplierContact,supplierEmail,supplierAddress});
       console.log(response);
       setMessage("Supplier added successfully");
       setStatus("success");
       setOpen(true);
       reset();
-     
+      }
     }
+  
     
     catch(e){
       console.log(e);
