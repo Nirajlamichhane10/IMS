@@ -88,6 +88,8 @@ export default function PurchasedTable() {
   const handleChangeTotal =(event)=>{
     setTotal(event.target.value)
   };
+  
+
 
 
     const defaultMaterialTheme = createTheme();
@@ -113,7 +115,7 @@ export default function PurchasedTable() {
     
     ]);
 
-  
+    
   
     return (
       <div> 

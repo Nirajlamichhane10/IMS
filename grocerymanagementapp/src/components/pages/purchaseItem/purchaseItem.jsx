@@ -87,6 +87,21 @@ export default function PurchaseItem() {
   };
 
   const handleOnclick=()=>{
+    try{
+      const response = axios.post(" http://localhost:5000/addItem/add",{itemName,unitOfItem,quantity,minimum});
+      console.log(response);
+      setMessage("Items added successfully");
+      setStatus("success");
+      setOpen(true);
+      reset();
+    }
+    catch(e){
+      console.log(e);
+      setMessage("Error Occurred ! Supplier can't be added ");
+      setStatus("error");
+      setOpen(true);
+    }
+
 
   }
 

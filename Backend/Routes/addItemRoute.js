@@ -5,9 +5,9 @@ const addItem = require("../models/addItem");
 
 
 router.post('/add', async (req, res) => {
-    // {itemName,unitOfItem,quantity,minimum}=req;
+   
     const newAddItem= new addItem({itemName:req.body.itemName,unitOfItem:req.body.unitOfItem,quantity:req.body.quantity,minimum:req.body.minimum});
-    // const newAddItem= new addItem(req.body.item);
+    
     try{
      const response= await newAddItem.save();
       res.send("yay i have sucessfully posted you item in database");
