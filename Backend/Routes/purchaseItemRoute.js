@@ -4,7 +4,7 @@ const router = express.Router();
 const purchaseItem = require("../models/purchaseItem");
 
 
-router.post('/purchaseItem', async (req, res) => {
+router.post('/purchase', async (req, res) => {
    
     const newPurchaseItem= new purchaseItem({invoiceNumber:req.body.invoiceNumber,billDate:req.body.billDate,supplierName:req.body.supplierName,items:req.body.items});
 

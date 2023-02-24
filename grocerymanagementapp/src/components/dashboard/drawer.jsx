@@ -443,12 +443,12 @@ export default function MiniDrawer() {
                             </Typography>
                      </ListItemText>
                 </ListItem >
-                <ListItem style={Styles.icont}>
+                <ListItem component={Link} to ={"/addCustomers"} onClick={handleDrawerClose} style={Styles.icont}>
                      <ManageAccountsIcon/>
                     <ListItemText>
                     <Typography >
                     <span style={Styles.icond}>
-                               Supplier List
+                               Add Customers
                                </span>
                             </Typography>
                     </ListItemText>

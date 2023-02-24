@@ -8,6 +8,7 @@ const userRoute = require("./Routes/userRoute");
 const addItemRoute = require("./Routes/addItemRoute");
 const addSupplierRoute = require("./Routes/addSupplierRoute");
 const purchaseItemRoute = require("./Routes/purchaseItemRoute");
+const addCustomerRoute = require("./Routes/addCustomerRoute")
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use(express.json());
 app.use("/auth",userRoute);
 app.use("/addItem",addItemRoute);
 app.use("/addSupplier",addSupplierRoute);
+app.use("/addCustomer",addCustomerRoute);
 app.use("/purchaseItem",purchaseItemRoute);
 
 app.listen(5000, () => {

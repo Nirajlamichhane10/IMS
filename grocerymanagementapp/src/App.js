@@ -12,6 +12,7 @@ import SellItem from './components/pages/sellItem/sellItem';
 // import MatTable from './components/pages/materialtable';
 import Dashboard from './components/dashboard/Dashboard';
 import AddSuppliers from './components/pages/addSupplier/addSuppliers';
+import AddCustomers from './components/pages/addCustomer/addCustomers';
 import CollapsibleTable from './components/pages/purchaseItem/newTable';
 import MyStock from './components/pages/myStock/myStock';
 
@@ -49,6 +50,9 @@ function App() {
 				<Route path="/purchaseItem" element={<PurchaseItem/>}/>
 
 				<Route path="/addSuppliers" element={<AddSuppliers/>}/>
+
+				<Route path="/addCustomers" element={<AddCustomers/>}/>
+
     
 				
 				<Route path="/myStock" element={<MyStock/>}/>
