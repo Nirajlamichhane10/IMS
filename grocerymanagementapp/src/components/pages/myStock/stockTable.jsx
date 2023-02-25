@@ -28,6 +28,7 @@ export default function StockTable() {
       <DataGrid
         rows={rows}
         columns={columns}
+        
         pageSize={5}
         rowsPerPageOptions={[5]}
        

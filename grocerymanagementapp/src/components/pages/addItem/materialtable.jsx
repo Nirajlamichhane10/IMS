@@ -55,6 +55,10 @@ const tableIcons = {
       width:"80%",
       margin:"30px 10px 10px 250px",
     
+    },
+    edit:{
+     color:"green"
+
     }
 
 };
