@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import MatTable from './materialtable';
 import axios from 'axios';
 import Alertbar from '../../Alertbar';
+import { addItemSchema } from '../../validationJoi/Validation';
 
 
 
@@ -111,19 +112,38 @@ const handleClose = (event, reason) => {
   
 };
 
+// Validations in Add Items
 
 
 const handleOnclick=()=>
 {
   // setItem({itemName,unitOfItem,quantity,minimum});
   try{
+    
+    const addItemData ={itemName,unitOfItem,quantity,minimum};
+    const result=addItemSchema(addItemData);
+    if (result.error){
+      setMessage("Validation Error");
+      console.log("with error");
+      console.log(result);
+      setStatus("error");
+      setOpen(true);
+
+    }
+    if (!result.error){
+
     const response = axios.post("http://localhost:5000/addItem/item",{itemName,unitOfItem,quantity,minimum});
-    console.log(response);
+    console.log("without error ");
+    console.log(result);
     setMessage("Items added successfully");
     setStatus("success");
     setOpen(true);
     reset();
   }
+}
+
+
+
   catch(e){
     console.log(e);
     setMessage("Error Occurred ! Supplier can't be added ");

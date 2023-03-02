@@ -32,5 +32,16 @@ export const customerSchema = (data)=> {
     // Joi.validate(schema,data,{ abortEarly: false });
   }
   
- 
+ // Add item Validation 
+
+ export const addItemSchema = (data)=> {
+  const itemchema = Joi.object({
+  itemName: Joi.string().min(1).max(20).required(),
+  unitOfItem: Joi.string().min(1).max(10).required(),
+  quantity: Joi.number().required(),
+  minimum: Joi.number().required(),
+  });
+  return itemchema.validate(data);
+    
+  }
 
