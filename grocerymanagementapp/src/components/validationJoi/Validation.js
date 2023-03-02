@@ -1,15 +1,36 @@
-import Joi from "joi-browser";
+import ReactJoiValidations from 'react-joi-validation'
+import Joi from 'joi-browser' // or whatever Joi library you are using
 
+ 
+ReactJoiValidations.setJoi(Joi)
 
 export const supplierSchema = (data)=> {
-const schema = {
+const Supschema = Joi.object({
+
     supplierName: Joi.string().min(1).max(20).required(),
     supplierEmail: Joi.string().email().required(),
-    supplierContact: Joi.number().min(10).max(10).required(),
+    supplierContact: Joi.number().required(),
     supplierAddress: Joi.string().required(),
     
-  };
-  Joi.validate(schema,data,{ abortEarly: false });
+  });
+  return Supschema.validate(data);
+
 }
 
+
+// customer Schema 
+
+export const customerSchema = (data)=> {
+  const Cusschema = Joi.object({
+      customerName: Joi.string().min(1).max(20).required(),
+      customerEmail: Joi.string().email().required(),
+      customerContact: Joi.number().required(),
+      customerAddress: Joi.string().required(),
+      
+    });
+    return Cusschema.validate(data);
+    // Joi.validate(schema,data,{ abortEarly: false });
+  }
+  
+ 
 

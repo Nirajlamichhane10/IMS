@@ -34,7 +34,7 @@ import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import SellIcon from '@mui/icons-material/Sell';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+// import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import StoreIcon from '@mui/icons-material/Store';
 
 
@@ -249,8 +249,8 @@ export default function MiniDrawer() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+      
       <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
     </Menu>
   );
@@ -453,7 +453,7 @@ export default function MiniDrawer() {
                             </Typography>
                     </ListItemText>
                     </ListItem>
-                <ListItem style={Styles.icont}>
+                {/* <ListItem style={Styles.icont}>
                     <PermContactCalendarIcon/>
                     <ListItemText>
                     <Typography >
@@ -462,7 +462,7 @@ export default function MiniDrawer() {
                                </span>
                             </Typography>
                       </ListItemText>
-                </ListItem>
+                </ListItem> */}
 
             
             

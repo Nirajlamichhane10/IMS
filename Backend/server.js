@@ -3,12 +3,6 @@ const cors = require("cors");
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-//Importing Routes
-const userRoute = require("./Routes/userRoute");
-const addItemRoute = require("./Routes/addItemRoute");
-const addSupplierRoute = require("./Routes/addSupplierRoute");
-const purchaseItemRoute = require("./Routes/purchaseItemRoute");
-const addCustomerRoute = require("./Routes/addCustomerRoute")
 
 const app = express();
 
@@ -31,11 +25,19 @@ async function connect(){
  
 connect();
 
+
+// Importing Routes
+const userRoute = require("./Routes/userRoute");
+const itemRoute = require("./Routes/addItemRoute");
+const supplierRoute = require("./Routes/addSupplierRoute");
+const purchaseItemRoute = require("./Routes/purchaseItemRoute");
+const addCustomerRoute = require("./Routes/addCustomerRoute");
+
 app.use(cors());
 app.use(express.json());
 app.use("/auth",userRoute);
-app.use("/addItem",addItemRoute);
-app.use("/addSupplier",addSupplierRoute);
+app.use("/addItem",itemRoute);
+app.use("/addSupplier",supplierRoute);
 app.use("/addCustomer",addCustomerRoute);
 app.use("/purchaseItem",purchaseItemRoute);
 

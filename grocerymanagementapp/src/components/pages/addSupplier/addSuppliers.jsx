@@ -87,21 +87,24 @@ export default function AddSuppliers() {
     
   };
 
+  // Validations
 
   const handleOnclick =async()=>{
     try{
       const supplierData ={supplierName,supplierContact,supplierEmail,supplierAddress};
       const result=supplierSchema(supplierData);
-      if (result){
+      if (result.error){
         setMessage("Validation Error");
-        console.log(result.data._message);
+        console.log("with error");
+        console.log(result);
         setStatus("error");
         setOpen(true);
       }
-      if (!result){
+      if (!result.error){
 
       const response = await axios.post(" http://localhost:5000/addSupplier/supplier",{supplierName,supplierContact,supplierEmail,supplierAddress});
-      console.log(response);
+      console.log("without error ");
+      console.log(result);
       setMessage("Supplier added successfully");
       setStatus("success");
       setOpen(true);

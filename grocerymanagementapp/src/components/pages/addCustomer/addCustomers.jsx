@@ -6,7 +6,7 @@ import CustomerTable from './addCustomerTable';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import Alertbar from '../../Alertbar';
-import { customerSchema } from '../../validationJoi/customerValidation';
+import { customerSchema } from '../../validationJoi/Validation';
 
 
 
@@ -87,25 +87,30 @@ export default function AddCustomers() {
     
   };
 
+  // validation of customer data 
 
   const handleOnclick =async()=>{
     try{
       const customerData ={customerName,customerContact,customerEmail,customerAddress};
       const result=customerSchema(customerData);
-      if (result){
+      if (result.error){
         setMessage("Validation Error");
-        console.log(result.data._message);
+        console.log("with error");
+        console.log(result);
         setStatus("error");
         setOpen(true);
+
       }
-      if (!result){
+      if (!result.error){
 
       const response = await axios.post(" http://localhost:5000/addcustomer/customer",{customerName,customerContact,customerEmail,customerAddress});
-      console.log(response);
-      setMessage("customer added successfully");
+      console.log("without error ");
+      console.log(result);
+      setMessage("Customer added successfully");
       setStatus("success");
       setOpen(true);
       reset();
+
       }
     }
   

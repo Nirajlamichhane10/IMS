@@ -88,7 +88,7 @@ export default function MatTable() {
 
  
     const fetchData = async()=>{
-      const AddItemData= await axios.get("http://localhost:5000/addItem/add");
+      const AddItemData= await axios.get("http://localhost:5000/addItem/getItem");
       setData([...AddItemData.data]);
       console.log(AddItemData.data);
       

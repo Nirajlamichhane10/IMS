@@ -117,7 +117,7 @@ const handleOnclick=()=>
 {
   // setItem({itemName,unitOfItem,quantity,minimum});
   try{
-    const response = axios.post(" http://localhost:5000/addItem/add",{itemName,unitOfItem,quantity,minimum});
+    const response = axios.post("http://localhost:5000/addItem/item",{itemName,unitOfItem,quantity,minimum});
     console.log(response);
     setMessage("Items added successfully");
     setStatus("success");

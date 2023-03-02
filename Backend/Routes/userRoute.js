@@ -1,47 +1,74 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const userController = require("../Controller/userController");
 
-const User = require("../models/user");
+router.get("/authDetails", userController.authenticateUser);
+router.post("/post", userController.createUser);
+
+module.exports = router;
 
 
-router.get('/authDetails',async (req,res)=>{
-try{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const express = require('express');
+// const router = express.Router();
+
+// const User = require("../models/user");
+
+
+// router.get('/authDetails',async (req,res)=>{
+// try{
  
-  const userDetails= await User.find({username:req.headers.username});
+//   const userDetails= await User.find({username:req.headers.username});
  
-  if(userDetails.length==0){
-    res.send({message:"User Not Found"});
-  }
-  else if(userDetails[0].password === req.headers.password){
-  res.send({message:"authenticated"});
- }
- else{
-  res.send({message:"password incorrect"});
- }
+//   if(userDetails.length==0){
+//     res.send({message:"User Not Found"});
+//   }
+//   else if(userDetails[0].password === req.headers.password){
+//   res.send({message:"authenticated"});
+//  }
+//  else{
+//   res.send({message:"password incorrect"});
+//  }
 
-//  console.log(userDetails);
-//  console.log(req.headers.username);
-//  console.log(req.headers.password);
-//  console.log(userDetails[0].password === req.headers.password);
-}
+// //  console.log(userDetails);
+// //  console.log(req.headers.username);
+// //  console.log(req.headers.password);
+// //  console.log(userDetails[0].password === req.headers.password);
+// }
 
-catch(e){
-  res.send(e);
-}
+// catch(e){
+//   res.send(e);
+// }
 
 
-})
+// })
 
-router.post('/post', async (req, res) => {
-    const user= new User({username: "Niraj", password: "Niraj"});
-    try{
-     const response= await user.save();
-      res.send("yay i have sucessfully updated your post");
+// router.post('/post', async (req, res) => {
+//     const user= new User({username: "Niraj", password: "Niraj"});
+//     try{
+//      const response= await user.save();
+//       res.send("yay i have sucessfully updated your post");
      
-    }
-    catch(e){
-      res.send("sorry i cannot post your information");
-    }
-  })
+//     }
+//     catch(e){
+//       res.send("sorry i cannot post your information");
+//     }
+//   })
 
-  module.exports = router;
+//   module.exports = router;
+
