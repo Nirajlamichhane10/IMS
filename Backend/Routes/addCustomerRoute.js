@@ -9,7 +9,7 @@ router.get("/getCustomer", getCustomers);
 
 router.delete('/delete/customer/:id',deleteCustomer);
 
-router.route('/update/supplier/:id').put(updateCustomer);
+router.route('/update/customer/:id').put(updateCustomer);
 
 
 
