@@ -41,6 +41,11 @@ button:{
   width:"220px",
 
  },
+ buttonprint:{
+  margin:"30px 20px 50px 1110px",
+  width:"220px",
+
+ },
  
   table1:{
     alignItems: "center",
@@ -170,6 +175,14 @@ export default function SellItem() {
       <div style={Styles.collabtable}>
       <SellTable/>
       </div>
+
+      <div style={Styles.buttonprint}>
+        <Button onClick={handleOnclick} variant="contained" size="large">
+          PRINT SELL
+        </Button>
+      </div>
+
+
       <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
       </div>

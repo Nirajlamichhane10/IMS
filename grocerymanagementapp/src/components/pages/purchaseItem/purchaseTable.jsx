@@ -22,6 +22,7 @@ import SaveAlt from '@mui/icons-material/SaveAlt';
 import Search from '@mui/icons-material/Search';
 import ViewColumn from '@mui/icons-material/ViewColumn';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 
 const tableIcons = {
@@ -111,9 +112,22 @@ export default function PurchasedTable() {
   
     const [data, setData] = useState([
       { itemName:"Cold Drinks", unit:"ml", quantity:12, price:1200, total:1500 },
-      
     
     ]);
+
+    // useEffect(() => {
+    //   fetchData();
+      
+    // },[]);
+
+ 
+    // const fetchData = async()=>{
+    //   const ItemData= await axios.get("http://localhost:5000/addItem/getItem");
+    //   setData([...ItemData.data]);
+    //   console.log(ItemData.data);
+      
+    // }
+  
 
     
   

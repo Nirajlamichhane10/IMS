@@ -24,6 +24,7 @@ export const customerSchema = (data)=> {
   const Cusschema = Joi.object({
       customerName: Joi.string().min(1).max(20).required(),
       customerEmail: Joi.string().email().required(),
+      // customerContact: Joi.string().pattern(/^\d{10}$/).required(),
       customerContact: Joi.number().required(),
       customerAddress: Joi.string().required(),
       
@@ -45,3 +46,6 @@ export const customerSchema = (data)=> {
     
   }
 
+
+  // Purchased Item Validations 
+  
