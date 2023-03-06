@@ -102,7 +102,7 @@ export default function AddCustomers() {
 
       }
       if (!result.error){
-
+        
       const response = await axios.post(" http://localhost:5000/addcustomer/customer",{customerName,customerContact,customerEmail,customerAddress});
       console.log("without error ");
       console.log(result);
