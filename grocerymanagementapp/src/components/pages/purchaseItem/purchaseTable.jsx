@@ -122,7 +122,7 @@ export default function PurchasedTable() {
 
  
     // const fetchData = async()=>{
-    //   const ItemData= await axios.get("http://localhost:5000/addItem/getItem");
+    //   const ItemData= await axios.get("http://localhost:5000/purchaseItem/purchase");
     //   setData([...ItemData.data]);
     //   console.log(ItemData.data);
       

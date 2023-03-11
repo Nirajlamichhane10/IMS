@@ -1,7 +1,8 @@
 import React from 'react';
 import DataTable from './table';
 import BasicCard from'./cards';
-// import MyCharts from './piechart';
+// import graphicalRepresentation from './graphCharts';
+
 
 const  Styles={
     root: {
@@ -118,9 +119,10 @@ export default function Dashboard() {
         <div style={Styles.cards2}>
         <BasicCard text={text3}/>
         </div>
-       {/* <div>
-        <MyCharts/>
-        </div> */}
+    {/* <div>
+      <graphicalRepresentation/>
+    </div> */}
+      
       <div style={Styles.table}>
       <DataTable/>
       </div>

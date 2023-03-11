@@ -208,7 +208,7 @@ const reset =()=>{
 
       <div style={Styles.buttonprint}>
         <Button onClick={handleOnclick} variant="contained" size="large">
-          PRINT PURCHASE
+          PRINT
         </Button>
       </div>
 

@@ -178,7 +178,7 @@ export default function SellItem() {
 
       <div style={Styles.buttonprint}>
         <Button onClick={handleOnclick} variant="contained" size="large">
-          PRINT SELL
+          PRINT
         </Button>
       </div>
 
