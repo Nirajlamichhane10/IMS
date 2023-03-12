@@ -5,6 +5,7 @@ import DataTable from "./components/dashboard/table";
 
 // import Forgetpassword from "./components/Firstpage/forgetpassword";
 import BasicCard from "./components/dashboard/cards";
+
 import AddItem from './components/pages/addItem/addItem';
 import PurchaseItem from './components/pages/purchaseItem/purchaseItem';
 import SellItem from './components/pages/sellItem/sellItem';
@@ -42,6 +43,8 @@ function App() {
 				<Route path="/table" element={<DataTable/>}/>
 
 				<Route path="/cards" element={<BasicCard/>}/>
+
+			   
 
 				<Route path="/addItem" element={<AddItem/>}/>
 

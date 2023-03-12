@@ -468,7 +468,7 @@ export default function MiniDrawer() {
             
             
   
-        <div className="bottom">color options</div>
+      
  
         </List>
         
