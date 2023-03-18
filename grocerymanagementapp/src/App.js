@@ -56,6 +56,8 @@ function App() {
 
 				<Route path="/addCustomers" element={<AddCustomers/>}/>
 
+				
+
     
 				
 				<Route path="/myStock" element={<MyStock/>}/>

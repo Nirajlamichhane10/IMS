@@ -23,6 +23,7 @@ import Search from '@mui/icons-material/Search';
 import ViewColumn from '@mui/icons-material/ViewColumn';
 import { useEffect } from 'react';
 import axios from 'axios';
+import Button from '@mui/material/Button';
 
 
 const tableIcons = {
@@ -70,6 +71,10 @@ export default function PurchasedTable() {
   const [total, setTotal ]=React.useState(0);
   const[unit, setUnit] =React.useState("");
 
+  const [testObject, setTestObject] = React.useState({
+    
+  });
+
   const handleChangeItemName =(event)=>{
     setItemName(event.target.value)
   };
@@ -90,6 +95,10 @@ export default function PurchasedTable() {
     setTotal(event.target.value)
   };
   
+  // const handleOnclick= async ()=>{
+  //   console.log(testObject)
+
+  // }
 
 
 
@@ -98,7 +107,7 @@ export default function PurchasedTable() {
   
     const [columns, setColumns] = useState([
    
-      { title: 'Item Name', field: 'itemName', initialEditValue: 'initial edit value' },
+      { title: 'Item  Name', field: 'itemName', initialEditValue: 'initial edit value' },
       { title: 'Unit', field: 'unit', initialEditValue: 'initial edit value' },
       { title: 'Quantity', field: 'quantity', initialEditValue: 'initial edit value' },
       { title: 'Price', field: 'price', initialEditValue: 'initial edit value' },
@@ -114,6 +123,7 @@ export default function PurchasedTable() {
       { itemName:"Cold Drinks", unit:"ml", quantity:12, price:1200, total:1500 },
     
     ]);
+
 
     // useEffect(() => {
     //   fetchData();
@@ -174,6 +184,8 @@ export default function PurchasedTable() {
                 const index = oldData.tableData.id;
                 dataUpdate[index] = newData;
                 setData([...dataUpdate]);
+                setTestObject(newData);
+                console.log(newData);
   
                 resolve();
               }, 1000)
@@ -190,10 +202,15 @@ export default function PurchasedTable() {
               }, 1000)
             }),
         }}
+        
       />
+          {/* <Button onClick={handleOnclick} variant="contained" size="large">
+          TEST
+        </Button> */}
       </ThemeProvider>
      
       </div>
     )
+
   }
   

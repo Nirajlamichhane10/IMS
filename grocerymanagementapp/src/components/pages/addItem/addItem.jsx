@@ -14,24 +14,25 @@ import { addItemSchema } from '../../validationJoi/Validation';
     const  Styles={
         root: {
             display: "flex",
+       
         }, 
     addItem:{
         
         color :"red",  
         textAlign:"center",
-         margin:"70px 0px 50px 700px",
+         margin:"80px 0px 50px 200px",
          width:"220px",
          display:"flex",
     },
      item:{
-      margin:"80px 0px 50px 500px",
+      margin:"80px 0px 50px 20px",
       width:"220px",
       alignItems: "center",
       display:"flex",
 
      },
      itembox:{
-      margin:"-90px 0px 50px 650px",
+      margin:"-90px 0px 50px 200px",
       alignItems: "center",
       display:"flex",
       textAlign:"center",
@@ -39,21 +40,21 @@ import { addItemSchema } from '../../validationJoi/Validation';
      },
 
      quantity:{
-      margin:"40px 0px 50px 500px",
+      margin:"40px 0px 50px 20px",
       width:"220px",
       alignItems: "center",
       display:"flex",
 
      },
      quantitybox:{
-      margin:"-100px 0px 50px 650px",
+      margin:"-100px 0px 50px 200px",
       alignItems: "center",
       display:"flex",
       textAlign:"center",
 
      },
      button:{
-      margin:"30px 0px 50px 500px",
+      margin:"30px 0px 50px 550px",
       width:"220px",
       alignItems: "center",
       display:"flex",

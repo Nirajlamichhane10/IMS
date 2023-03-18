@@ -5,28 +5,28 @@ import {
   Pie,
   Tooltip,
   BarChart,
-  XAxis,
+  XAxis,   
   YAxis,
   Legend,
   CartesianGrid,
   Bar,
 } from "recharts";
 
-export default function graphicalRepresentation() {
+export default function GraphicalRepresentation() {
   const data = [
-    { name: "Facebook", users: 2000000000 },
-    { name: "Instagram", users: 1500000000 },
-    { name: "Twiter", users: 1000000000 },
-    { name: "Telegram", users: 500000000 },
+    { name: "Total Sales", money: 2000000000 },
+    { name: "Total Purchase", money: 1500000000 },
+    { name: "Total Stock Value", money: 1000000000 },
+  
   ];
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>Socail Media Users</h1>
+      <h1>Stock Management</h1>
       <div className="App">
         <PieChart width={400} height={400}>
           <Pie
-            dataKey="users"
+            dataKey="money"
             isAnimationActive={false}
             data={data}
             cx={200}
@@ -58,7 +58,7 @@ export default function graphicalRepresentation() {
           <Tooltip />
           <Legend />
           <CartesianGrid strokeDasharray="3 3" />
-          <Bar dataKey="users" fill="#8884d8" background={{ fill: "#eee" }} />
+          <Bar dataKey="money" fill="#8884d8" background={{ fill: "#eee" }} />
         </BarChart>
       </div>
     </div>

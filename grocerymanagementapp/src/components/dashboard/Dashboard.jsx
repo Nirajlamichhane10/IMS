@@ -2,12 +2,15 @@ import React from 'react';
 import DataTable from './table';
 import BasicCard from'./cards';
 
-// import graphicalRepresentation from './graphCharts';
+import GraphicalRepresentation from './graphCharts';
+
+
 
 
 const  Styles={
     root: {
         display: "flex",
+      
     },
   
     appbar:{
@@ -54,7 +57,7 @@ const  Styles={
   table:{
     // margin:"80% 0% 0% 150%",
     width:"850px",
-    margin:"50px 10px 10px 400px",
+    margin:"50px 10px 10px 0px",
     height:"400px",
     boxShadow: "15px 15px 8px lightblue",
   
@@ -66,7 +69,7 @@ const  Styles={
     borderRadius:"20px",
     width:"220px",
     textAlign:"center",
-    margin:"110px 30px 50px 400px",
+    margin:"110px 30px 50px 0px",
     boxShadow: "15px 15px 8px lightblue",
    
   
@@ -77,7 +80,7 @@ const  Styles={
     borderRadius:"20px",
     width:"220px",
     textAlign:"center",
-    margin:"-190px 30px 50px 700px",
+    margin:"-190px 30px 50px 20em",
     boxShadow: "15px 15px 8px lightblue",
    
   
@@ -88,11 +91,16 @@ const  Styles={
     borderRadius:"20px",
     width:"220px",
     textAlign:"center",
-    margin:"-190px 30px 50px 1000px",
+    margin:"-190px 30px 50px 40em",
     boxShadow: "15px 15px 8px lightblue",
    
   
   
+  },
+  graph:{
+    margin:"110px 30px 50px -20em",
+    
+
   },
   dasdboardback:{
     color:"#D9E5D6",
@@ -105,9 +113,9 @@ const  Styles={
 
 export default function Dashboard() {
 
-  const [text1,setText1]= React.useState("Stock In");
-  const [text2,setText2]= React.useState("Stock Out");
-  const [text3,setText3]= React.useState("Stock Availabe");
+  const [text1,setText1]= React.useState("Total Sales");
+  const [text2,setText2]= React.useState("Total Purchase");
+  const [text3,setText3]= React.useState("Total Stock Value");
 
   return (
     <div>
@@ -120,9 +128,9 @@ export default function Dashboard() {
         <div style={Styles.cards2}>
         <BasicCard text={text3}/>
         </div>
-    {/* <div>
-      <graphicalRepresentation/>
-    </div> */}
+    <div style={Styles.graph}>
+      <GraphicalRepresentation/>
+    </div>
       
       <div style={Styles.table}>
       <DataTable/>

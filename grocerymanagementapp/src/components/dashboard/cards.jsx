@@ -23,7 +23,7 @@ export default function BasicCard(props) {
         {props.text}
         </Typography>
         <Typography variant="body2">
-          1150   
+         $ 1150   
         </Typography>
       <CardActions>
         <Button size="small">See ALL details</Button>

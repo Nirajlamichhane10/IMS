@@ -23,7 +23,7 @@ const Styles={
       alignItems: "center",
       textAlign: "center",
       width:"55%",
-      margin:"80px 10px 10px 250px",
+      margin:"80px 10px 10px 100px",
      
     
     }

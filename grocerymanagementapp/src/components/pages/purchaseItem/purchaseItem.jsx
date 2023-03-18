@@ -27,22 +27,22 @@ const Styles={
 
   },
   box:{
-    margin:"90px 0px 50px 420px",
+    margin:"90px 0px 50px -120px",
   },
   purchaseItem:{
         
     color :"red",  
     textAlign:"center",
-     margin:"50px 0px 50px 320px",
+     margin:"50px 0px 50px 300px",
      width:"270px",
 },
 button:{
-  margin:"20px 0px 50px 700px",
+  margin:"20px 0px 50px 900px",
   width:"220px",
 
  },
  buttonprint:{
-  margin:"30px 20px 50px 1110px",
+  margin:"30px 20px 50px 790px",
   width:"220px",
 
  },
@@ -51,12 +51,13 @@ button:{
   table1:{
     alignItems: "center",
     textAlign: "center",
-    width:"130%",
-    margin:"30px 10px 10px -320px",
+    width:"150%",
+    margin:"30px 10px 10px -180px",
 
  },
  collabtable: {
-  margin:"0px 10px 10px 100px",
+  margin:"0px 10px 10px -100px",
+  width:"150%",
   alignItems: "center",
   textAlign: "center",
 
