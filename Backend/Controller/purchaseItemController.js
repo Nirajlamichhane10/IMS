@@ -29,3 +29,13 @@ module.exports = {
     postPurchase,
     getPurchase
 };
+
+// fetching data of supplier 
+exports.getSuppliers = async (req, res) => {
+    try {
+      const response = await addSupplier.find({}, {supplierName: 1, _id: 0}); // modify to return only supplier name
+      res.json(response);
+    } catch (error) {
+      res.send(error);
+    }
+  };
