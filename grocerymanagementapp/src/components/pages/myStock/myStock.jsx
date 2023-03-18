@@ -20,7 +20,7 @@ const Styles={
 
  supplier:{
   width:"20%",
-  margin:"0px 8px 0px 300px",
+  margin:"0px 8px 0px -6em",
 
  },
 
@@ -28,13 +28,13 @@ const Styles={
         
     color :"red",  
     textAlign:"center",
-     margin:"90px 0px 50px 320px",
+     margin:"90px 0px 50px 200px",
      width:"270px",
 },
 table:{
     // margin:"80% 0% 0% 150%",
     width:"900px",
-    margin:"80px 10px 10px 300px",
+    margin:"80px 10px 10px -60px",
     height:"350px",
     
 },
