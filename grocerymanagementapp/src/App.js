@@ -16,6 +16,8 @@ import AddSuppliers from './components/pages/addSupplier/addSuppliers';
 import AddCustomers from './components/pages/addCustomer/addCustomers';
 import CollapsibleTable from './components/pages/purchaseItem/newTable';
 import MyStock from './components/pages/myStock/myStock';
+import Profile from './components/Profile/Profile';
+import UpdateProfile from './components/Profile/UpdateProfile';
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -44,6 +46,9 @@ function App() {
 
 				<Route path="/cards" element={<BasicCard/>}/>
 
+				<Route path="/profile" element={<Profile/>}/>
+
+				<Route path="/updateprofile" element={<UpdateProfile/>}/>
 			   
 
 				<Route path="/addItem" element={<AddItem/>}/>

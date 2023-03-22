@@ -3,10 +3,11 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import MatTable from './materialtable';
+// import MatTable from './materialtable';
 import axios from 'axios';
 import Alertbar from '../../Alertbar';
 import { addItemSchema } from '../../validationJoi/Validation';
+import { grid } from '@mui/system';
 
 
 
@@ -54,11 +55,18 @@ import { addItemSchema } from '../../validationJoi/Validation';
 
      },
      button:{
-      margin:"30px 0px 50px 550px",
+      margin:"30px 0px 50px 250px",
       width:"220px",
       alignItems: "center",
       display:"flex",
 
+     },
+     addItemContainer:{
+      margin:"90px 0px 50px -50em",
+      // boxShadow: "5px 5px 5px 2px lightblue",
+      width:"750px",
+   
+      
      },
  
 
@@ -153,7 +161,8 @@ const handleOnclick=()=>
   }
 }
     return (
-   <div>
+   <div className='addItemContainer' style={Styles.addItemContainer}>
+    <div>
 
           <Box sx={{ width: '100%', maxWidth: 500, }}>
             
@@ -246,14 +255,14 @@ const handleOnclick=()=>
           ADD ITEM
         </Button>
       </div>
-         
+     
         </Box>
-        <div>
+        {/* <div>
       <MatTable/>
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
-      </div>
+      </div> */}
       <Alertbar
       message={message}
       status={status}
@@ -261,6 +270,7 @@ const handleOnclick=()=>
       handleClose={handleClose}
       />
       </div>
+      </div>  
 
       
       );

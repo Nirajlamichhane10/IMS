@@ -108,7 +108,7 @@ export default function PurchasedTable() {
     const [columns, setColumns] = useState([
    
       { title: 'Item  Name', field: 'itemName', initialEditValue: 'initial edit value' },
-      { title: 'Unit', field: 'unit', initialEditValue: 'initial edit value' },
+      { title: 'Unit', field: 'unitOfItem', initialEditValue: 'initial edit value' },
       { title: 'Quantity', field: 'quantity', initialEditValue: 'initial edit value' },
       { title: 'Price', field: 'price', initialEditValue: 'initial edit value' },
       { title: 'Total', field: 'total', initialEditValue: 'initial edit value' },
@@ -120,7 +120,7 @@ export default function PurchasedTable() {
 
   
     const [data, setData] = useState([
-      { itemName:"Cold Drinks", unit:"ml", quantity:12, price:1200, total:1500 },
+      { itemName:"Cold Drinks", unitOfItem:"ml", quantity:12, price:1200, total:1500 },
     
     ]);
 
@@ -204,9 +204,7 @@ export default function PurchasedTable() {
         }}
         
       />
-          {/* <Button onClick={handleOnclick} variant="contained" size="large">
-          TEST
-        </Button> */}
+          
       </ThemeProvider>
      
       </div>

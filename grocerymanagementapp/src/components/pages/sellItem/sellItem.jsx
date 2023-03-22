@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import  {useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,7 +11,7 @@ import SellTable from './sellTable';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import SellTable1 from './sellTable1';
-
+import axios from 'axios';
 
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -81,7 +82,28 @@ export default function SellItem() {
   //   // for calender
   const [billDate, setBillDate] = React.useState(null);
 
-  // const [purchaseData,setPurchaseData] = React.useState({});
+  
+
+  // for customer fetching data from
+  const [customers, setCustomers] = React.useState([]);
+  const [selectedCustomer, setSelectedCustomer] = React.useState('');
+
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      const res = await axios.get('http://localhost:5000/addCustomer/getCustomer',{customerName});
+      setCustomers(res.data);
+    };
+
+    fetchCustomers();
+  }, []);
+
+  const handleChange = (event) => {
+    setSelectedCustomer(event.target.value);
+  };
+
+
+
+
 
   const purchaseData = React.useRef({});
 
@@ -137,26 +159,24 @@ export default function SellItem() {
 
     
 
-{/* Supplier  name */}
+{/* Customer  name */}
          {/* Dropdown  */}
          <FormControl fullWidth style={Styles.customer}>
-  <InputLabel id="demo-simple-select-label">Customer Name</InputLabel>
-  <Select
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    value={customerName}
-    label="Customer Name"
-    onChange={handleChangeSupplier}
-  >
-    <MenuItem value={10}>Niraj Lamichhane</MenuItem>
-    <MenuItem value={20}>Nirmal Lamichhane</MenuItem>
-    <MenuItem value={10}>Niraj Lamichhane</MenuItem>
-    <MenuItem value={20}>Nirmal Lamichhane</MenuItem>
-    <MenuItem value={10}>Niraj Lamichhane</MenuItem>
-    <MenuItem value={20}>Nirmal Lamichhane</MenuItem>
-   
-  </Select>
-</FormControl>
+      <InputLabel id="demo-simple-select-label">Customer Name</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={selectedCustomer}
+        label="Customer Name"
+        onChange={handleChange}
+      >
+        {customers.map((customer) => (
+          <MenuItem key={customer._id} value={customer.customerName}>
+            {customer.customerName}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
 
 
          

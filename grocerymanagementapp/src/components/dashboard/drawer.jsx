@@ -250,10 +250,12 @@ export default function MiniDrawer() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <Link to="/profile"style={{ textDecoration: 'none' }}>
       <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-      
+      </Link>
       <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
     </Menu>
+
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';

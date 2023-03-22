@@ -47,7 +47,7 @@ export default function AddSuppliers() {
   const[open, setOpen] = React.useState(false);
 
 
-
+// for text clear 
   const reset =()=>{
     
     setSupplierName("");

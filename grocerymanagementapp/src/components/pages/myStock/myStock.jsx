@@ -6,9 +6,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import MatTable from '../addItem/materialtable';
 
 import Typography from '@mui/material/Typography';
-import StockTable from './stockTable';
+// import StockTable from './stockTable';
 
 // css 
 
@@ -19,8 +20,8 @@ const Styles={
   },
 
  supplier:{
-  width:"20%",
-  margin:"0px 8px 0px -6em",
+  width:"30%",
+  margin:"0px 8px 0px -72em",
 
  },
 
@@ -33,8 +34,8 @@ const Styles={
 },
 table:{
     // margin:"80% 0% 0% 150%",
-    width:"900px",
-    margin:"80px 10px 10px -60px",
+    width:"1100px",
+    margin:"50px 10px 10px -60px",
     height:"350px",
     
 },
@@ -96,11 +97,10 @@ export default function MyStock() {
 
       </Box>
       <div style={Styles.table}>
-       <StockTable/> 
+       {/* <StockTable/>  */}
+       <MatTable/>
        </div>
-      <div>
-        <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
-      </div>
+      
       
       </div>
 

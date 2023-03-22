@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import  {useEffect,useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -15,6 +16,7 @@ import CollapsibleTable from './newTable';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -78,6 +80,31 @@ export default function PurchaseItem() {
   const [billDate, setBillDate] = React.useState(null);
   const [items, setItems] = React.useState([{}]);
 
+  // for invoice number 
+  useEffect(() => {
+    const newId = uuidv4();
+    setInvoiceNumber(newId);
+  }, []);
+
+
+  // for supplier fetching data from
+  const [suppliers, setSuppliers] = React.useState([]);
+  const [selectedSupplier, setSelectedSupplier] = React.useState('');
+
+  useEffect(() => {
+    const fetchSuppliers = async () => {
+      const res = await axios.get('http://localhost:5000/addSupplier/getSupplier',{supplierName});
+      setSuppliers(res.data);
+    };
+
+    fetchSuppliers();
+  }, []);
+
+  const handleChange = (event) => {
+    setSelectedSupplier(event.target.value);
+  };
+
+
 
   
 const[message, setMessage]= React.useState("");
@@ -92,8 +119,12 @@ const reset =()=>{
   setItems([{}]);
 
 }
+
+
   const handleChangeInvoiceNumber =(event)=>{
     setInvoiceNumber(event.target.value);
+    
+   
   };
 
   const handleChangeBillDate =(event)=>{
@@ -142,15 +173,17 @@ const reset =()=>{
           <TextField
             id="outlined-error"
             label="Invoice.No"
-            defaultValue=""
-            
+
+            Value={invoiceNumber}
+            // key={key}
+            // onChange={handleChangeInvoiceNumber}
+
             onChange={(event) => {
               setInvoiceNumber(event.target.value);
             }}
+            
           />
-
-
-
+          
 
 {/* //Date  */}
 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -172,25 +205,23 @@ const reset =()=>{
     
 
 {/* Supplier  name */}
-         {/* Dropdown  */}
-         <FormControl fullWidth style={Styles.supplier}>
-  <InputLabel id="demo-simple-select-label">Supplier Name</InputLabel>
-  <Select
-    labelId="demo-simple-select-label"
-    id="demo-simple-select"
-    value={supplierName}
-    label="Supplier Name"
-    onChange={handleChangeSupplier}
-  >
-    <MenuItem value={10}>Niraj Lamichhane</MenuItem>
-    <MenuItem value={20}>Nirmal Lamichhane</MenuItem>
-    <MenuItem value={10}>Niraj Lamichhane</MenuItem>
-    <MenuItem value={20}>Nirmal Lamichhane</MenuItem>
-    <MenuItem value={10}>Niraj Lamichhane</MenuItem>
-    <MenuItem value={20}>Nirmal Lamichhane</MenuItem>
-   
-  </Select>
-</FormControl>
+
+<FormControl fullWidth style={Styles.supplier}>
+      <InputLabel id="demo-simple-select-label">Supplier Name</InputLabel>
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        value={selectedSupplier}
+        label="Supplier Name"
+        onChange={handleChange}
+      >
+        {suppliers.map((supplier) => (
+          <MenuItem key={supplier._id} value={supplier.supplierName}>
+            {supplier.supplierName}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
 
 
          

@@ -56,7 +56,7 @@ const  Styles={
   // table
   table:{
     // margin:"80% 0% 0% 150%",
-    width:"850px",
+    width:"950px",
     margin:"50px 10px 10px 0px",
     height:"400px",
     boxShadow: "15px 15px 8px lightblue",
