@@ -41,6 +41,7 @@ app.use("/addSupplier",supplierRoute);
 app.use("/addCustomer",addCustomerRoute);
 app.use("/purchaseItem",purchaseItemRoute);
 
+
 app.listen(5000, () => {
     console.log("Server strated on port 5000");
 });

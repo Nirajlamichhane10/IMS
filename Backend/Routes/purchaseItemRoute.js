@@ -1,3 +1,18 @@
+// const express = require('express');
+// const router = express.Router();
+// const  { updatePurchaseItem, createPurchaseItem, getPurchaseItem, deletePurchaseItem } = require("../Controller/purchaseItemController");
+
+// router.post('/purchase', createPurchaseItem);
+// router.get('/getPurchase', getPurchaseItem );
+
+
+
+// // router.delete('/delete/purchaseItem/:id'.deletePurchaseItem);
+
+// // router.route('/update/purchaseItem/:id').put(updatePurchaseItem);
+
+// module.exports = router;
+
 const express = require('express');
 const router = express.Router();
 const purchaseController = require("../Controller/purchaseItemController");
@@ -6,8 +21,6 @@ router.post('/purchase', purchaseController.postPurchase);
 router.get('/getPurchase', purchaseController.getPurchase);
 
 module.exports = router;
-
-
 
 
 

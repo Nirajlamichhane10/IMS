@@ -21,7 +21,7 @@ import Remove from '@mui/icons-material/Remove';
 import SaveAlt from '@mui/icons-material/SaveAlt';
 import Search from '@mui/icons-material/Search';
 import ViewColumn from '@mui/icons-material/ViewColumn';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 
@@ -69,7 +69,7 @@ export default function PurchasedTable() {
   const [quantity, setQuantity]= React.useState(0);
   const [price, setPrice ]= React.useState(0);
   const [total, setTotal ]=React.useState(0);
-  const[unit, setUnit] =React.useState("");
+  const[unitOfItem, setUnitOfItem] =React.useState("");
 
   const [testObject, setTestObject] = React.useState({
     
@@ -87,22 +87,33 @@ export default function PurchasedTable() {
     setPrice(event.target.value)
   };
 
-  const handleChangeUnit =(event)=>{
-    setUnit(event.target.value)
+  const handleChangeUnitOfItem =(event)=>{
+    setUnitOfItem(event.target.value)
   };
 
   const handleChangeTotal =(event)=>{
     setTotal(event.target.value)
   };
   
-  // const handleOnclick= async ()=>{
-  //   console.log(testObject)
-
-  // }
 
 
+  const[message, setMessage]= React.useState("");
+  const[status, setStatus]= React.useState("");
+  const[open, setOpen]= React.useState(false);
 
-    const defaultMaterialTheme = createTheme();
+  const reset =()=>{
+    
+    setItemName("");
+    setQuantity("");
+    setPrice("");
+    setTotal("");
+    setUnitOfItem("");
+  
+  }
+
+   
+  const defaultMaterialTheme = createTheme();
+    
 
   
     const [columns, setColumns] = useState([
@@ -117,31 +128,45 @@ export default function PurchasedTable() {
 
       
     ]);
-
+    
   
     const [data, setData] = useState([
-      { itemName:"Cold Drinks", unitOfItem:"ml", quantity:12, price:1200, total:1500 },
+      // { itemName:"Cold Drinks", unitOfItem:"ml", quantity:12, price:1200, total:1500 },
     
     ]);
 
 
-    // useEffect(() => {
-    //   fetchData();
-      
-    // },[]);
-
- 
-    // const fetchData = async()=>{
-    //   const ItemData= await axios.get("http://localhost:5000/purchaseItem/purchase");
-    //   setData([...ItemData.data]);
-    //   console.log(ItemData.data);
-      
-    // }
-  
-
+// // saving data 
+// const handleSave = async () => {
+//   try {
+//     const response = await axios.post("http://localhost:5000/purchaseItem/purchase",{itemName,quantity,price,total,unitOfItem});
+//     console.log(response.data);
+//     // do something with response if needed
+//   } catch (error) {
+//     console.error(error);
+//     // handle error if needed
+//   }
+// };
+const handleSave = async ()=>{
     
-  
-    return (
+  try{
+    const response = await axios.post(" http://localhost:5000/purchaseItem/purchase",{itemName,quantity,price,total,unitOfItem});
+    console.log(response);
+    setMessage("Items purchased successfully");
+    setStatus("success");
+    setOpen(true);
+    reset();
+  }
+  catch(e){
+    console.log(e);
+    setMessage("Error Occurred ! Supplier can't be added ");
+    setStatus("error");
+    setOpen(true);
+  }
+}
+
+
+   return (
       <div> 
         <ThemeProvider theme={defaultMaterialTheme}>
       <MaterialTable style={Styles.table}
@@ -173,7 +198,8 @@ export default function PurchasedTable() {
             new Promise((resolve, reject) => {
               setTimeout(() => {
                 setData([...data, newData]);
-                
+               
+                handleSave(); // save data to backend
                 resolve();
               }, 1000)
             }),
@@ -186,6 +212,7 @@ export default function PurchasedTable() {
                 setData([...dataUpdate]);
                 setTestObject(newData);
                 console.log(newData);
+                handleSave();// save data to backend
   
                 resolve();
               }, 1000)

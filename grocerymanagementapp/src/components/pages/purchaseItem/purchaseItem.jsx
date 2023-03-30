@@ -16,7 +16,7 @@ import CollapsibleTable from './newTable';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { v4 as uuidv4 } from 'uuid';
+
 
 
 
@@ -73,6 +73,8 @@ button:{
 
 
 };
+
+
 export default function PurchaseItem() {
 
   const [invoiceNumber,setInvoiceNumber]= React.useState('');
@@ -80,11 +82,24 @@ export default function PurchaseItem() {
   const [billDate, setBillDate] = React.useState(null);
   const [items, setItems] = React.useState([{}]);
 
+
+
   // for invoice number 
-  useEffect(() => {
-    const newId = uuidv4();
-    setInvoiceNumber(newId);
+  React.useEffect(() => {
+    const date = new Date();
+    const year = date.getFullYear() + 56;
+    const month = date.getMonth() + 1;
+    const fiscalYear = month <= 3 ? year - 1 : year;
+    const generatedInvoiceNumber = `${fiscalYear}-${fiscalYear + 1}-1`;
+    const invoicePrefix = "GMS";
+
+    const invoiceNumber = `${invoicePrefix}-${generatedInvoiceNumber}`;
+    console.log(generatedInvoiceNumber); // Check if the generated invoice number is correct
+    setInvoiceNumber(invoiceNumber);
   }, []);
+
+
+
 
 
   // for supplier fetching data from
@@ -106,6 +121,7 @@ export default function PurchaseItem() {
 
 
 
+  
   
 const[message, setMessage]= React.useState("");
 const[status, setStatus]= React.useState("");
@@ -139,7 +155,7 @@ const reset =()=>{
   const handleOnclick= async ()=>{
     
     try{
-      const response = await axios.post(" http://localhost:5000/purchaseItem",{invoiceNumber,billDate,supplierName,items});
+      const response = await axios.post(" http://localhost:5000/purchaseItem/purchase",{invoiceNumber,billDate,supplierName,items});
       console.log(response);
       setMessage("Items purchased successfully");
       setStatus("success");
@@ -174,15 +190,15 @@ const reset =()=>{
             id="outlined-error"
             label="Invoice.No"
 
-            Value={invoiceNumber}
-            // key={key}
-            // onChange={handleChangeInvoiceNumber}
-
+            value={invoiceNumber}
+          
             onChange={(event) => {
               setInvoiceNumber(event.target.value);
             }}
+           
             
           />
+          
           
 
 {/* //Date  */}

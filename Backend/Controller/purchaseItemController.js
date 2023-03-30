@@ -30,6 +30,45 @@ module.exports = {
     getPurchase
 };
 
+
+
+// // //update  
+// exports.updatePurchaseItem = async (req, res, next) => {
+//     let purchaseItem= await addPurchaseItem.findById(req.params.id);
+  
+//     if (!purchaseItem){
+//       return next("PurchaseItem not found with the given ID",404);
+//     }
+//     purchaseItem = await addPurchaseItem.findByIdAndUpdate(req.params.id,req.body,{
+//       new: true,
+//       runValidators: true,
+//       useFindAndModify: false,
+//     })
+//     res.status(200).json({
+//       success:true,
+//       purchaseItem,
+//     })
+//   }
+  
+  
+//   // // delete 
+  
+//   exports.deletePurchaseItem = async (req, res, next) => {
+//     let purchaseItem= await addPurchaseItem.findById(req.params.id);
+  
+//     if (!purchaseItem){
+//       return next("PurchaseItem not found with the given ID",404);
+//     }
+//     await purchaseItem.remove();
+//     res.status(200).json({
+//       success:true,
+//       purchaseItem,
+//     })
+//   }
+  
+
+
+
 // fetching data of supplier 
 exports.getSuppliers = async (req, res) => {
     try {

@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import { useEffect } from "react";
 import { v4 as uuid } from 'uuid';
 
+
 const Login = (props) => {
 	const [data, setData] = useState({ username: "", password: "" });
 	const [error, setError] = useState("");
@@ -12,6 +13,7 @@ const Login = (props) => {
 	const handleChange = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.value });
 	};
+
 
 
 	const handleSubmit = async (e) => {
@@ -33,7 +35,7 @@ const Login = (props) => {
 
 				// unique key generated 
 				const unique_id = uuid();
-  				const small_id = unique_id.slice(0,8);
+  				const small_id = unique_id.slice(0,16);
 				localStorage.setItem("token", small_id);
 				// props.setUniqueId(small_id);
 				props.tokenId.current=small_id;
@@ -57,6 +59,7 @@ const Login = (props) => {
 			}
 		}
 	};
+
 
 	return (
 		<div className={styles.login_container}>

@@ -112,11 +112,27 @@ export default function SupplierTable() {
                 const dataUpdate = [...data];
                 const index = oldData.tableData.id;
                 dataUpdate[index] = newData;
+                
                 setData([...dataUpdate]);
-  
                 resolve();
               }, 1000)
             }),
+
+    //           axio.put(`http://localhost:5000/addSupplier/update/supplie`, newData)
+    //     .then((response) => {
+    //       // If the update was successful, update the local state
+    //       setData([...dataUpdate]);
+    //       resolve();
+    //     })
+    //     .catch((error) => {
+    //       // If the update failed, show an error message
+    //       console.error(error);
+    //       reject();
+    //     });
+    // }, 1000);
+           
+
+          
           onRowDelete: oldData =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
