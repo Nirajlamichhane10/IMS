@@ -93,6 +93,7 @@ export default function AddSuppliers() {
     try{
       const supplierData ={supplierName,supplierContact,supplierEmail,supplierAddress};
       const result=supplierSchema(supplierData);
+      
       if (result.error){
         setMessage("Validation Error");
         console.log("with error");

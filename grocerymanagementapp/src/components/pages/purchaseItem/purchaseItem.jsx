@@ -91,7 +91,7 @@ export default function PurchaseItem() {
     const month = date.getMonth() + 1;
     const fiscalYear = month <= 3 ? year - 1 : year;
     const generatedInvoiceNumber = `${fiscalYear}-${fiscalYear + 1}-1`;
-    const invoicePrefix = "GMS";
+    const invoicePrefix = "GMSP";
 
     const invoiceNumber = `${invoicePrefix}-${generatedInvoiceNumber}`;
     console.log(generatedInvoiceNumber); // Check if the generated invoice number is correct
@@ -113,10 +113,12 @@ export default function PurchaseItem() {
     };
 
     fetchSuppliers();
+    
   }, []);
 
   const handleChange = (event) => {
     setSelectedSupplier(event.target.value);
+    console.log(supplierName);
   };
 
 
@@ -155,7 +157,7 @@ const reset =()=>{
   const handleOnclick= async ()=>{
     
     try{
-      const response = await axios.post(" http://localhost:5000/purchaseItem/purchase",{invoiceNumber,billDate,supplierName,items});
+      const response = await axios.post("http://localhost:5000/purchaseItem/purchase",{invoiceNumber,billDate,supplierName,items});
       console.log(response);
       setMessage("Items purchased successfully");
       setStatus("success");
@@ -209,6 +211,7 @@ const reset =()=>{
           openTo="year"
           views={['year', 'month', 'day']}
           value={billDate}
+     
         
           onChange={(newValue) => {
             setBillDate(newValue);
@@ -216,9 +219,7 @@ const reset =()=>{
           renderInput={(params) => <TextField {...params} />}
         />
         </LocalizationProvider>
-  
-
-    
+     
 
 {/* Supplier  name */}
 
@@ -229,7 +230,10 @@ const reset =()=>{
         id="demo-simple-select"
         value={selectedSupplier}
         label="Supplier Name"
-        onChange={handleChange}
+        onChange={(event) => {
+          setSupplierName(event.target.value);
+          handleChange(event);
+        }}
       >
         {suppliers.map((supplier) => (
           <MenuItem key={supplier._id} value={supplier.supplierName}>
@@ -258,7 +262,7 @@ const reset =()=>{
       </div>
 
       <div style={Styles.buttonprint}>
-        <Button onClick={handleOnclick} variant="contained" size="large">
+        <Button  variant="contained" size="large">
           PRINT
         </Button>
       </div>
