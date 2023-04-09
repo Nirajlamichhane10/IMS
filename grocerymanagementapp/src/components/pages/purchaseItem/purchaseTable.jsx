@@ -147,24 +147,23 @@ export default function PurchasedTable() {
 //     // handle error if needed
 //   }
 // };
-const handleSave = async ()=>{
-    
-  try{
-    const response = await axios.post(" http://localhost:5000/purchaseItem/purchase",{itemName,quantity,price,total,unitOfItem});
+const handleSave = async () => {
+  const items = [{ itemName, quantity, price, total, unitOfItem }];
+  
+  try {
+    const response = await axios.post("http://localhost:5000/purchaseItem/purchase", items);
     console.log(response);
     setMessage("Items purchased successfully");
     setStatus("success");
     setOpen(true);
     reset();
-  }
-  catch(e){
+  } catch (e) {
     console.log(e);
-    setMessage("Error Occurred ! Supplier can't be added ");
+    setMessage("Error Occurred! Supplier can't be added");
     setStatus("error");
     setOpen(true);
   }
-}
-
+};
 
    return (
       <div> 

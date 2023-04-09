@@ -1,8 +1,9 @@
-/* .mainProfile {
+.mainProfile {
     position: absolute;
   
     left: 200px;
     top: 150px;
+    
   }
   .account {
     color: rgba(0, 0, 0, 0.555);
@@ -11,8 +12,9 @@
   }
   
   .profile {
-    width: 25vmax;
-    height: auto;
+    height: 550px;
+    width: 600px;
+    margin-left:50%;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     display: flex;
@@ -52,9 +54,12 @@
     display: flex;
     gap: 20px;
     align-items: center;
+    margin: 2%;
+    padding-bottom: 3%;
   }
   .data {
     font-weight: 300;
+    
   }
   .profile > a {
     margin-top: 2vmax;
@@ -63,6 +68,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin: 7%;
   }
   .edit {
     width: 11vmax;
@@ -72,4 +78,5 @@
     border: none;
     padding: 0.5vmax;
     font: 200 1vmax;
-  } */
+  
+  }
