@@ -81,12 +81,12 @@ export default function SupplierTable(props) {
   }
 
 
-  //testing for botton
-    // const test=()=>{
-    //    console.log(data);
-    //   console.log(props.reloadData);
-    //   console.log(props.reloadData==null);
-    // }
+  // //testing for botton
+  //   const test=()=>{
+  //      console.log(data);
+  //     console.log(props.reloadData);
+  //     console.log(props.reloadData==null);
+  //   }
   
     return (
 

@@ -57,7 +57,7 @@ const tableIcons = {
 
 };
 
-export default function CustomerTable() {
+export default function CustomerTable(props) {
     const { useState,useEffect } = React;
     const defaultMaterialTheme = createTheme();
 
@@ -70,23 +70,44 @@ export default function CustomerTable() {
       { title: 'Customer Address', field: 'customerAddress', initialEditValue: 'initial edit value' },
       
     ]);
-  
-    const [data, setData] = useState([
-      
-    ]);
 
+    // for reloading the data 
+    const {reloadData}=props;
+    const [data, setData] = useState();
     useEffect(() => {
-      fetchData();
+    firstload();
+   },[]);
+ 
+   const firstload=()=>{
+     setData([...props.reloadData])
+   }
+ 
+
+
+  // //testing for botton
+  //   const test=()=>{
+  //      console.log(data);
+  //     console.log(props.reloadData);
+  //     console.log(props.reloadData==null);
+  //   }
+
+  
+    // const [data, setData] = useState([
       
-    },[]);
+    // ]);
+
+    // useEffect(() => {
+    //   fetchData();
+      
+    // },[]);
 
  
-    const fetchData = async()=>{
-      const CustomerData= await axios.get("http://localhost:5000/addCustomer/getCustomer");
-      setData([...CustomerData.data]);
-      console.log(CustomerData.data);
+    // const fetchData = async()=>{
+    //   const CustomerData= await axios.get("http://localhost:5000/addCustomer/getCustomer");
+    //   setData([...CustomerData.data]);
+    //   console.log(CustomerData.data);
       
-    }
+    // }
   
     return (
 
@@ -96,7 +117,7 @@ export default function CustomerTable() {
         icons={tableIcons}
         columns={columns}
         
-        data={data}
+        data={reloadData}
         editable={{
           // onRowAdd: newData =>
           //   new Promise((resolve, reject) => {
@@ -130,6 +151,7 @@ export default function CustomerTable() {
             }),
         }}
       />
+      {/* <button onClick={test}>Test</button> */}
       </ThemeProvider>
     )
   }

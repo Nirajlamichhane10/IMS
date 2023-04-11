@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import Alertbar from '../../Alertbar';
 import { customerSchema } from '../../validationJoi/Validation';
-
+import { useEffect } from 'react';
 
 
 
@@ -41,13 +41,15 @@ export default function AddCustomers() {
   const[customerAddress, setCustomerAddress]= React.useState("");
   const[customer, setCustomer]= React.useState({});
   const[label, setLabel] = React.useState("");
+  const[reloadData, setReloadData] = React.useState([]);
+  
   
   const[message, setMessage] = React.useState("");
   const[status, setStatus] = React.useState("");
   const[open, setOpen] = React.useState(false);
 
 
-
+// for reset 
   const reset =()=>{
     
     setCustomerName("");
@@ -77,6 +79,23 @@ export default function AddCustomers() {
   };
 
   
+  
+  //handle reload 
+  useEffect(() => {
+    handleReload();
+  },[]);
+
+// reloading 
+  
+    const handleReload = async()=>{
+      const CustomerData= await axios.get("http://localhost:5000/addCustomer/getCustomer");
+      setReloadData([...CustomerData.data]);
+      // console.log(CustomerData.data);
+      
+
+  }
+
+
    
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -109,6 +128,7 @@ export default function AddCustomers() {
       setMessage("Customer added successfully");
       setStatus("success");
       setOpen(true);
+      handleReload();
       reset();
 
       }
@@ -171,7 +191,7 @@ export default function AddCustomers() {
       </div>
     </Box>
     <div >
-        <CustomerTable/>
+        <CustomerTable  reloadData={reloadData}/>
       </div>
       <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
