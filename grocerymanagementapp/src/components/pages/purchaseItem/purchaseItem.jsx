@@ -155,21 +155,7 @@ const reset =()=>{
   };
 
   const handleOnclick= async ()=>{
-    
-    try{
-      const response = await axios.post("http://localhost:5000/purchaseItem/purchase",{invoiceNumber,billDate,supplierName,items});
-      console.log(response);
-      setMessage("Items purchased successfully");
-      setStatus("success");
-      setOpen(true);
-      reset();
-    }
-    catch(e){
-      console.log(e);
-      setMessage("Error Occurred ! Supplier can't be added ");
-      setStatus("error");
-      setOpen(true);
-    }
+
   }
 
     return (
@@ -247,8 +233,10 @@ const reset =()=>{
          
         </div>
       
-      <div  style={Styles.table1}>
-        <PurchasedTable/>
+      <div  style={Styles.table1}> 
+    
+        <PurchasedTable invoiceNumber={invoiceNumber}billDate={billDate}supplierName={supplierName}/>
+
         </div>
         <div style={Styles.button}>
         <Button onClick={handleOnclick} variant="contained" size="large">

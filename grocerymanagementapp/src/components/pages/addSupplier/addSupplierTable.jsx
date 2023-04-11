@@ -57,7 +57,7 @@ const tableIcons = {
 
 };
 
-export default function SupplierTable() {
+export default function SupplierTable(props) {
     const { useState,useEffect } = React;
     const defaultMaterialTheme = createTheme();
 
@@ -70,23 +70,23 @@ export default function SupplierTable() {
       { title: 'Supplier Address', field: 'supplierAddress', initialEditValue: 'initial edit value' },
       
     ]);
-  
-    const [data, setData] = useState([
-      
-    ]);
+  const {reloadData}=props;
+   const [data, setData] = useState();
+   useEffect(() => {
+   firstload();
+  },[]);
 
-    useEffect(() => {
-      fetchData();
-      
-    },[]);
+  const firstload=()=>{
+    setData([...props.reloadData])
+  }
 
- 
-    const fetchData = async()=>{
-      const SupplierData= await axios.get("http://localhost:5000/addSupplier/getSupplier");
-      setData([...SupplierData.data]);
-      console.log(SupplierData.data);
-      
-    }
+
+  //testing for botton
+    // const test=()=>{
+    //    console.log(data);
+    //   console.log(props.reloadData);
+    //   console.log(props.reloadData==null);
+    // }
   
     return (
 
@@ -96,7 +96,7 @@ export default function SupplierTable() {
         icons={tableIcons}
         columns={columns}
         
-        data={data}
+        data={reloadData}
         editable={{
           // onRowAdd: newData =>
           //   new Promise((resolve, reject) => {
@@ -145,7 +145,9 @@ export default function SupplierTable() {
               }, 1000)
             }),
         }}
+        
       />
+      {/* <button onClick={test}>Test</button> */}
       </ThemeProvider>
     )
   }

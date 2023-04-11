@@ -63,13 +63,17 @@ const tableIcons = {
 
 };
 
-export default function PurchasedTable() {
+export default function PurchasedTable(props) {
   const { useState } = React;
   const [itemName, setItemName]= React.useState("");
   const [quantity, setQuantity]= React.useState(0);
   const [price, setPrice ]= React.useState(0);
   const [total, setTotal ]=React.useState(0);
   const[unitOfItem, setUnitOfItem] =React.useState("");
+
+  const invoiceNumber= React.useState(props.invoiceNumber);
+  const billDate= React.useState(props.billDate);
+  const supplierName= React.useState(props.supplierName);
 
   const [testObject, setTestObject] = React.useState({
     
@@ -150,19 +154,22 @@ export default function PurchasedTable() {
 const handleSave = async () => {
   const items = [{ itemName, quantity, price, total, unitOfItem }];
   
-  try {
-    const response = await axios.post("http://localhost:5000/purchaseItem/purchase", items);
+      
+  try{
+    const response = await axios.post("http://localhost:5000/purchaseItem/postPurchase",{invoiceNumber,billDate,supplierName,items});
     console.log(response);
     setMessage("Items purchased successfully");
     setStatus("success");
     setOpen(true);
     reset();
-  } catch (e) {
+  }
+  catch(e){
     console.log(e);
-    setMessage("Error Occurred! Supplier can't be added");
+    setMessage("Error Occurred ! Supplier can't be added ");
     setStatus("error");
     setOpen(true);
   }
+
 };
 
    return (

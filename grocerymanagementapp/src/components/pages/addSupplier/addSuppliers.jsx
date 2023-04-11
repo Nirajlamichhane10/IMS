@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import Alertbar from '../../Alertbar';
 import {supplierSchema} from '../../validationJoi/Validation';
+import { useEffect } from 'react';
 
 
 
@@ -41,10 +42,12 @@ export default function AddSuppliers() {
   const[supplierAddress, setSupplierAddress]= React.useState("");
   const[supplier, setSupplier]= React.useState({});
   const[label, setLabel] = React.useState("");
+  const[reloadData, setReloadData] = React.useState([]);
   
   const[message, setMessage] = React.useState("");
   const[status, setStatus] = React.useState("");
   const[open, setOpen] = React.useState(false);
+
 
 
 // for text clear 
@@ -76,7 +79,22 @@ export default function AddSuppliers() {
     setLabel(event.target.value);
   };
 
+
   
+  //handle reload 
+  useEffect(() => {
+    handleReload();
+  },[]);
+
+// reloading 
+  
+    const handleReload = async()=>{
+      const SupplierData= await axios.get("http://localhost:5000/addSupplier/getSupplier");
+      setReloadData([...SupplierData.data]);
+      // console.log(SupplierData.data);
+      
+
+  }
    
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -109,11 +127,12 @@ export default function AddSuppliers() {
       setMessage("Supplier added successfully");
       setStatus("success");
       setOpen(true);
+      handleReload();
       reset();
+
       }
     }
   
-    
     catch(e){
       console.log(e);
       setMessage("Error Occurred ! Supplier can't be added ");
@@ -122,6 +141,7 @@ export default function AddSuppliers() {
     }
    
   };
+
 
   return (
     <div>
@@ -170,7 +190,7 @@ export default function AddSuppliers() {
       </div>
     </Box>
     <div >
-        <SupplierTable/>
+        <SupplierTable reloadData={reloadData}/>
       </div>
       <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
