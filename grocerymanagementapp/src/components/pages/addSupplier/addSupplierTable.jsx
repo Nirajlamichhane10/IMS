@@ -1,6 +1,7 @@
 import * as React from 'react';
 import MaterialTable from 'material-table';
 
+
 import { ThemeProvider, createTheme } from '@mui/material';
 
 import { forwardRef } from 'react';
@@ -60,6 +61,7 @@ const tableIcons = {
 export default function SupplierTable(props) {
     const { useState,useEffect } = React;
     const defaultMaterialTheme = createTheme();
+  
 
   
     const [columns, setColumns] = useState([
@@ -98,14 +100,14 @@ export default function SupplierTable(props) {
         
         data={reloadData}
         editable={{
-          // onRowAdd: newData =>
-          //   new Promise((resolve, reject) => {
-          //     setTimeout(() => {
-          //       setData([...data, newData]);
+          onRowAdd: newData =>
+            new Promise((resolve, reject) => {
+              setTimeout(() => {
+                setData([...data, newData]);
                 
-          //       resolve();
-          //     }, 1000)
-          //   }),
+                resolve();
+              }, 1000)
+            }),
           onRowUpdate: (newData, oldData) =>
             new Promise((resolve, reject) => {
               setTimeout(() => {

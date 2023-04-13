@@ -74,7 +74,7 @@ export default function MyStock() {
 
 {/* Supplier  name */}
          {/* Dropdown  */}
-         <FormControl fullWidth style={Styles.supplier}>
+         {/* <FormControl fullWidth style={Styles.supplier}>
   <InputLabel id="demo-simple-select-label">Items Name</InputLabel>
   <Select
     labelId="demo-simple-select-label"
@@ -88,7 +88,7 @@ export default function MyStock() {
     <MenuItem value={10}>Fruits</MenuItem>
  
   </Select>
-</FormControl>
+</FormControl> */}
 
 
          
