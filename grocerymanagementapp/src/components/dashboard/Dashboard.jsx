@@ -1,6 +1,7 @@
 import React from 'react';
 import DataTable from './table';
 import BasicCard from'./cards';
+import MatTable from '../pages/addItem/materialtable';
 
 import GraphicalRepresentation from './graphCharts';
 
@@ -53,17 +54,7 @@ const  Styles={
   
   
   },
-  // table
-  table:{
-    // margin:"80% 0% 0% 150%",
-    width:"950px",
-    margin:"50px 10px 10px 0px",
-    height:"400px",
-    boxShadow: "15px 15px 8px lightblue",
-  
-    
-  
-  },
+
   cards:{
   
     borderRadius:"20px",
@@ -132,8 +123,8 @@ export default function Dashboard() {
       <GraphicalRepresentation/>
     </div>
       
-      <div style={Styles.table}>
-      <DataTable/>
+      <div >
+      { <MatTable/> }
       </div>
       <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>

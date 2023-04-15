@@ -72,15 +72,15 @@ export default function CustomerTable(props) {
     ]);
 
     // for reloading the data 
-    const {reloadData}=props;
-    const [data, setData] = useState();
-    useEffect(() => {
-    firstload();
-   },[]);
+    const {reloadData , setReloadData}=props;
+  //   const [data, setData] = useState();
+  //   useEffect(() => {
+  //   firstload();
+  //  },[]);
  
-   const firstload=()=>{
-     setData([...props.reloadData])
-   }
+  //  const firstload=()=>{
+  //    setData([...props.reloadData])
+  //  }
  
 
 
@@ -119,36 +119,64 @@ export default function CustomerTable(props) {
         
         data={reloadData}
         editable={{
-          // onRowAdd: newData =>
+          onRowUpdate: (newData, oldData) =>
+									new Promise(async (resolve, reject) => {
+										try {
+											let { _id, ...req } = newData;
+											const res = await axios.put(
+												`http://localhost:5000/addCustomer/update/customer/${oldData._id}`,
+												req,
+											);
+                      const dataUpdate = [...reloadData];
+                      const index = oldData.tableData.id;
+                      dataUpdate[index] = newData;
+                      setReloadData([...dataUpdate]);
+											resolve();
+										} catch (e) {
+											console.log(e);
+											reject();
+										}
+									}),
+
+                  onRowDelete: (oldData) =>
+									new Promise(async (resolve, reject) => {
+										try {
+											const res = await axios.delete(`http://localhost:5000/addCustomer/delete/customer/${oldData._id}`,
+											);
+											const dataDelete = [...reloadData];
+                      const index = oldData.tableData.id;
+                      dataDelete.splice(index, 1);
+                      setReloadData([...dataDelete]);
+											resolve();
+										} catch (e) {
+											console.log(e);
+											reject();
+										}
+									}),
+
+
+          // onRowUpdate: (newData, oldData) =>
           //   new Promise((resolve, reject) => {
           //     setTimeout(() => {
-          //       setData([...data, newData]);
-                
+          //       const dataUpdate = [...data];
+          //       const index = oldData.tableData.id;
+          //       dataUpdate[index] = newData;
+          //       setData([...dataUpdate]);
+  
           //       resolve();
           //     }, 1000)
           //   }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
-  
-                resolve();
-              }, 1000)
-            }),
-          onRowDelete: oldData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataDelete = [...data];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setData([...dataDelete]);
+          // onRowDelete: oldData =>
+          //   new Promise((resolve, reject) => {
+          //     setTimeout(() => {
+          //       const dataDelete = [...data];
+          //       const index = oldData.tableData.id;
+          //       dataDelete.splice(index, 1);
+          //       setData([...dataDelete]);
                 
-                resolve()
-              }, 1000)
-            }),
+          //       resolve()
+          //     }, 1000)
+            //}),
         }}
       />
       {/* <button onClick={test}>Test</button> */}

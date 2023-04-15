@@ -60,6 +60,7 @@ const tableIcons = {
 
 export default function SupplierTable(props) {
     const { useState,useEffect } = React;
+    const [rows, setRows] = useState([]);
     const defaultMaterialTheme = createTheme();
   
 
@@ -72,15 +73,19 @@ export default function SupplierTable(props) {
       { title: 'Supplier Address', field: 'supplierAddress', initialEditValue: 'initial edit value' },
       
     ]);
-  const {reloadData}=props;
-   const [data, setData] = useState();
-   useEffect(() => {
-   firstload();
-  },[]);
 
-  const firstload=()=>{
-    setData([...props.reloadData])
-  }
+    // RELOADING 
+  const {reloadData,setReloadData}=props;
+  //  const [data, setData] = useState([...props.reloadData]);
+
+
+  //  useEffect(() => {
+  //  firstload();
+  // },[]);
+
+  // const firstload=()=>{
+  //   setData([...props.reloadData])
+ // }
 
 
   // //testing for botton
@@ -96,56 +101,86 @@ export default function SupplierTable(props) {
       <MaterialTable style={Styles.table}
         title="Supplier Details "
         icons={tableIcons}
+         
         columns={columns}
         
         data={reloadData}
         editable={{
-          onRowAdd: newData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                setData([...data, newData]);
-                
-                resolve();
-              }, 1000)
-            }),
           onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                
-                setData([...dataUpdate]);
-                resolve();
-              }, 1000)
-            }),
+									new Promise(async (resolve, reject) => {
+										try {
+											let { _id, ...req } = newData;
+											const res = await axios.put(
+												`http://localhost:5000/addSupplier/update/supplier/${oldData._id}`,
+												req,
+											);
+                      const dataUpdate = [...reloadData];
+                      const index = oldData.tableData.id;
+                      dataUpdate[index] = newData;
+                      setReloadData([...dataUpdate]);
+											resolve();
+										} catch (e) {
+											console.log(e);
+											reject();
+										}
+									}),
 
-    //           axio.put(`http://localhost:5000/addSupplier/update/supplie`, newData)
-    //     .then((response) => {
-    //       // If the update was successful, update the local state
-    //       setData([...dataUpdate]);
-    //       resolve();
-    //     })
-    //     .catch((error) => {
-    //       // If the update failed, show an error message
-    //       console.error(error);
-    //       reject();
-    //     });
-    // }, 1000);
-           
+                  onRowDelete: (oldData) =>
+									new Promise(async (resolve, reject) => {
+										try {
+											const res = await axios.delete(`http://localhost:5000/addSupplier/delete/supplier/${oldData._id}`,
+											);
+											const dataDelete = [...reloadData];
+                      const index = oldData.tableData.id;
+                      dataDelete.splice(index, 1);
+                      setReloadData([...dataDelete]);
+											resolve();
+										} catch (e) {
+											console.log(e);
+											reject();
+										}
+									}),
 
-          
-          onRowDelete: oldData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataDelete = [...data];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setData([...dataDelete]);
+
+
+
+
+          // onRowUpdate: (newData, oldData) =>
+          //   new Promise((resolve, reject) => {
+          //     setTimeout(() => {
+          //       const dataUpdate = [...data];
+          //       const index = oldData.tableData.id;
+          //       dataUpdate[index] = newData;
                 
-                resolve()
-              }, 1000)
-            }),
+          //       setData([...dataUpdate]);
+          //       resolve();
+          //     }, 1000)
+          //   }),
+
+    // //           axio.put(`http://localhost:5000/addSupplier/update/supplie`, newData)
+    // //     .then((response) => {
+    // //       // If the update was successful, update the local state
+    // //       setData([...dataUpdate]);
+    // //       resolve();
+    // //     })
+    // //     .catch((error) => {
+    // //       // If the update failed, show an error message
+    // //       console.error(error);
+    // //       reject();
+    // //     });
+    // // }, 1000);
+            
+          // onRowDelete: oldData =>
+          //   new Promise((resolve, reject) => {
+          //     setTimeout(() => {
+          //       const dataDelete = [...data];
+          //       const index = oldData.tableData.id;
+          //       dataDelete.splice(index, 1);
+          //       setData([...dataDelete]);
+                
+          //       resolve()
+          //     }, 1000)
+          //   }),
         }}
         
       />

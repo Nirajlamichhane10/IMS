@@ -36,16 +36,27 @@ export const customerSchema = (data)=> {
  // Add item Validation 
 
  export const addItemSchema = (data)=> {
-  const itemchema = Joi.object({
+  const itemschema = Joi.object({
   itemName: Joi.string().min(1).max(100).required(),
   unitOfItem: Joi.string().min(1).max(20).required(),
   quantity: Joi.number().required(),
   minimum: Joi.number().required(),
   });
-  return itemchema.validate(data);
+  return itemschema.validate(data);
     
   }
 
 
-  // Purchased Item Validations 
+  // user.js 
+
+  export const userSchema = (data)=> {
+    const useschema = Joi.object({
+      
+      username: Joi.string().min(1).max(100).required(),
+      password: Joi.string().min(1).max(100).required(),
+    });
+    return useschema.validate(data);
+
+
+  }
   

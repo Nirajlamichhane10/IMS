@@ -96,47 +96,50 @@ export default function MatTable() {
   
     return (
 
-        <ThemeProvider theme={defaultMaterialTheme}>
-      <MaterialTable style={Styles.table}
+      <ThemeProvider theme={defaultMaterialTheme}>
+      <MaterialTable
+        style={Styles.table}
         title="Added Items"
         icons={tableIcons}
         columns={columns}
-        
         data={data}
         editable={{
-          // onRowAdd: newData =>
-          //   new Promise((resolve, reject) => {
-          //     setTimeout(() => {
-          //       setData([...data, newData]);
-                
-          //       resolve();
-          //     }, 1000)
-          //   }),
           onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
+            new Promise(async (resolve, reject) => {
+              try {
+                let { _id, ...req } = newData;
+                const res = await axios.put(
+                  `http://localhost:5000/addItem/update/item/${oldData._id}`,
+                  req
+                );
                 const dataUpdate = [...data];
                 const index = oldData.tableData.id;
                 dataUpdate[index] = newData;
                 setData([...dataUpdate]);
-  
+    
                 resolve();
-              }, 1000)
+              } catch (error) {
+                reject(error);
+              }
             }),
-          onRowDelete: oldData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
+          onRowDelete: (oldData) =>
+            new Promise(async (resolve, reject) => {
+              try {
+                const res = await axios.delete(
+                  `http://localhost:5000/addItem/delete/item/${oldData._id}`
+                );
                 const dataDelete = [...data];
                 const index = oldData.tableData.id;
                 dataDelete.splice(index, 1);
                 setData([...dataDelete]);
-                
-                resolve()
-              }, 1000)
+    
+                resolve();
+              } catch (error) {
+                reject(error);
+              }
             }),
         }}
       />
-      </ThemeProvider>
-    )
-  }
+    </ThemeProvider>
+    )}
   

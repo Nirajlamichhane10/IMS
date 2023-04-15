@@ -191,7 +191,7 @@ export default function AddSuppliers() {
       </div>
     </Box>
     <div >
-        <SupplierTable reloadData={reloadData}/>
+        <SupplierTable reloadData={reloadData} setReloadData={setReloadData}/>
       </div>
       <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>

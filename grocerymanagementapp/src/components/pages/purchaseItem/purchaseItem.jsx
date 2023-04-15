@@ -16,7 +16,7 @@ import CollapsibleTable from './newTable';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
+import { v4 as uuid } from 'uuid';
 
 
 
@@ -85,20 +85,40 @@ export default function PurchaseItem() {
 
 
   // for invoice number 
-  React.useEffect(() => {
-    const date = new Date();
-    const year = date.getFullYear() + 56;
-    const month = date.getMonth() + 1;
-    const fiscalYear = month <= 3 ? year - 1 : year;
-    const generatedInvoiceNumber = `${fiscalYear}-${fiscalYear + 1}-1`;
-    const invoicePrefix = "GMSP";
+  // React.useEffect(() => {
+  //   const date = new Date();
+  //   const year = date.getFullYear() + 56;
+  //   const month = date.getMonth() + 1;
+  //   const fiscalYear = month <= 3 ? year - 1 : year;
+  //   const generatedInvoiceNumber = `${fiscalYear}-${fiscalYear + 1}-1`;
+  //   const invoicePrefix = "GMSP";
 
-    const invoiceNumber = `${invoicePrefix}-${generatedInvoiceNumber}`;
-    console.log(generatedInvoiceNumber); // Check if the generated invoice number is correct
-    setInvoiceNumber(invoiceNumber);
-  }, []);
+  //   const invoiceNumber = `${invoicePrefix}-${generatedInvoiceNumber}`;
+  //   console.log(generatedInvoiceNumber); // Check if the generated invoice number is correct
+  //   setInvoiceNumber(invoiceNumber);
+  // }, []);
+  React.useEffect (() =>{
+  const unique_id = uuid();
+  				const small_id = unique_id.slice(0,8);
+				
+				console.log(small_id);
+        setInvoiceNumber(small_id);
+  },[]);
 
 
+  // const test = () => {
+  //   const date = new Date();
+  //   const year = date.getFullYear() + 56;
+  //   const month = date.getMonth() + 1;
+  //   const fiscalYear = month <= 3 ? year - 1 : year;
+  //   const generatedInvoiceNumber = `${fiscalYear}-${fiscalYear + 1}-1`;
+  //   const invoicePrefix = "GMSP";
+
+  //   const invoiceNumber = `${invoicePrefix}-${generatedInvoiceNumber}`;
+  //   console.log(generatedInvoiceNumber); // Check if the generated invoice number is correct
+  //   setInvoiceNumber(invoiceNumber);
+  //   console.log(items)
+  // }
 
 
 
@@ -129,14 +149,6 @@ const[message, setMessage]= React.useState("");
 const[status, setStatus]= React.useState("");
 const[open, setOpen]= React.useState(false);
 
-const reset =()=>{
-    
-  setInvoiceNumber("");
-  setSupplierName("");
-  setBillDate(null);
-  setItems([{}]);
-
-}
 
 
   const handleChangeInvoiceNumber =(event)=>{
@@ -154,9 +166,7 @@ const reset =()=>{
     setSupplierName(event.target.value);
   };
 
-  const handleOnclick= async ()=>{
 
-  }
 
     return (
       <div>
@@ -235,14 +245,14 @@ const reset =()=>{
       
       <div  style={Styles.table1}> 
     
-        <PurchasedTable invoiceNumber={invoiceNumber}billDate={billDate}supplierName={supplierName}/>
+        <PurchasedTable invoiceNumber={invoiceNumber} setInvoiceNumber={setInvoiceNumber} billDate={billDate} setBillDate={setBillDate} supplierName={supplierName} setSupplierName={setSupplierName} setSelectedSupplier={setSelectedSupplier}/>
 
         </div>
-        <div style={Styles.button}>
+        {/* <div style={Styles.button}>
         <Button onClick={handleOnclick} variant="contained" size="large">
           SAVE ITEM 
         </Button>
-      </div>
+      </div> */}
         
       </Box>
       <div style={Styles.collabtable}>
@@ -254,6 +264,10 @@ const reset =()=>{
           PRINT
         </Button>
       </div>
+
+   {/* <Button onClick={test} >
+      Test
+        </Button> */}
 
       <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>

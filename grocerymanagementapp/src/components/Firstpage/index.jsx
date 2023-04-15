@@ -90,7 +90,7 @@ const Login = (props) => {
 							Sign In
 						</button>
 
-						<button type="submit" onClick={handleSubmit} className={styles.forget_btn}>
+						<button type="submit"  className={styles.forget_btn}>
 							Forgot Password ?
 						</button>
 
