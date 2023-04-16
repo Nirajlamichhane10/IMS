@@ -79,12 +79,8 @@ const tableIcons = {
 
 export default function PurchasedTable(props) {
   const { useState } = React;
-  const [itemName, setItemName] = React.useState([]);
- 
-  const [quantity, setQuantity]= React.useState(0);
-  const [price, setPrice ]= React.useState(0);
-  const [total, setTotal ]=React.useState(0);
-  const[unitOfItem, setUnitOfItem] =React.useState("");
+  const [itemList,setItemList]=React.useState({});
+
   const [items, setItems] = React.useState([{}]);
 
   const {invoiceNumber, billDate,supplierName, setInvoiceNumber,setSupplierName,setBillDate,setSelectedSupplier}= props;
@@ -95,13 +91,21 @@ export default function PurchasedTable(props) {
   const[message, setMessage]= React.useState("");
   const[status, setStatus]= React.useState("");
   const[open, setOpen]= React.useState(false);
+  const[testArray, setTestArray]= React.useState(["Rice","coke","fancy"]);
 
 
-  // useEffect=()=>{
-  //   fetchItemName();
-  // }
+  useEffect(() => {
+    fetchItemName();
+   
+  }, []);
+  // TEST
 
-  // reset 
+  const test=()=>{
+    console.log("lookyp Object");
+    console.log(itemList);
+  }
+
+ // reset 
   const reset =()=>{
     
     setInvoiceNumber("");
@@ -119,39 +123,40 @@ export default function PurchasedTable(props) {
 
   }
   
-//   const fetchItemName= async() => {
-//   try{
-//       const res = await axios.get(' http://localhost:5000/addItem/getItem',{itemName});
-//       setItemName(res.data); 
-//   }
-//   catch(e){
-//     console.log(e);
-//   }
-//  }
+  const fetchItemName= async() => {
+  try{
+      const res = await axios.get(' http://localhost:5000/addItem/getItem');
+      // setItemNameArray(res.data); 
+      let obj = { 0: "Select Item" };
+      let count=1;
+
+// Loop through the array and append key-value pairs to the object
+    res.data.map((item) => {
+    obj[count] = item.itemName;
+      count++;
+    });
+          setItemList(obj);
+  }
+  catch(e){
+    console.log(e);
+  }
+ }
    
   
   const defaultMaterialTheme = createTheme();
     const [columns, setColumns] = useState([
    
-      { title: 'Item  Name', field: 'itemName' , initialEditValue: 'initial edit value' 
-      // render: rowData => (
-      //   // Custom rendering for the 'Name' column
-      //   <div>
-
-      //      </div>
-
-        
-      // ),
-    },
+      { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: 'All-Purpose Flour', 2: 'Salt', 3: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 4: 'Dried Fruit (Raisins, Cranberries, Apricots, etc.)', 5: 'Cooking Oil (Vegetable, Canola, Olive, etc.)', 6: 'Eggs', 7: 'Chicken', 8: 'Fresh Herbs (Basil, Cilantro, Parsley, etc.)', 9: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 10: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 11: 'ijklmnop', 12: 'mnop '} },
       { title: 'Unit', field: 'unitOfItem', initialEditValue: 'initial edit value' },
       { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
       { title: 'Price', field: 'price', initialEditValue: 0 },
-      { title: 'Total', field: 'total', initialEditValue: 0,disabled:true },
+      { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
      
       
 
       
     ]);
+
     
   
     const [data, setData] = useState([
@@ -161,21 +166,6 @@ export default function PurchasedTable(props) {
 
 
   
-    const test = () => {
-      console.log(items)
-    }
-    // const handleOnclick= async ()=>{
-    //   try {
-    //     const resp = await axios.post("http://localhost:5000/purchaseItem/purchase");
-    //     console.log(resp)
-  
-    //   }
-    //   catch(e){
-    //     console.log(e);
-    //   }
-  
-  
-    // }
 
 
 // // saving data 

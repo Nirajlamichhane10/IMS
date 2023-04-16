@@ -97,13 +97,6 @@ export default function PurchaseItem() {
   //   console.log(generatedInvoiceNumber); // Check if the generated invoice number is correct
   //   setInvoiceNumber(invoiceNumber);
   // }, []);
-  React.useEffect (() =>{
-  const unique_id = uuid();
-  				const small_id = unique_id.slice(0,8);
-				
-				console.log(small_id);
-        setInvoiceNumber(small_id);
-  },[]);
 
 
   // const test = () => {
@@ -130,9 +123,16 @@ export default function PurchaseItem() {
     const fetchSuppliers = async () => {
       const res = await axios.get('http://localhost:5000/addSupplier/getSupplier',{supplierName});
       setSuppliers(res.data);
+      console.log("suppliernames");
+      console.log(res.data);
     };
 
     fetchSuppliers();
+    const unique_id = uuid();
+  				const small_id = unique_id.slice(0,8);
+				
+				console.log(small_id);
+        setInvoiceNumber(small_id);
     
   }, []);
 
