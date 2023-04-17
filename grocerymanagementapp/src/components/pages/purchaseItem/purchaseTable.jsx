@@ -147,7 +147,7 @@ export default function PurchasedTable(props) {
     const [columns, setColumns] = useState([
    
       { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: 'All-Purpose Flour', 2: 'Salt', 3: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 4: 'Dried Fruit (Raisins, Cranberries, Apricots, etc.)', 5: 'Cooking Oil (Vegetable, Canola, Olive, etc.)', 6: 'Eggs', 7: 'Chicken', 8: 'Fresh Herbs (Basil, Cilantro, Parsley, etc.)', 9: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 10: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 11: 'ijklmnop', 12: 'mnop '} },
-      { title: 'Unit', field: 'unitOfItem', initialEditValue: 'initial edit value' },
+      { title: 'Unit', field: 'unitOfItem', },
       { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
       { title: 'Price', field: 'price', initialEditValue: 0 },
       { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
