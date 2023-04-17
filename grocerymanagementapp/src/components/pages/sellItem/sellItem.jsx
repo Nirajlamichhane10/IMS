@@ -16,7 +16,7 @@ import axios from 'axios';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
+import { v4 as uuid } from 'uuid';
 
 
 
@@ -93,12 +93,19 @@ export default function SellItem() {
       const res = await axios.get('http://localhost:5000/addCustomer/getCustomer',{customerName});
       setCustomers(res.data);
     };
-
     fetchCustomers();
+    const unique_id = uuid();
+  				const small_id = unique_id.slice(0,8);
+				
+				console.log(small_id);
+        setInvoiceNumber(small_id);
+    
   }, []);
+
 
   const handleChange = (event) => {
     setSelectedCustomer(event.target.value);
+    console.log(customerName);
   };
 
 
@@ -135,7 +142,8 @@ export default function SellItem() {
           <TextField
             id="outlined-error"
             label="Invoice.No"
-            defaultValue=""
+           
+            value={invoiceNumber}
             onChange={(event) => {
               setInvoiceNumber(event.target.value);
             }}
@@ -183,13 +191,13 @@ export default function SellItem() {
         </div>
       
       <div  style={Styles.table1}>
-        <SellTable1 itemName={itemName} price={price} quantity={quantity} total={total} items={items} purchaseData={purchaseData}/>
+        <SellTable1 invoiceNumber={invoiceNumber} setInvoiceNumber={setInvoiceNumber} billDate={billDate} setBillDate={setBillDate} customerName={customerName} setCustomerName={setCustomerName} setSelectedCustomer={setSelectedCustomer}/>
         </div>
-        <div style={Styles.button}>
+        {/* <div style={Styles.button}>
         <Button onClick={handleOnclick} variant="contained" size="large">
           SAVE ITEM 
         </Button>
-      </div>
+      </div> */}
         
       </Box>
       <div style={Styles.collabtable}>
@@ -198,7 +206,7 @@ export default function SellItem() {
 
       <div style={Styles.buttonprint}>
         <Button onClick={handleOnclick} variant="contained" size="large">
-          PRINT
+          RECEPIT
         </Button>
       </div>
 

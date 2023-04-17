@@ -261,7 +261,7 @@ const[open, setOpen]= React.useState(false);
 
       <div style={Styles.buttonprint}>
         <Button  variant="contained" size="large">
-          PRINT
+          RECEIPT
         </Button>
       </div>
 

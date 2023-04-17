@@ -79,7 +79,7 @@ const tableIcons = {
 
 export default function PurchasedTable(props) {
   const { useState } = React;
-  const [itemList,setItemList]=React.useState({});
+  const [itemList,setItemList]=React.useState([]);
 
   const [items, setItems] = React.useState([{}]);
 
@@ -101,7 +101,7 @@ export default function PurchasedTable(props) {
   // TEST
 
   const test=()=>{
-    console.log("lookyp Object");
+    console.log("lookup Object");
     console.log(itemList);
   }
 
@@ -146,7 +146,7 @@ export default function PurchasedTable(props) {
   const defaultMaterialTheme = createTheme();
     const [columns, setColumns] = useState([
    
-      { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: 'All-Purpose Flour', 2: 'Salt', 3: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 4: 'Dried Fruit (Raisins, Cranberries, Apricots, etc.)', 5: 'Cooking Oil (Vegetable, Canola, Olive, etc.)', 6: 'Eggs', 7: 'Chicken', 8: 'Fresh Herbs (Basil, Cilantro, Parsley, etc.)', 9: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 10: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 11: 'ijklmnop', 12: 'mnop '} },
+      { title: 'Item  Name', field: 'itemName' , lookup:itemList },
       { title: 'Unit', field: 'unitOfItem', },
       { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
       { title: 'Price', field: 'price', initialEditValue: 0 },

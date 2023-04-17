@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import MaterialTable , { MTableToolbar } from 'material-table';
 
@@ -21,8 +20,15 @@ import Remove from '@mui/icons-material/Remove';
 import SaveAlt from '@mui/icons-material/SaveAlt';
 import Search from '@mui/icons-material/Search';
 import ViewColumn from '@mui/icons-material/ViewColumn';
-import { useEffect } from 'react';
-
+import { useEffect,useState } from 'react';
+import axios from 'axios';
+import Button from '@mui/material/Button';
+import { log } from 'joi-browser';
+import { v4 as uuid } from 'uuid';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -57,38 +63,142 @@ const tableIcons = {
       height:"35%",
       margin:"-35px 10px 10px 250px",
     
-    }
+    },
+    buttonprint:{
+      margin:"30px 20px 50px 790px",
+      width:"220px",
+    
+     },
+     button:{
+      margin:"20px 0px 50px 1050px",
+      width:"220px",
+     }
 
 };
 
-export default function SellTable1() {
-    const { useState } = React;
-    const defaultMaterialTheme = createTheme();
+export default function SellTable1(props) {
+  const { useState } = React;
+  const [itemList,setItemList]=React.useState([]);
 
+  const [items, setItems] = React.useState([{}]);
+
+  const {invoiceNumber, billDate,customerName, setInvoiceNumber,setCustomerName,setBillDate,setSelectedCustomer}= props;
   
+
+
+
+  const[message, setMessage]= React.useState("");
+  const[status, setStatus]= React.useState("");
+  const[open, setOpen]= React.useState(false);
+  const[testArray, setTestArray]= React.useState(["Rice","coke","fancy"]);
+
+
+  useEffect(() => {
+    fetchItemName();
+   
+  }, []);
+  // TEST
+
+  const test=()=>{
+    console.log("lookup Object");
+    console.log(itemList);
+  }
+
+ // reset 
+  const reset =()=>{
+    
+    setInvoiceNumber("");
+    setCustomerName("");
+    setSelectedCustomer("Select customer");
+    setBillDate(null);
+    setItems([{}]);
+    setData([]);
+
+    const unique_id = uuid();
+  				const small_id = unique_id.slice(0,8);
+				
+				console.log(small_id);
+        setInvoiceNumber(small_id);
+
+  }
+  
+  const fetchItemName= async() => {
+  try{
+      const res = await axios.get(' http://localhost:5000/addItem/getItem');
+      // setItemNameArray(res.data); 
+      let obj = { 0: "Select Item" };
+      let count=1;
+
+// Loop through the array and append key-value pairs to the object
+    res.data.map((item) => {
+    obj[count] = item.itemName;
+      count++;
+    });
+          setItemList(obj);
+  }
+  catch(e){
+    console.log(e);
+  }
+ }
+   
+  
+  const defaultMaterialTheme = createTheme();
     const [columns, setColumns] = useState([
    
-      { title: 'Item Name', field: 'itemname', initialEditValue: 'initial edit value' },
-      { title: 'Unit', field: 'unit', initialEditValue: 'initial edit value' },
-      { title: 'Quantity', field: 'quantity', initialEditValue: 'initial edit value' },
-      { title: 'Price', field: 'price', initialEditValue: 'initial edit value' },
-      { title: 'Total', field: 'total', initialEditValue: 'initial edit value' },
+      { title: 'Item  Name', field: 'itemName' , lookup:itemList },
+      { title: 'Unit', field: 'unitOfItem', },
+      { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
+      { title: 'Price', field: 'price', initialEditValue: 0 },
+      { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
      
       
 
       
     ]);
 
+    
   
     const [data, setData] = useState([
-     { itemname:"Cold Drinks", unit:"ml", quantity:12, price:1200, total:1500 },
-      
+      // { itemName:"Cold Drinks", unitOfItem:"ml", quantity:12, price:1200, total:1500 },
     
     ]);
 
+
   
-  
-    return (
+
+
+// // saving data 
+// const handleSave = async () => {
+//   try {
+//     const response = await axios.post("http://localhost:5000/purchaseItem/purchase",{itemName,quantity,price,total,unitOfItem});
+//     console.log(response.data);
+//     // do something with response if needed
+//   } catch (error) {
+//     console.error(error);
+//     // handle error if needed
+//   }
+// };
+const handleOnclick = async () => {    
+
+  items.shift();
+  try{
+    const response = await axios.post("http://localhost:5000/sellItem/sell",{invoiceNumber,billDate,customerName,items});
+    console.log(response);
+    setMessage("Items purchased successfully");
+    setStatus("success");
+    setOpen(true);
+    reset();
+  }
+  catch(e){
+    console.log(e);
+    setMessage("Error Occurred ! customer can't be added ");
+    setStatus("error");
+    setOpen(true);
+  }
+
+};
+
+   return (
       <div> 
         <ThemeProvider theme={defaultMaterialTheme}>
       <MaterialTable style={Styles.table}
@@ -98,10 +208,17 @@ export default function SellTable1() {
         columns={columns}
         
         data={data}
-
+// for adding total
         options={{
           search:false,
           paging:false,
+          // showTotal: true,
+          // totalRow: { name: 'Grand Total', total: ()=>{
+          //   let total = 0;
+          //   data.forEach(item => {
+          //     total+= item.quantity * item.price;
+          //   });
+          //   return total;} },
         }}
 
         components={{
@@ -119,8 +236,16 @@ export default function SellTable1() {
           onRowAdd: newData =>
             new Promise((resolve, reject) => {
               setTimeout(() => {
+                const total = newData.price * newData.quantity;
+                newData.total=total;
                 setData([...data, newData]);
-                
+                const tempItem={"itemName":newData.itemName,"unitOfItem":newData.unitOfItem,"quantity":newData.quantity,"price":newData.price,"total":total};
+                setItems([...items, {...tempItem} ]);
+               console.log("Total Data");
+                console.log(newData);
+                console.log(newData.price);
+               
+               
                 resolve();
               }, 1000)
             }),
@@ -131,6 +256,8 @@ export default function SellTable1() {
                 const index = oldData.tableData.id;
                 dataUpdate[index] = newData;
                 setData([...dataUpdate]);
+
+                
   
                 resolve();
               }, 1000)
@@ -147,10 +274,20 @@ export default function SellTable1() {
               }, 1000)
             }),
         }}
+        
       />
+          
       </ThemeProvider>
-     
+      <div style={Styles.button}>
+        <Button onClick={handleOnclick} variant="contained" size="large">
+          SAVE ITEM 
+        </Button>
+      </div>
+      {/* <Button onClick={test} >
+      Test
+        </Button> */}
       </div>
     )
+
   }
   
