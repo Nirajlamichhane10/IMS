@@ -29,7 +29,7 @@ const purchaseItemSchema = new mongoose.Schema({
   supplierName: { type: String, required: true },
   items: [
     {
-      // itemId: { type: mongoose.Schema.Types.ObjectId, ref: 'addItem', required: true },
+      itemId: { type: mongoose.Schema.Types.ObjectId, ref: 'addItem', required: true },
       itemName: { type: String, required: true },
       unitOfItem: { type: String, required: true },
       quantity: { type: Number, required: true },

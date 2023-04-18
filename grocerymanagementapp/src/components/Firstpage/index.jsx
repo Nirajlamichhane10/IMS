@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 import styles from "./styles.module.css";
-import { useEffect } from "react";
+
 import { v4 as uuid } from 'uuid';
 
 

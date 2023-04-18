@@ -31,6 +31,7 @@ const userRoute = require("./Routes/userRoute");
 const itemRoute = require("./Routes/addItemRoute");
 const supplierRoute = require("./Routes/addSupplierRoute");
 const purchaseItemRoute = require("./Routes/purchaseItemRoute");
+const sellItemRoute = require("./Routes/sellItemRoute");
 const addCustomerRoute = require("./Routes/addCustomerRoute");
 
 app.use(cors());
@@ -40,6 +41,8 @@ app.use("/addItem",itemRoute);
 app.use("/addSupplier",supplierRoute);
 app.use("/addCustomer",addCustomerRoute);
 app.use("/purchaseItem",purchaseItemRoute);
+app.use("/sellItem",sellItemRoute);
+
 
 
 app.listen(5000, () => {

@@ -146,7 +146,7 @@ export default function PurchasedTable(props) {
   const defaultMaterialTheme = createTheme();
     const [columns, setColumns] = useState([
    
-      { title: 'Item  Name', field: 'itemName' , lookup:itemList },
+      { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: ' Flour', 2: 'Salt', 3: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 4: 'Dried Fruit (Raisins, Cranberries, Apricots, etc.)', 5: 'Cooking Oil (Vegetable, Canola, Olive, etc.)', 6: 'Eggs', 7: 'Chicken', 8: 'Fresh Herbs (Basil, Cilantro, Parsley, etc.)', 9: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 10: 'Red Bull', 11: 'Dall(rato+kalo)'} },
       { title: 'Unit', field: 'unitOfItem', },
       { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
       { title: 'Price', field: 'price', initialEditValue: 0 },
@@ -192,7 +192,7 @@ const handleOnclick = async () => {
   }
   catch(e){
     console.log(e);
-    setMessage("Error Occurred ! Supplier can't be added ");
+    setMessage("Error Occurred ! Items  can't be added ");
     setStatus("error");
     setOpen(true);
   }
@@ -244,7 +244,7 @@ const handleOnclick = async () => {
                 setItems([...items, {...tempItem} ]);
                console.log("Total Data");
                 console.log(newData);
-                console.log(newData.price);
+                console.log(newData.price); 
                
                
                 resolve();
