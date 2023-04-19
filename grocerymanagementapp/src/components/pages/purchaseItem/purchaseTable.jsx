@@ -96,6 +96,9 @@ export default function PurchasedTable(props) {
 
   useEffect(() => {
     fetchItemName();
+    
+  
+  
    
   }, []);
   // TEST
@@ -139,9 +142,12 @@ export default function PurchasedTable(props) {
   }
   catch(e){
     console.log(e);
+    
+
   }
  }
-   
+
+
   
   const defaultMaterialTheme = createTheme();
     const [columns, setColumns] = useState([

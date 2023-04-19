@@ -256,6 +256,7 @@ export default function MiniDrawer() {
       </Link>
       <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
     </Menu>
+    
 
   );
 
@@ -458,7 +459,7 @@ export default function MiniDrawer() {
                     </ListItemText>
                     </ListItem>
                 
-                <ListItem component={Link} to ={"/statement"} onClick={handleDrawerClose} style={Styles.icont}>
+                {/* <ListItem component={Link} to ={"/statement"} onClick={handleDrawerClose} style={Styles.icont}>
                     <PermContactCalendarIcon/>
                     <ListItemText>
                     <Typography >
@@ -477,8 +478,8 @@ export default function MiniDrawer() {
                               Customers Statement
                                </span>
                             </Typography>
-                      </ListItemText>
-                </ListItem>
+                      </ListItemText> */}
+                {/* </ListItem> */}
 
             
             
