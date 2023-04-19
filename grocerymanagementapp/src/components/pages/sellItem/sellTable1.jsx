@@ -244,7 +244,7 @@ const handleOnclick = async () => {
                 const total = newData.price * newData.quantity;
                 newData.total=total;
                 setData([...data, newData]);
-                const tempItem={"itemName":newData.itemName,"unitOfItem":newData.unitOfItem,"quantity":newData.quantity,"price":newData.price,"total":total};
+                const tempItem={"itemName":itemList[newData.itemName],"unitOfItem":newData.unitOfItem,"quantity":newData.quantity,"price":newData.price,"total":total};
                 setItems([...items, {...tempItem} ]);
                console.log("Total Data");
                 console.log(newData);

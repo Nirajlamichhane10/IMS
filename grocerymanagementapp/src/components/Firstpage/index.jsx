@@ -45,18 +45,8 @@ const Login = (props) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const userData ={username,password};
-        const result=userSchema(userData);
-		if (result.error){
-			setMessage("Validation Error");
-			console.log("with error");
-			console.log(result);
-			setStatus("error");
-			setOpen(true);
-	  
-		  }
-		
-		try {
+		const userData ={username,password};     
+				try {
 			console.log("Hey submit button worked");
 			const options = {
 				headers: {
@@ -78,25 +68,27 @@ const Login = (props) => {
 				props.tokenId.current=small_id;
 				props.setLogin(true);
 				console.log(small_id);
+				setMessage("Sucessfuly login");
+				setStatus("success");
+				setOpen(true);
 
 			}
-			setMessage("user login successfully");
-            setStatus("success");
-            setOpen(true);
-			reset();
+
             
-			// else{
-			// 	localStorage.setItem("token", "not_authenticated");
-			// }
+			else{
+				handleClose();
+				setMessage("users or password incorrect");
+                setStatus("error");
+                setOpen(true);
+				reset();
+				
+			}
 			console.log(response.message);
 			
 			window.location = "/";
 		} catch (error) {
 			console.log(e);
-			setMessage("User Name is incorrect !");
-			setStatus("error");
-			setUsername('');
-			setPassword('');
+			
 			setOpen(true);
 			if (
 				error.response &&

@@ -49,14 +49,14 @@ export const customerSchema = (data)=> {
 
   // user.js 
 
-  export const userSchema = (data)=> {
-    const useschema = Joi.object({
+  // export const userSchema = (data)=> {
+  //   const useschema = Joi.object({
       
-      username: Joi.string().min(1).max(100).required(),
-      password: Joi.string().min(1).max(100).required(),
-    });
-    return useschema.validate(data);
+  //     username: Joi.string().min(1).max(100).required(),
+  //     password: Joi.string().min(1).max(100).required(),
+  //   });
+  //   return useschema.validate(data);
 
 
-  }
+  // }
   

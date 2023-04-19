@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import axios from 'axios';
+import  {useEffect,useState } from 'react';
 
 const Styles={
     root:{
@@ -35,27 +37,42 @@ function createData(  InvoiceNo,BillDate,SupplierName) {
   BillDate,
   SupplierName,
     history: [
-      {
-        itemname: 'Coke',
-        unit:"ml",
-        quantity: 11,
-        price: 400,
-        total:500,
-      },
-      {
-         itemname: 'sprite',
-         unit:"ml",
-        quantity: 11,
-        price: 400,
-        total:600,
-      },
+      // {
+      //   itemname: 'Coke',
+      //   unit:"ml",
+      //   quantity: 11,
+      //   price: 400,
+      //   total:500,
+      // },
+      // {
+      //    itemname: 'sprite',
+      //    unit:"ml",
+      //   quantity: 11,
+      //   price: 400,
+      //   total:600,
+      // },
     ],
   };
 }
 
+
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+  const [invoice, setInvoice]= React.useState([]);
+
+// useEfect for table data 
+  useEffect(() => {
+    const fetchInvoice = async () => {
+      const res = await axios.get('http://localhost:5000/purchaseItem/getInvoice');
+      setInvoice(res.data);
+      console.log("suppliernames");
+      console.log(res.data);
+    };
+
+    
+  }, []);
+
 
   return (
     <React.Fragment>

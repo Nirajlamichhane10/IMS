@@ -25,11 +25,19 @@ const getPurchase = async (req, res) => {
     }
 };
 
-module.exports = {
-    postPurchase,
-    getPurchase
-};
 
+// seaching by invoice number 
+const getInvoice = async (req, res ) => {
+    try {
+        const invoiceNumber = req.body.invoiceNumber;
+        console.log(invoiceNumber);
+        const response = await purchaseItem.find({'invoiceNumber':invoiceNumber});
+        res.json(response);
+    }
+    catch(error){
+        res.send(error);
+    }
+}
 
 
 // // //update  
@@ -78,3 +86,9 @@ exports.getSuppliers = async (req, res) => {
       res.send(error);
     }
   };
+
+  module.exports = {
+    postPurchase,
+    getPurchase,
+    getInvoice
+};

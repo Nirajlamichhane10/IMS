@@ -257,7 +257,7 @@ const[open, setOpen]= React.useState(false);
         
       </Box>
       <div style={Styles.collabtable}>
-      <CollapsibleTable/>
+      <CollapsibleTable invoiceNumber={invoiceNumber}/>
       </div>
 
       <div style={Styles.buttonprint}>

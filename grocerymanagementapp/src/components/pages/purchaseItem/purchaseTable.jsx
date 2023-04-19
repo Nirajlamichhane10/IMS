@@ -3,7 +3,7 @@ import * as React from 'react';
 import MaterialTable , { MTableToolbar } from 'material-table';
 
 
-import { ThemeProvider, createTheme } from '@mui/material';
+import { ListItem, ThemeProvider, createTheme } from '@mui/material';
 
 import { forwardRef } from 'react';
 import AddBox from '@mui/icons-material/AddBox';
@@ -80,6 +80,22 @@ const tableIcons = {
 export default function PurchasedTable(props) {
   const { useState } = React;
   const [itemList,setItemList]=React.useState([]);
+  
+  const defaultMaterialTheme = createTheme();
+    const [columns, setColumns] = useState([
+
+ 
+      { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: ' Flour', 2: 'Salt', 3: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 4: 'Dried Fruit (Raisins, Cranberries, Apricots, etc.)', 5: 'Cooking Oil (Vegetable, Canola, Olive, etc.)', 6: 'Eggs', 7: 'Chicken', 8: 'Fresh Herbs (Basil, Cilantro, Parsley, etc.)', 9: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 10: 'Red Bull'}},
+      { title: 'Unit', field: 'unitOfItem', },
+      { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
+      { title: 'Price', field: 'price', initialEditValue: 0 },
+      { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
+     
+      
+    ]);
+
+
+
 
   const [items, setItems] = React.useState([{}]);
 
@@ -96,10 +112,8 @@ export default function PurchasedTable(props) {
 
   useEffect(() => {
     fetchItemName();
+
     
-  
-  
-   
   }, []);
   // TEST
 
@@ -148,24 +162,9 @@ export default function PurchasedTable(props) {
  }
 
 
-  
-  const defaultMaterialTheme = createTheme();
-    const [columns, setColumns] = useState([
 
- 
-      { title: 'Item  Name', field: 'itemName' , lookup:{} },
-      { title: 'Unit', field: 'unitOfItem', },
-      { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
-      { title: 'Price', field: 'price', initialEditValue: 0 },
-      { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
-     
-      
 
-      
-    ]);
 
-    
-  
     const [data, setData] = useState([
       // { itemName:"Cold Drinks", unitOfItem:"ml", quantity:12, price:1200, total:1500 },
     
@@ -247,7 +246,7 @@ const handleOnclick = async () => {
                 const total = newData.price * newData.quantity;
                 newData.total=total;
                 setData([...data, newData]);
-                const tempItem={"itemName":newData.itemName,"unitOfItem":newData.unitOfItem,"quantity":newData.quantity,"price":newData.price,"total":total};
+                const tempItem={"itemName":itemList[newData.itemName],"unitOfItem":newData.unitOfItem,"quantity":newData.quantity,"price":newData.price,"total":total};
                 setItems([...items, {...tempItem} ]);
                console.log("Total Data");
                 console.log(newData);
@@ -291,9 +290,9 @@ const handleOnclick = async () => {
           SAVE ITEM 
         </Button>
       </div>
-      {/* <Button onClick={test} >
+      <Button onClick={test} >
       Test
-        </Button> */}
+        </Button>
       </div>
     )
 
