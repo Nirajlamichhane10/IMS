@@ -82,7 +82,7 @@ export default function SellTable1(props) {
 
   const [items, setItems] = React.useState([{}]);
 
-  const {invoiceNumber, billDate,customerName, setInvoiceNumber,setCustomerName,setBillDate,setSelectedCustomer}= props;
+  const {invoiceNumber, billDate, customerName, setInvoiceNumber,setCustomerName,setBillDate,setSelectedCustomer}= props;
   
 
 
@@ -181,6 +181,11 @@ export default function SellTable1(props) {
 const handleOnclick = async () => {    
 
   items.shift();
+  console.log("ITEMS");
+  console.log(items);
+  console.log("Customer Name");
+  console.log(customerName);
+
   try{
     const response = await axios.post("http://localhost:5000/sellItem/sell",{invoiceNumber,billDate,customerName,items});
     console.log(response);
@@ -283,9 +288,9 @@ const handleOnclick = async () => {
           SAVE ITEM 
         </Button>
       </div>
-      <Button onClick={test} >
+      {/* <Button onClick={test} >
       Test
-        </Button>
+        </Button> */}
       </div>
     )
 

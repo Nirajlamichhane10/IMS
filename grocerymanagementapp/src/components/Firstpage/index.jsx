@@ -1,23 +1,60 @@
+import * as React from 'react';
 import { useState } from "react";
 import axios from "axios";
-
+import Alertbar from '../../components/Alertbar';
 import styles from "./styles.module.css";
-
+import { userSchema } from '../validationJoi/Validation';
 import { v4 as uuid } from 'uuid';
 
 
 const Login = (props) => {
 	const [data, setData] = useState({ username: "", password: "" });
 	const [error, setError] = useState("");
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+
+
+	const[message, setMessage]= React.useState("");
+    const[status, setStatus]= React.useState("");
+    const[open, setOpen]= React.useState(false);
 
 	const handleChange = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.value });
 	};
 
 
+	// for reset 
+	const reset =()=>{
+    
+		setUsername("");
+		setPassword("");
+	
+	  
+	  }
+
+
+
+	// SNACKBAR 
+	const handleClose = (reason) => {
+		if (reason === 'clickaway') {
+			return;
+		}
+		setOpen(false);
+	};
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		const userData ={username,password};
+        const result=userSchema(userData);
+		if (result.error){
+			setMessage("Validation Error");
+			console.log("with error");
+			console.log(result);
+			setStatus("error");
+			setOpen(true);
+	  
+		  }
 		
 		try {
 			console.log("Hey submit button worked");
@@ -28,7 +65,7 @@ const Login = (props) => {
 					'password':data.password,
 				}
 			  };
-			const url = " http://localhost:5000/auth/authDetails";
+			const url = (" http://localhost:5000/auth/authDetails");
 			const response = await axios.get(url,options );
 
 			if (response.data.message === "authenticated"){
@@ -43,6 +80,11 @@ const Login = (props) => {
 				console.log(small_id);
 
 			}
+			setMessage("user login successfully");
+            setStatus("success");
+            setOpen(true);
+			reset();
+            
 			// else{
 			// 	localStorage.setItem("token", "not_authenticated");
 			// }
@@ -50,6 +92,12 @@ const Login = (props) => {
 			
 			window.location = "/";
 		} catch (error) {
+			console.log(e);
+			setMessage("User Name is incorrect !");
+			setStatus("error");
+			setUsername('');
+			setPassword('');
+			setOpen(true);
 			if (
 				error.response &&
 				error.response.status >= 400 &&
@@ -96,7 +144,12 @@ const Login = (props) => {
 
 					</form>
 				</div>
-				
+				<Alertbar
+      message={message}
+      status={status}
+      open={open}
+      handleClose={handleClose}
+      />	
 	
 
 		 </div>

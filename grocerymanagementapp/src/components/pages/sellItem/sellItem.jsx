@@ -92,6 +92,7 @@ export default function SellItem() {
     const fetchCustomers = async () => {
       const res = await axios.get('http://localhost:5000/addCustomer/getCustomer',{customerName});
       setCustomers(res.data);
+  
     };
     fetchCustomers();
     const unique_id = uuid();
@@ -105,6 +106,9 @@ export default function SellItem() {
 
   const handleChange = (event) => {
     setSelectedCustomer(event.target.value);
+    setCustomerName(event.target.value);
+    console.log("customer");
+    console.log(selectedCustomer);
     console.log(customerName);
   };
 

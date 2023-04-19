@@ -59,6 +59,8 @@ function App() {
 
 				<Route path="/addCustomers" element={<AddCustomers/>}/>
 
+				<Route path="/statement" />
+
 				
 				<Route path="/myStock" element={<MyStock/>}/>
 				

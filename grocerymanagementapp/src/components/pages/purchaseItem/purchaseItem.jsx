@@ -127,6 +127,7 @@ export default function PurchaseItem() {
       console.log(res.data);
     };
 
+    // for invoice number 
     fetchSuppliers();
     const unique_id = uuid();
   				const small_id = unique_id.slice(0,8);

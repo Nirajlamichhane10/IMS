@@ -29,11 +29,11 @@ const Styles={
     }
 }
 
-function createData(  InvoiceNo,BillDate,SupplierName) {
+function createData(  InvoiceNo,BillDate,CustomerName) {
   return {
   InvoiceNo,
   BillDate,
-  SupplierName,
+  CustomerName,
     history: [
       {
         itemname: 'Coke',
