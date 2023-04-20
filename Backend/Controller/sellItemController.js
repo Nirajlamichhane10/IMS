@@ -25,11 +25,21 @@ const getSell = async (req, res) => {
     }
 };
 
-module.exports = {
-    postSell,
-    getSell
-};
 
+
+
+// seaching by invoice number 
+const getSellInvoice = async (req, res ) => {
+    try {
+        const invoiceNumber = req.body.invoiceNumber;
+        // console.log(invoiceNumber);
+        const response = await sellItem.find({'invoiceNumber':invoiceNumber});
+        res.json(response);
+    }
+    catch(error){
+        res.send(error);
+    }
+}
 
 
 // fetching data of Customers 
@@ -41,3 +51,9 @@ exports.getCustomers = async (req, res) => {
       res.send(error);
     }
   };
+
+  module.exports = {
+    postSell,
+    getSell,
+    getSellInvoice
+};

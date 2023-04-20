@@ -68,7 +68,7 @@ const Login = (props) => {
 				props.tokenId.current=small_id;
 				props.setLogin(true);
 				console.log(small_id);
-				setMessage("Sucessfuly login");
+				setMessage("Sucessfully login");
 				setStatus("success");
 				setOpen(true);
 

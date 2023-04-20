@@ -115,6 +115,8 @@ export default function PurchasedTable(props) {
 
     
   }, []);
+
+  
   // TEST
 
   const test=()=>{
