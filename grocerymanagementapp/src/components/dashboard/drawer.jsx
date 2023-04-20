@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import {Button,} from "@material-ui/core";
 
  
 
@@ -254,9 +255,21 @@ export default function MiniDrawer() {
       <Link to="/profile"style={{ textDecoration: 'none' }}>
       <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
       </Link>
-      <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+      <Button
+      
+								variant="contained"
+								color="secondary"
+								onClick={() => {
+									localStorage.removeItem("token");
+									window.location.reload(true);
+								}}
+							>
+								Logout
+							</Button>
+              </MenuItem>
     </Menu>
-    
+
 
   );
 
@@ -290,8 +303,10 @@ export default function MiniDrawer() {
         </IconButton>
         <p>Profile</p>
       </MenuItem>
+ 
     </Menu>
   );
+
 
 
   const handleDrawerOpen = () => {
