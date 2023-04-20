@@ -19,7 +19,7 @@ const purchaseController = require("../Controller/purchaseItemController");
 
 router.post('/purchase', purchaseController.postPurchase);
 router.get('/getPurchase', purchaseController.getPurchase);
-router.get('/getInvoice', purchaseController.getInvoice);
+router.post('/getInvoice', purchaseController.getInvoice);
 
 module.exports = router;
 

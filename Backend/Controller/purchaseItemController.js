@@ -10,7 +10,7 @@ const postPurchase = async (req, res) => {
 
     try {
         const response = await newPurchaseItem.save();
-        res.send("yay i have sucessfully posted all Purchase item in database");
+        res.json(response);
     } catch (error) {
         res.send(error);
     }
@@ -30,7 +30,8 @@ const getPurchase = async (req, res) => {
 const getInvoice = async (req, res ) => {
     try {
         const invoiceNumber = req.body.invoiceNumber;
-        // console.log(invoiceNumber);
+        console.log("invoice number");
+        console.log(invoiceNumber);
         const response = await purchaseItem.find({'invoiceNumber':invoiceNumber});
         res.json(response);
     }

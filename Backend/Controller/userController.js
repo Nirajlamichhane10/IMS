@@ -25,3 +25,4 @@ exports.createUser = async (req, res) => {
     res.send("sorry i cannot post your information");
   }
 };
+

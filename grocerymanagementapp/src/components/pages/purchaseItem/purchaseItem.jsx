@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import PurchasedTable from './purchaseTable';
-import CollapsibleTable from './newTable';
+// import CollapsibleTable from './newTable';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -131,7 +131,7 @@ export default function PurchaseItem() {
     fetchSuppliers();
     const unique_id = uuid();
   				const small_id = unique_id.slice(0,8);
-				
+				// localStorage.setItem("invoiceNumber",small_id);
 				console.log(small_id);
         setInvoiceNumber(small_id);
     
@@ -257,7 +257,7 @@ const[open, setOpen]= React.useState(false);
         
       </Box>
       <div style={Styles.collabtable}>
-      <CollapsibleTable invoiceNumber={invoiceNumber}/>
+      {/* <CollapsibleTable invoiceNumber={invoiceNumber}/> */}
       </div>
 
       <div style={Styles.buttonprint}>

@@ -30,6 +30,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import CollapsibleTable from './newTable';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -73,13 +74,25 @@ const tableIcons = {
      button:{
       margin:"20px 0px 50px 1050px",
       width:"220px",
-     }
+     },
+     collabtable: {
+      margin:"0px 10px 10px -50em",
+      width:"700%",
+      alignItems: "center",
+      textAlign: "center",
+     },
 
 };
 
 export default function PurchasedTable(props) {
   const { useState } = React;
   const [itemList,setItemList]=React.useState([]);
+  const [invoice,setInvoice]=React.useState({
+    invoiceNumber:"",
+    billDate:"null",
+    supplierName:"",
+    items:[],
+  });
   
   const defaultMaterialTheme = createTheme();
     const [columns, setColumns] = useState([
@@ -192,7 +205,9 @@ const handleOnclick = async () => {
   items.shift();
   try{
     const response = await axios.post("http://localhost:5000/purchaseItem/purchase",{invoiceNumber,billDate,supplierName,items});
-    console.log(response);
+    console.log("invoice data");
+    console.log(response.data);
+    setInvoice(response.data);
     setMessage("Items purchased successfully");
     setStatus("success");
     setOpen(true);
@@ -206,6 +221,22 @@ const handleOnclick = async () => {
   }
 
 };
+       
+// function for row total 
+//         const calculateGrandTotal = (newData) => {
+//           let grandTotal = 0;
+
+// for (const row of data) {
+//     if (row.total) {
+//       grandTotal += row.total;
+//     }
+//   }
+  
+//   return grandTotal;
+//         }
+
+
+
 
    return (
       <div> 
@@ -241,6 +272,8 @@ const handleOnclick = async () => {
           ),
         }}
 
+
+
         editable={{
           onRowAdd: newData =>
             new Promise((resolve, reject) => {
@@ -248,11 +281,21 @@ const handleOnclick = async () => {
                 const total = newData.price * newData.quantity;
                 newData.total=total;
                 setData([...data, newData]);
-                const tempItem={"itemName":itemList[newData.itemName],"unitOfItem":newData.unitOfItem,"quantity":newData.quantity,"price":newData.price,"total":total};
+                const tempItem={
+                  "itemName":itemList[newData.itemName],
+                  "unitOfItem":newData.unitOfItem,
+                  "quantity":newData.quantity,
+                  "price":newData.price,
+                  "total":total};
                 setItems([...items, {...tempItem} ]);
                console.log("Total Data");
                 console.log(newData);
                 console.log(newData.price); 
+
+              //   // Update the grand total
+              // const updatedGrandTotal = calculateGrandTotal([...data, newData]);
+              // console.log(updatedGrandTotal); // Output: Updated grand total
+                
                
                
                 resolve();
@@ -291,10 +334,13 @@ const handleOnclick = async () => {
         <Button onClick={handleOnclick} variant="contained" size="large">
           SAVE ITEM 
         </Button>
+        <div style={Styles.collabtable}>
+        <CollapsibleTable invoice={invoice}/>
+        </div>
       </div>
-      <Button onClick={test} >
+      {/* <Button onClick={test} >
       Test
-        </Button>
+        </Button> */}
       </div>
     )
 

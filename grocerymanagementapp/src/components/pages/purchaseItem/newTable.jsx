@@ -15,6 +15,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import axios from 'axios';
 import  {useEffect,useState } from 'react';
+import Button from '@mui/material/Button';
 
 const Styles={
     root:{
@@ -31,50 +32,13 @@ const Styles={
     }
 }
 
-function createData(  InvoiceNo,BillDate,SupplierName) {
-  return {
-  InvoiceNo,
-  BillDate,
-  SupplierName,
-    history: [
-      // {
-      //   itemname: 'Coke',
-      //   unit:"ml",
-      //   quantity: 11,
-      //   price: 400,
-      //   total:500,
-      // },
-      // {
-      //    itemname: 'sprite',
-      //    unit:"ml",
-      //   quantity: 11,
-      //   price: 400,
-      //   total:600,
-      // },
-    ],
-  };
-}
+
 
 
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-  const [invoice, setInvoice]= React.useState([]);
-
-
-// useEfect for table data 
-  useEffect(() => {
-    const fetchInvoice = async () => {
-      const res = await axios.get('http://localhost:5000/purchaseItem/getInvoice');
-      setInvoice(res.data);
-      console.log("suppliernames");
-      console.log(res.data);
-    };
-
-    
-  }, []);
-
-
+  
   return (
     <React.Fragment>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -90,9 +54,9 @@ function Row(props) {
         {/* <TableCell component="th" scope="row">
           {row.name}
         </TableCell> */}
-        <TableCell >{row.InvoiceNo}</TableCell>
-        <TableCell align="right" >{row.BillDate}</TableCell>
-        <TableCell  align="right"  >{row.SupplierName}</TableCell>
+        <TableCell >{row.invoiceNumber}</TableCell>
+        <TableCell align="right" >{row.billDate}</TableCell>
+        <TableCell  align="right"  >{row.supplierName}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -113,11 +77,11 @@ function Row(props) {
                 </TableHead>
                 <TableBody>
                   {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.itemname}>
+                    <TableRow key={historyRow.itemName}>
                       <TableCell component="th" scope="row">
-                        {historyRow.itemname}
+                        {historyRow.itemName}
                       </TableCell>
-                      <TableCell>{historyRow.unit}</TableCell>
+                      <TableCell>{historyRow.unitOfItem}</TableCell>
                       <TableCell align="right">{historyRow.quantity}</TableCell>
                       <TableCell align="right">{historyRow.price}</TableCell>
                       <TableCell align="right">{historyRow.total}</TableCell>
@@ -151,13 +115,62 @@ function Row(props) {
 //   }).isRequired,
 // };
 
-const rows = [
-  
-  createData(1234, "2023/22/23", "Niraj Lamichhane"),
-];
 
-export default function CollapsibleTable() {
+
+export default function CollapsibleTable(props) {
+
+  
+  const rows = [
+  
+    createData(props.invoice.invoiceNumber, props.invoice.billDate,props.invoice.supplierName),
+  ];
+  function createData( invoiceNumber,billDate,supplierName) {
+    return {
+    invoiceNumber,
+    billDate,
+    supplierName,
+    history:props.invoice.items,
+    };
+  }
+
+
+//   const [invoice, setInvoice]= React.useState([]);
+//   const {invoiceNumber} =props;
+
+  const Test =()=>{
+    console.log("Rows");
+    console.log(props.invoice.invoiceNumber);
+    //console.log(invoice);
+    console.log(rows);
+
+  }
+
+// // useEfect for table data 
+//   useEffect(() => {
+//     fetchInvoice();
+
+    
+//   }, []);
+
+//   const fetchInvoice = async () => {
+//     try{
+//     const res = await axios.post('http://localhost:5000/purchaseItem/getInvoice',{invoiceNumber});
+//     setInvoice(res.data);
+//     console.log("invoice data");
+//     console.log(invoiceNumber);
+//     console.log(res.data);
+//   } 
+//   catch(e){
+//     console.log(e);
+   
+//   }
+// };
+  
+
+
+
   return (
+    <React.Fragment>
     <TableContainer component={Paper} style={Styles.table}>
       <Table aria-label="collapsible table">
         <TableHead>
@@ -170,10 +183,16 @@ export default function CollapsibleTable() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <Row key={row.InvoiceNo} row={row} />
+            <Row key={row.invoiceNumber} row={row} />
           ))}
         </TableBody>
       </Table>
+
     </TableContainer>
+    <Button onClick={Test}>
+      Test
+    </Button>
+    </React.Fragment>
+ 
   );
 }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import Alertbar from '../../components/Alertbar';
 import styles from "./styles.module.css";
-import { userSchema } from '../validationJoi/Validation';
+
 import { v4 as uuid } from 'uuid';
 
 
