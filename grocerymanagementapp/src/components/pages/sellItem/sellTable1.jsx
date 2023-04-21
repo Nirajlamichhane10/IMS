@@ -29,6 +29,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import SellTable from './sellTable';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -72,14 +73,40 @@ const tableIcons = {
      button:{
       margin:"20px 0px 50px 1050px",
       width:"220px",
-     }
+     },
+     collabtable: {
+      margin:"0px 10px 10px 250px",
+      width:"80%",
+      alignItems: "center",
+      textAlign: "center",
+    
+     },
 
 };
 
 export default function SellTable1(props) {
   const { useState } = React;
   const [itemList,setItemList]=React.useState([]);
+  const [invoice,setInvoice]=React.useState({
+    invoiceNumber:"",
+    billDate:"null",
+    customerName:"",
+    items:[],
+  });
 
+  const defaultMaterialTheme = createTheme();
+  const [columns, setColumns] = useState([
+ 
+    { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: ' Flour', 2: 'Salt', 3: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 4: 'Dried Fruit (Raisins, Cranberries, Apricots, etc.)', 5: 'Cooking Oil (Vegetable, Canola, Olive, etc.)', 6: 'Eggs', 7: 'Chicken', 8: 'Fresh Herbs (Basil, Cilantro, Parsley, etc.)', 9: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 10: 'Red Bull'}},
+    { title: 'Unit', field: 'unitOfItem', },
+    { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
+    { title: 'Price', field: 'price', initialEditValue: 0 },
+    { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
+   
+    
+
+    
+  ]);
   const [items, setItems] = React.useState([{}]);
 
   const {invoiceNumber, billDate, customerName, setInvoiceNumber,setCustomerName,setBillDate,setSelectedCustomer}= props;
@@ -142,20 +169,7 @@ export default function SellTable1(props) {
  }
    
   
-  const defaultMaterialTheme = createTheme();
-    const [columns, setColumns] = useState([
-   
-      { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: ' Flour', 2: 'Salt', 3: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 4: 'Dried Fruit (Raisins, Cranberries, Apricots, etc.)', 5: 'Cooking Oil (Vegetable, Canola, Olive, etc.)', 6: 'Eggs', 7: 'Chicken', 8: 'Fresh Herbs (Basil, Cilantro, Parsley, etc.)', 9: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 10: 'Red Bull'}},
-      { title: 'Unit', field: 'unitOfItem', },
-      { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
-      { title: 'Price', field: 'price', initialEditValue: 0 },
-      { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
-     
-      
-
-      
-    ]);
-
+ 
     
   
     const [data, setData] = useState([
@@ -181,14 +195,15 @@ export default function SellTable1(props) {
 const handleOnclick = async () => {    
 
   items.shift();
-  console.log("ITEMS");
-  console.log(items);
-  console.log("Customer Name");
-  console.log(customerName);
+  // console.log("ITEMS");
+  // console.log(items);
+  // console.log("Customer Name");
+  // console.log(customerName);
 
   try{
     const response = await axios.post("http://localhost:5000/sellItem/sell",{invoiceNumber,billDate,customerName,items});
-    console.log(response);
+    console.log(response.data);
+    setInvoice(response.data);
     setMessage("Items purchased successfully");
     setStatus("success");
     setOpen(true);
@@ -291,6 +306,10 @@ const handleOnclick = async () => {
       {/* <Button onClick={test} >
       Test
         </Button> */}
+        
+        <div style={Styles.collabtable}>
+      <SellTable invoice={invoice}/>
+      </div>
       </div>
     )
 

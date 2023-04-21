@@ -7,7 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import SellTable from './sellTable';
+// import SellTable from './sellTable';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import SellTable1 from './sellTable1';
@@ -73,14 +73,15 @@ button:{
 export default function SellItem() {
 
   const [invoiceNumber,setInvoiceNumber]= React.useState('');
-  const [itemName, setItemName]= React.useState("");
-  const [quantity, setQuantity]= React.useState(0);
-  const [price, setPrice ]= React.useState(0);
-  const [total, setTotal ]=React.useState(0);
+  const [billDate, setBillDate] = React.useState(null);
+  // const [itemName, setItemName]= React.useState("");
+  // const [quantity, setQuantity]= React.useState(0);
+  // const [price, setPrice ]= React.useState(0);
+  // const [total, setTotal ]=React.useState(0);
   const [customerName, setCustomerName] = React.useState('');
   const [items, setItems] = React.useState([{}]);
   //   // for calender
-  const [billDate, setBillDate] = React.useState(null);
+
 
   
 
@@ -205,7 +206,7 @@ export default function SellItem() {
         
       </Box>
       <div style={Styles.collabtable}>
-      <SellTable/>
+      {/* <SellTable/> */}
       </div>
 
       <div style={Styles.buttonprint}>

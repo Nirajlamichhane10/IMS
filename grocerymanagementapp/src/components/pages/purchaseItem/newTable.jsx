@@ -77,9 +77,9 @@ function Row(props) {
                 </TableHead>
                 <TableBody>
                   {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.itemName}>
+                    <TableRow key={historyRow.itemname}>
                       <TableCell component="th" scope="row">
-                        {historyRow.itemName}
+                        {historyRow.itemname}
                       </TableCell>
                       <TableCell>{historyRow.unitOfItem}</TableCell>
                       <TableCell align="right">{historyRow.quantity}</TableCell>
@@ -189,9 +189,9 @@ export default function CollapsibleTable(props) {
       </Table>
 
     </TableContainer>
-    <Button onClick={Test}>
+    {/* <Button onClick={Test}>
       Test
-    </Button>
+    </Button> */}
     </React.Fragment>
  
   );
