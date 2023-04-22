@@ -1,4 +1,5 @@
 const purchaseItem = require("../models/purchaseItem");
+const addItem = require("../models/addItem");
 
 const postPurchase = async (req, res) => {
     const newPurchaseItem = new purchaseItem({
@@ -8,9 +9,24 @@ const postPurchase = async (req, res) => {
         items: req.body.items
     });
 
-    try {
+    try {        
         const response = await newPurchaseItem.save();
         res.json(response);
+
+
+        // stock management where as adding qunatity from here 
+        await Promise.all(newPurchaseItem.items.map(async (item) => {
+            let stock = await addItem.findOne({'itemName': item.itemName});
+             stock.quantity+=item.quantity;
+            
+             await addItem.findByIdAndUpdate(stock._id, stock, { new: true });
+            // console.log(stock._id);
+            // console.log(stock);
+           
+          }));
+
+     
+
     } catch (error) {
         res.send(error);
     }
@@ -89,18 +105,7 @@ const getInvoice = async (req, res ) => {
 //   };
 
 
-  // for stock increase in quantity 
 
- class PurchaseController {
-  constructor(initialQuantity) {
-    this.quantity = initialQuantity;
-  }
-
-  increaseQuantity(quantity) {
-    this.quantity += quantity;
-    
-  }
-}
 
 
 
@@ -114,7 +119,7 @@ const getInvoice = async (req, res ) => {
   module.exports = {
     postPurchase,
     getPurchase,
-    PurchaseController,
+   
    
     
 };

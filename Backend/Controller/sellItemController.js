@@ -1,4 +1,5 @@
 const sellItem = require("../models/sellItem");
+const addItem = require("../models/addItem");
 
 const postSell = async (req, res) => {
     const newSellItem = new sellItem({
@@ -11,6 +12,19 @@ const postSell = async (req, res) => {
     try {
         const response = await newSellItem.save();
         res.json(response);
+
+
+        // decrease quantity from sell here 
+        await Promise.all(newSellItem.items.map(async (item) => {
+          let stock = await addItem.findOne({'itemName': item.itemName});
+           stock.quantity-=item.quantity;
+          
+           await addItem.findByIdAndUpdate(stock._id, stock, { new: true });
+          // console.log(stock._id);
+          // console.log(stock);
+         
+        }));
+
     } catch (error) {
         res.send(error);
     }
@@ -54,20 +68,7 @@ const getSell = async (req, res) => {
 //   };
 
 
-// stock decrease in qunatity
-  class SellController {
-    constructor(initialQuantity) {
-      this.quantity = initialQuantity;
-    }
-  
-    decreaseQuantity(quantity) {
-      if (this.quantity >= quantity) {
-        this.quantity -= quantity;
-      } else {
-        throw new Error("Not enough stock available.");
-      }
-    }
-  }
+
   
 
 
@@ -76,6 +77,6 @@ const getSell = async (req, res) => {
   module.exports = {
     postSell,
     getSell,
-    SellController,
+    
    
 };

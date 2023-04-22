@@ -358,7 +358,7 @@ export default function MiniDrawer() {
             >
            
               <AccountCircle />
-              <MenuItem >  Admin
+              <MenuItem >  Niraj
               </MenuItem> 
             </IconButton>
           </Box>

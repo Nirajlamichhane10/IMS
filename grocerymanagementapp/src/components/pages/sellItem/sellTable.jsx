@@ -54,7 +54,7 @@ function Row(props) {
         </TableCell> */}
         <TableCell >{row.invoiceNumber}</TableCell>
         <TableCell align="right" >{row.billDate}</TableCell>
-        <TableCell  align="right"  >{row.supplierName}</TableCell>
+        <TableCell  align="right"  >{row.customerName}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -133,13 +133,13 @@ export default function SellTable(props) {
     };
   }
 
-  const Test =()=>{
-    console.log("Rows");
-    console.log(props.invoice.invoiceNumber);
-    //console.log(invoice);
-    console.log(rows);
+  // const Test =()=>{
+  //   console.log("Rows");
+  //   console.log(props.invoice.invoiceNumber);
+  //   //console.log(invoice);
+  //   console.log(rows);
 
-  }
+  // }
 
 
   return (
@@ -161,9 +161,9 @@ export default function SellTable(props) {
         </TableBody>
       </Table>
     </TableContainer>
-     <Button onClick={Test}>
+     {/* <Button onClick={Test}>
       Test
-    </Button>
+    </Button> */}
     </React.Fragment>
   );
 }

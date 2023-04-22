@@ -22,6 +22,7 @@ import Remove from '@mui/icons-material/Remove';
 import SaveAlt from '@mui/icons-material/SaveAlt';
 import Search from '@mui/icons-material/Search';
 import ViewColumn from '@mui/icons-material/ViewColumn';
+import { TextField, Chip } from '@material-ui/core';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -70,10 +71,18 @@ export default function MatTable() {
   
     const [columns, setColumns] = useState([
    
-      { title: 'Item Name', field: 'itemName', initialEditValue: 'initial edit value' },
-      { title: 'Unit Of Item', field: 'unitOfItem', initialEditValue: 'initial edit value' },
-      { title: 'In Stock', field: 'quantity', initialEditValue: 'initial edit value' },
-      { title: 'Minimum', field: 'minimum', initialEditValue: 'initial edit value' },
+      { title: 'Item Name', field: 'itemName', },
+      { title: 'Unit Of Item', field: 'unitOfItem', },
+      { title: 'In Stock', field: 'quantity',
+      render: rowData => {
+				return rowData.quantity > rowData.minimum ? (
+					<Chip label={rowData.quantity} color="primary" style={{ marginRight: 5 }} />
+				) : (
+					<Chip label={rowData.quantity} color="secondary" style={{ marginRight: 5 }} />
+				);
+			},
+    },
+      { title: 'Minimum', field: 'minimum',  },
       
     ]);
   
