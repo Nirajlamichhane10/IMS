@@ -1,56 +1,74 @@
-// import React, { useState } from 'react';
-// import axios from 'axios';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
-// const ForgotPassword = () => {
-//   const [phoneNumber, setPhoneNumber] = useState('');
-//   const [verificationCode, setVerificationCode] = useState('');
-//   const [newUsername, setNewUsername] = useState('');
-//   const [newPassword, setNewPassword] = useState('');
 
-//   const handleFormSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       // Send verification code request to backend
-//       const verificationCodeResponse = await axios.post('/api/sendVerificationCode', { phoneNumber });
+// adding css 
+const  Styles={
+    root: {
+        display: "flex",
+       
+   
+    }, 
+box:{
+  
+     textAlign:"center",
+     margin:"180px 0px 50px -80em",
+     width:"500px",
+     height:"400px",
+     display:"flex",
+     boxShadow: "15px 15px 8px lightblue",
+     backgroundColor:"#3bb19b",
+     borderRadius:"15px",
+   
+   
+},
 
-//       // Verify verification code with backend
-//       const verifyCodeResponse = await axios.post('/api/verifyVerificationCode', { phoneNumber, verificationCode });
+button:{
+       
+        
+   
+        padding:"10px 0",
+        borderRadius: "10px",
+        fontWeight: "bold",
+        fontSize: "14px",
+        cursor: "pointer",
+        border: "none",
+        outline: "none",
+       
 
-//       // Reset password with new username and password
-//       const resetPasswordResponse = await axios.post('/api/resetPassword', { phoneNumber, newUsername, newPassword });
 
-//       // Handle success
-//       console.log('Password reset successful!');
-//     } catch (error) {
-//       // Handle error
-//       console.error('Failed to reset password:', error);
-//     }
-//   };
 
-//   return (
-//     <div>
-//       <h1>Forgot Password</h1>
-//       <form onSubmit={handleFormSubmit}>
-//         <label>
-//           Phone Number:
-//           <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-//         </label>
-//         <label>
-//           Verification Code:
-//           <input type="text" value={verificationCode} onChange={(e) => setVerificationCode(e.target.value)} />
-//         </label>
-//         <label>
-//           New Username:
-//           <input type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
-//         </label>
-//         <label>
-//           New Password:
-//           <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
-//         </label>
-//         <button type="submit">Reset Password</button>
-//       </form>
-//     </div>
-//   );
-// };
+},
 
-// export default ForgotPassword;
+
+};
+
+
+export default function ForgetPassword() {
+  return (
+    <Box  style={Styles.box}
+      component="form"
+      sx={{
+      display: 'flex',
+        flexDirection: 'column',
+         
+      
+        '& > :not(style)': { m: 2, width: '25ch',},
+      }}
+      noValidate
+      autoComplete="off"
+    >
+       
+      <TextField label="Phone Number" color="secondary" focused />
+      
+       <TextField label="New User Name" color="secondary" focused />
+       
+      <TextField label="New Password " color="secondary" focused />
+     
+      	
+      <button style={Styles.button} >Submit</button>
+      
+    </Box>
+  );
+}

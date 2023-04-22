@@ -119,6 +119,7 @@ export default function PurchasedTable(props) {
 
   const[message, setMessage]= React.useState("");
   const[status, setStatus]= React.useState("");
+  const[grandTotal, setGrandTotal]= React.useState(0);
   const[open, setOpen]= React.useState(false);
   const[testArray, setTestArray]= React.useState(["Rice","coke","fancy"]);
 
@@ -127,9 +128,14 @@ export default function PurchasedTable(props) {
     fetchItemName();
 
     
+
+    
   }, []);
 
+
   
+
+ 
   // TEST
 
   const test=()=>{
@@ -208,6 +214,7 @@ const handleOnclick = async () => {
     console.log("invoice data");
     console.log(response.data);
     setInvoice(response.data);
+    calculateGrandTotal(response.data);
     setMessage("Items purchased successfully");
     setStatus("success");
     setOpen(true);
@@ -236,6 +243,19 @@ const handleOnclick = async () => {
 //         }
 
 
+const calculateGrandTotal = (data) =>{
+  let grandTotal =0;
+   data.items.map((eachInvoice) => (
+    grandTotal += eachInvoice.total
+    
+  ));
+  console.log("grand total");
+  console.log(grandTotal);
+  console.log(data);
+  setGrandTotal(grandTotal);
+
+
+}
 
 
    return (
@@ -336,7 +356,7 @@ const handleOnclick = async () => {
           SAVE ITEM 
         </Button>
         <div style={Styles.collabtable}>
-        <CollapsibleTable invoice={invoice}/>
+        <CollapsibleTable invoice={invoice} grandTotal={grandTotal}/>
         </div>
       </div>
       {/* <Button onClick={test} >

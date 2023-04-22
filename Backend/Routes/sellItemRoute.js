@@ -4,6 +4,6 @@ const sellController = require("../Controller/sellItemController");
 
 router.post('/sell', sellController.postSell);
 router.get('/getSell', sellController.getSell);
-router.get('/getSellInvoice', sellController.getSellInvoice);
+
 
 module.exports = router;

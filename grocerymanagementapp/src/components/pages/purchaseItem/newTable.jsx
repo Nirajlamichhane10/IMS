@@ -29,7 +29,9 @@ const Styles={
       margin:"80px 10px 10px 100px",
      
     
-    }
+    },
+
+  
 }
 
 
@@ -77,9 +79,9 @@ function Row(props) {
                 </TableHead>
                 <TableBody>
                   {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.itemname}>
+                    <TableRow key={historyRow.itemName}>
                       <TableCell component="th" scope="row">
-                        {historyRow.itemname}
+                        {historyRow.itemName}
                       </TableCell>
                       <TableCell>{historyRow.unitOfItem}</TableCell>
                       <TableCell align="right">{historyRow.quantity}</TableCell>
@@ -87,7 +89,13 @@ function Row(props) {
                       <TableCell align="right">{historyRow.total}</TableCell>
                     </TableRow>
                   ))}
+                  
+                <TableCell align="right" > Grand Total</TableCell>
+                  <TableCell align="right" >{row.grandTotal}</TableCell>
+              
+                 
                 </TableBody>
+            
               </Table>
             </Box>
           </Collapse>
@@ -122,13 +130,14 @@ export default function CollapsibleTable(props) {
   
   const rows = [
   
-    createData(props.invoice.invoiceNumber, props.invoice.billDate,props.invoice.supplierName),
+    createData(props.invoice.invoiceNumber, props.invoice.billDate,props.invoice.supplierName,props.grandTotal),
   ];
-  function createData( invoiceNumber,billDate,supplierName) {
+  function createData( invoiceNumber,billDate,supplierName,grandTotal) {
     return {
     invoiceNumber,
     billDate,
     supplierName,
+    grandTotal,
     history:props.invoice.items,
     };
   }
@@ -145,12 +154,16 @@ export default function CollapsibleTable(props) {
 
   }
 
-// // useEfect for table data 
+
+
+// // useEfect for total 
 //   useEffect(() => {
-//     fetchInvoice();
+//   calculateGrandTotal();
 
     
-//   }, []);
+//   }, [props.invoice.items]);
+
+  
 
 //   const fetchInvoice = async () => {
 //     try{

@@ -252,9 +252,9 @@ export default function MiniDrawer() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <Link to="/profile"style={{ textDecoration: 'none' }}>
-      <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-      </Link>
+      {/* <Link to="/profile"style={{ textDecoration: 'none' }}>
+      <MenuItem onClick={handleMenuClose}>Logout </MenuItem>
+      </Link> */}
       <MenuItem onClick={handleMenuClose}>
       <Button
       
@@ -356,7 +356,10 @@ export default function MiniDrawer() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
+           
               <AccountCircle />
+              <MenuItem >  Admin
+              </MenuItem> 
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

@@ -3,6 +3,7 @@ import Firstpage from"./components/Firstpage/index";
 import Drawer from "./components/dashboard/drawer";
 import DataTable from "./components/dashboard/table";
 
+
 // import Forgetpassword from "./components/Firstpage/forgetpassword";
 import BasicCard from "./components/dashboard/cards";
 
@@ -17,9 +18,15 @@ import AddCustomers from './components/pages/addCustomer/addCustomers';
 import CollapsibleTable from './components/pages/purchaseItem/newTable';
 import MyStock from './components/pages/myStock/myStock';
 import Profile from './components/Profile/Profile';
+import ForgetPassword from './components/Firstpage/forgetpassword';
+
+
 
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+
+
 
 
 
@@ -65,7 +72,11 @@ function App() {
 				<Route path="/myStock" element={<MyStock/>}/>
 				
 				<Route path="/sellItem" element={<SellItem/>}/>
-			
+				
+				<Route path="/forgetPassword" element={<ForgetPassword/>}/>
+
+				
+
 				
 
 				

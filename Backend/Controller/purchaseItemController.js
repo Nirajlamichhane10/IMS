@@ -79,17 +79,42 @@ const getInvoice = async (req, res ) => {
 
 
 // fetching data of supplier 
-exports.getSuppliers = async (req, res) => {
-    try {
-      const response = await addSupplier.find({}, {supplierName: 1, _id: 0}); // modify to return only supplier name
-      res.json(response);
-    } catch (error) {
-      res.send(error);
-    }
-  };
+// exports.getSuppliers = async (req, res) => {
+//     try {
+//       const response = await addSupplier.find({}, {supplierName: 1, _id: 0}); // modify to return only supplier name
+//       res.json(response);
+//     } catch (error) {
+//       res.send(error);
+//     }
+//   };
+
+
+  // for stock increase in quantity 
+
+ class PurchaseController {
+  constructor(initialQuantity) {
+    this.quantity = initialQuantity;
+  }
+
+  increaseQuantity(quantity) {
+    this.quantity += quantity;
+    
+  }
+}
+
+
+
+
+
+
+
+
+
 
   module.exports = {
     postPurchase,
     getPurchase,
-    getInvoice
+    PurchaseController,
+   
+    
 };

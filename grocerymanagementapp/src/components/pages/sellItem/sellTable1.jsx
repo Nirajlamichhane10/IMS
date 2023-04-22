@@ -75,8 +75,8 @@ const tableIcons = {
       width:"220px",
      },
      collabtable: {
-      margin:"0px 10px 10px 250px",
-      width:"80%",
+      margin:"0px 10px 10px 360px",
+      width:"60%",
       alignItems: "center",
       textAlign: "center",
     
@@ -87,6 +87,7 @@ const tableIcons = {
 export default function SellTable1(props) {
   const { useState } = React;
   const [itemList,setItemList]=React.useState([]);
+  
   const [invoice,setInvoice]=React.useState({
     invoiceNumber:"",
     billDate:"null",
@@ -118,7 +119,7 @@ export default function SellTable1(props) {
   const[status, setStatus]= React.useState("");
   const[open, setOpen]= React.useState(false);
   const[testArray, setTestArray]= React.useState(["Rice","coke","fancy"]);
-
+  const[grandTotal, setGrandTotal]= React.useState(0);
 
   useEffect(() => {
     fetchItemName();
@@ -204,6 +205,7 @@ const handleOnclick = async () => {
     const response = await axios.post("http://localhost:5000/sellItem/sell",{invoiceNumber,billDate,customerName,items});
     console.log(response.data);
     setInvoice(response.data);
+    calculateGrandTotal(response.data);
     setMessage("Items purchased successfully");
     setStatus("success");
     setOpen(true);
@@ -217,6 +219,23 @@ const handleOnclick = async () => {
   }
 
 };
+
+// function for grandTotal for table data 
+
+const calculateGrandTotal= (data) =>{
+  let grandTotal =0;
+  data.items.map((eachInvoice) => (
+   grandTotal += eachInvoice.total
+   
+ ));
+ console.log("grand total");
+ console.log(grandTotal);
+ console.log(data);
+ setGrandTotal(grandTotal);
+
+}
+
+
 
    return (
       <div> 
@@ -307,8 +326,8 @@ const handleOnclick = async () => {
       Test
         </Button> */}
         
-        <div style={Styles.collabtable}>
-      <SellTable invoice={invoice}/>
+        <div style={Styles.collabtable} >
+      <SellTable invoice={invoice} grandTotal={grandTotal}/>
       </div>
       </div>
     )

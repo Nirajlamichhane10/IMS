@@ -75,9 +75,9 @@ function Row(props) {
                 </TableHead>
                 <TableBody>
                   {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.itemname}>
+                    <TableRow key={historyRow.itemName}>
                       <TableCell component="th" scope="row">
-                        {historyRow.itemname}
+                        {historyRow.itemName}
                       </TableCell>
                       <TableCell>{historyRow.unitOfItem}</TableCell>
                       <TableCell align="right">{historyRow.quantity}</TableCell>
@@ -85,6 +85,8 @@ function Row(props) {
                       <TableCell align="right">{historyRow.total}</TableCell>
                     </TableRow>
                   ))}
+                  <TableCell align="right" > &nbsp;&nbsp;&nbsp;&nbsp;Grand Total</TableCell>
+                  <TableCell align="right"  >{row.grandTotal}</TableCell>
                 </TableBody>
               </Table>
             </Box>
@@ -118,15 +120,16 @@ function Row(props) {
 export default function SellTable(props) {
   const rows = [
   
-    createData(props.invoice.invoiceNumber, props.invoice.billDate,props.invoice.customerName),
+    createData(props.invoice.invoiceNumber, props.invoice.billDate,props.invoice.customerName,props.grandTotal),
   ];
 
-  function createData(  invoiceNumber,billDate,customerName) {
+  function createData(  invoiceNumber,billDate,customerName,grandTotal) {
     return {
     invoiceNumber,
     billDate,
     customerName,
-      history:props.invoice.items,
+    grandTotal,
+    history:props.invoice.items,
     };
   }
 

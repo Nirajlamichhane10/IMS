@@ -66,7 +66,6 @@ import { grid } from '@mui/system';
       // boxShadow: "5px 5px 5px 2px lightblue",
       width:"750px",
    
-      
      },
  
 
@@ -85,6 +84,7 @@ const[item, setItem]=React.useState({});
 const[message, setMessage]= React.useState("");
 const[status, setStatus]= React.useState("");
 const[open, setOpen]= React.useState(false);
+
 
 
 const reset =()=>{
@@ -231,6 +231,7 @@ const handleOnclick=()=>
 
           
     </Box> 
+    <div>
 
     <Typography variant="h5" gutterBottom style={Styles.quantity}>
               Minimum:
@@ -247,22 +248,27 @@ const handleOnclick=()=>
       value={minimum}
       fullWidth label="Minimum" id="minimum" />
     </Box> 
+    
+    </div>
 
 
     <div style={Styles.button}>
         <Button variant="contained" size="large"
         onClick={handleOnclick}>
+
           ADD ITEM
         </Button>
       </div>
      
         </Box>
+      
         {/* <div>
       <MatTable/>
       </div> */}
       {/* <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
       </div> */}
+
       <Alertbar
       message={message}
       status={status}
