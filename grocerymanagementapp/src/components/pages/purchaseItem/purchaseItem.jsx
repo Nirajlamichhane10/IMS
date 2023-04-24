@@ -43,11 +43,7 @@ button:{
   width:"220px",
 
  },
- buttonprint:{
-  margin:"30px 20px 50px 790px",
-  width:"220px",
 
- },
  
  
   table1:{
@@ -171,7 +167,14 @@ const[open, setOpen]= React.useState(false);
 
     return (
       <div>
+        <style>{`@media print {.no-show{display: none;}}`}</style>
+       
+
+        
+          
+
       <Box style={Styles.box}
+
         component="form" 
         sx={{
           '& .MuiTextField-root': { m: 1, width: '25ch' }, 
@@ -179,11 +182,14 @@ const[open, setOpen]= React.useState(false);
         noValidate
         autoComplete="off"
       >
-        <div>
+         <div className="no-show">
+         
         <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.purchaseItem}>
            Purchased Item:
+           
            </Typography>
-
+           
+          
 {/* // invoice no  */}
           <TextField
             id="outlined-error"
@@ -242,8 +248,8 @@ const[open, setOpen]= React.useState(false);
 
 
          
-        </div>
       
+      </div>
       <div  style={Styles.table1}> 
     
         <PurchasedTable invoiceNumber={invoiceNumber} setInvoiceNumber={setInvoiceNumber} billDate={billDate} setBillDate={setBillDate} supplierName={supplierName} setSupplierName={setSupplierName} setSelectedSupplier={setSelectedSupplier}/>
@@ -254,17 +260,13 @@ const[open, setOpen]= React.useState(false);
           SAVE ITEM 
         </Button>
       </div> */}
-        
       </Box>
+  
       <div style={Styles.collabtable}>
       {/* <CollapsibleTable invoiceNumber={invoiceNumber}/> */}
       </div>
 
-      <div style={Styles.buttonprint}>
-        <Button  variant="contained" size="large">
-          RECEIPT
-        </Button>
-      </div>
+   
 
    {/* <Button onClick={test} >
       Test
@@ -272,8 +274,10 @@ const[open, setOpen]= React.useState(false);
 
       <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
+      
       </div>
       </div>
+
 
     );
     

@@ -1,7 +1,8 @@
 import React from 'react';
 import DataTable from './table';
 import BasicCard from'./cards';
-import MatTable from '../pages/addItem/materialtable';
+
+import DashboardTable from './dashboardTable';
 
 import GraphicalRepresentation from './graphCharts';
 
@@ -124,7 +125,7 @@ export default function Dashboard() {
     </div>
       
       <div >
-      { <MatTable/> }
+      { <DashboardTable/> }
       </div>
       <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>

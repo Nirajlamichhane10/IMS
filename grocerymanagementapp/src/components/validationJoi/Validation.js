@@ -26,7 +26,8 @@ export const customerSchema = (data)=> {
       customerEmail: Joi.string().email().required(),
       // customerContact: Joi.string().pattern(/^\d{10}$/).required(),
       customerContact: Joi.number().required(),
-      customerAddress: Joi.string().integer().min(10).required(),
+      // customerContact: Joi.number().integer().min(10 ** 9).max(10 ** 10 - 1).required(),
+      customerAddress: Joi.string().required(),
       
     });
     return Cusschema.validate(data);

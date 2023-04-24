@@ -30,6 +30,11 @@ const Styles={
      
     
     },
+    buttonprint:{
+      margin:"30px 20px 50px 790px",
+      width:"220px",
+    
+     },
 
   
 }
@@ -184,6 +189,7 @@ export default function CollapsibleTable(props) {
 
   return (
     <React.Fragment>
+       <style>{`@media print {.no-show{display: none;}}`}</style>
     <TableContainer component={Paper} style={Styles.table}>
       <Table aria-label="collapsible table">
         <TableHead>
@@ -202,6 +208,17 @@ export default function CollapsibleTable(props) {
       </Table>
 
     </TableContainer>
+    <div style={Styles.buttonprint}>
+      <div className='no-show'>
+        
+        <Button onClick={() => {
+                                        window.print();
+                                    }}
+        variant="contained" size="large">
+          RECEIPT
+        </Button>
+        </div>
+      </div>
     {/* <Button onClick={Test}>
       Test
     </Button> */}

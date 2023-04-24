@@ -318,7 +318,10 @@ export default function MiniDrawer() {
   };
 
   return (
+
     <div style={Styles.root}> 
+    <style>{`@media print {.no-show{display: none;}}`}</style>
+        <div className="no-show">
     <Box >
       <CssBaseline />
 
@@ -510,6 +513,7 @@ export default function MiniDrawer() {
       </Drawer>
      
     </Box>
+    </div>
     </div>
   );
 }

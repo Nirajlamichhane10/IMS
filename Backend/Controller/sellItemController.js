@@ -3,7 +3,7 @@ const addItem = require("../models/addItem");
 
 const postSell = async (req, res) => {
     const newSellItem = new sellItem({
-        invoiceNumber: req.body.invoiceNumber,
+        invoiceNumber: req.body.invoiceNumber, 
         billDate: req.body.billDate,
         customerName: req.body.customerName,
         items: req.body.items

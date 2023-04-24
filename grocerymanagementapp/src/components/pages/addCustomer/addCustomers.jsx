@@ -116,7 +116,7 @@ export default function AddCustomers() {
         setMessage("Validation Error");
         console.log("with error");
         console.log(result);
-        setStatus("error");
+        setStatus("error"); 
         setOpen(true);
 
       }

@@ -98,7 +98,7 @@ export default function SellTable1(props) {
   const defaultMaterialTheme = createTheme();
   const [columns, setColumns] = useState([
  
-    { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: ' Flour', 2: 'Salt', 3: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 4: 'Dried Fruit (Raisins, Cranberries, Apricots, etc.)', 5: 'Cooking Oil (Vegetable, Canola, Olive, etc.)', 6: 'Eggs', 7: 'Chicken', 8: 'Fresh Herbs (Basil, Cilantro, Parsley, etc.)', 9: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)', 10: 'Red Bull'}},
+    { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 2: 'Chicken', 3: 'water(Made in nepal)', 4: 'Butter'}},
     { title: 'Unit', field: 'unitOfItem', },
     { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
     { title: 'Price', field: 'price', initialEditValue: 0 },
