@@ -74,6 +74,7 @@ export default function MatTable() {
       { title: 'Item Name', field: 'itemName', },
       { title: 'Unit Of Item', field: 'unitOfItem', },
       { title: 'In Stock', field: 'quantity',
+
       render: rowData => {
 				return rowData.quantity > rowData.minimum ? (
 					<Chip label={rowData.quantity} color="primary" style={{ marginRight: 5 }} />
@@ -83,6 +84,7 @@ export default function MatTable() {
 			},
     },
       { title: 'Minimum', field: 'minimum',  },
+      { title: 'Price', field: 'price',  },
       
     ]);
   

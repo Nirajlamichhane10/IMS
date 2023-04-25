@@ -6,6 +6,7 @@ const addItemSchema = new mongoose.Schema({
   unitOfItem: { type: String, required: true },
   quantity: { type: Number, required: true },
   minimum: { type: Number, required: true },
+  price: { type: Number, required: true },
 
 
 });

@@ -6,6 +6,7 @@ exports.createItem = async (req, res) => {
     unitOfItem: req.body.unitOfItem,
     quantity: req.body.quantity,
     minimum: req.body.minimum,
+    price:req.body.price,
   });
 
   try {

@@ -42,6 +42,7 @@ export const customerSchema = (data)=> {
   unitOfItem: Joi.string().min(1).max(20).required(),
   quantity: Joi.number().required(),
   minimum: Joi.number().required(),
+  price: Joi.number().required(),
   });
   return itemschema.validate(data);
     

@@ -61,9 +61,9 @@ const tableIcons = {
     table:{
       alignItems: "center",
       textAlign: "center",
-      width:"55%",
+      width:"60%",
       height:"35%",
-      margin:"-35px 10px 10px 250px",
+      margin:"-25px 10px 10px 250px",
     
     },
     buttonprint:{
@@ -72,7 +72,7 @@ const tableIcons = {
     
      },
      button:{
-      margin:"20px 0px 50px 1050px",
+      margin:"30px 0px 50px 1100px",
       width:"220px",
      },
      collabtable: {

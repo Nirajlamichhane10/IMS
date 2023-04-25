@@ -21,12 +21,12 @@ import { grid } from '@mui/system';
         
         color :"red",  
         textAlign:"center",
-         margin:"80px 0px 50px 200px",
+         margin:"10px 0px 50px 220px",
          width:"220px",
          display:"flex",
     },
      item:{
-      margin:"80px 0px 50px 20px",
+      margin:"0px 0px 50px 20px",
       width:"220px",
       alignItems: "center",
       display:"flex",
@@ -67,6 +67,20 @@ import { grid } from '@mui/system';
       width:"750px",
    
      },
+    price:{
+      margin:"40px 0px 50px 20px",
+      width:"220px",
+      alignItems: "center",
+      display:"flex",
+
+     },
+     pricebox:{
+      margin:"-100px 0px 50px 200px",
+      alignItems: "center",
+      display:"flex",
+      textAlign:"center",
+
+     },
  
 
 
@@ -79,6 +93,7 @@ const [itemName, setItemName]= React.useState("");
 const[unitOfItem, setUnitOfItem]=React.useState("");
 const[quantity , setQuantity]=React.useState(0);
 const[minimum, setMinimum]=React.useState(0);
+const[price, setPrice]= React.useState(0);
 const[item, setItem]=React.useState({});
 
 const[message, setMessage]= React.useState("");
@@ -93,6 +108,7 @@ const reset =()=>{
   setUnitOfItem("");
   setQuantity("");
   setMinimum("");
+  setPrice("");
 
 }
 
@@ -107,6 +123,9 @@ const handleChangeQuantity =(event)=>{
 };
 const handleChangeMinimum =(event)=>{
   setMinimum(event.target.value);
+};
+const handleChangePrice =(event)=>{
+  setPrice(event.target.value);
 };
 
 
@@ -129,7 +148,7 @@ const handleOnclick=()=>
   // setItem({itemName,unitOfItem,quantity,minimum});
   try{
     
-    const addItemData ={itemName,unitOfItem,quantity,minimum};
+    const addItemData ={itemName,unitOfItem,quantity,minimum,price};
     const result=addItemSchema(addItemData);
     if (result.error){
       setMessage("Validation Error");
@@ -141,7 +160,7 @@ const handleOnclick=()=>
     }
     if (!result.error){
 
-    const response = axios.post("http://localhost:5000/addItem/item",{itemName,unitOfItem,quantity,minimum});
+    const response = axios.post("http://localhost:5000/addItem/item",{itemName,unitOfItem,quantity,minimum,price});
     console.log("without error ");
     console.log(result);
     setMessage("Items added successfully");
@@ -250,6 +269,24 @@ const handleOnclick=()=>
     </Box> 
     
     </div>
+
+    <Typography variant="h5" gutterBottom style={Styles.price}>
+              Price:
+          </Typography>
+          
+          <Box style={Styles.pricebox}
+      sx={{
+        width: 400,
+        maxWidth: '60%',
+      }}
+    >
+    
+      <TextField onChange={handleChangePrice}
+      value={price}
+      fullWidth label="Initial Price" id="price" />
+    </Box> 
+    
+
 
 
     <div style={Styles.button}>
