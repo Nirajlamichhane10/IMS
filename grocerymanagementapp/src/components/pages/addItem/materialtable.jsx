@@ -132,7 +132,9 @@ export default function MatTable() {
               } catch (error) {
                 reject(error);
               }
+              
             }),
+
           onRowDelete: (oldData) =>
             new Promise(async (resolve, reject) => {
               try {
@@ -147,7 +149,8 @@ export default function MatTable() {
                 resolve();
               } catch (error) {
                 reject(error);
-              }
+              } 
+            
             }),
         }}
       />
