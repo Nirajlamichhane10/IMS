@@ -17,6 +17,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { v4 as uuid } from 'uuid';
+import { log } from 'joi-browser';
 
 
 
@@ -77,6 +78,8 @@ export default function PurchaseItem() {
   const [supplierName, setSupplierName] = React.useState('');
   const [billDate, setBillDate] = React.useState(null);
   const [items, setItems] = React.useState([{}]);
+  // const[itemNames,setItemNames]=React.useState({0:"Select Items"});
+  const [itemNames, setItemNames] = React.useState([]);
 
 
 
@@ -116,6 +119,7 @@ export default function PurchaseItem() {
   const [selectedSupplier, setSelectedSupplier] = React.useState('');
 
   useEffect(() => {
+    // fetchItemName();
     const fetchSuppliers = async () => {
       const res = await axios.get('http://localhost:5000/addSupplier/getSupplier',{supplierName});
       setSuppliers(res.data);
@@ -123,8 +127,9 @@ export default function PurchaseItem() {
       console.log(res.data);
     };
 
+
     // for invoice number 
-    fetchSuppliers();
+     fetchSuppliers();
     const unique_id = uuid();
   				const small_id = unique_id.slice(0,8);
 				// localStorage.setItem("invoiceNumber",small_id);
@@ -132,6 +137,34 @@ export default function PurchaseItem() {
         setInvoiceNumber(small_id);
     
   }, []);
+
+// const fetchItemName=async () => {
+//      try{
+    
+//         const res = await axios.get(' http://localhost:5000/addItem/getItemName');
+//   //       // setItemNameArray(res.data); 
+//   //       let obj = {0: "Select Item"};
+//   //     let count=1;
+
+//   // // Loop through the array and append key-value pairs to the object
+//   //        res.data.map((item) => {
+//   //         obj[count] = item.itemName;
+//   //         count++;
+//   //          });
+//   //         //  const str = JSON.stringify(obj); // convert the object to a JSON string
+//   //         // const parsedObj = JSON.parse(str);
+//   //        setItemNames(obj);
+//   //       console.log("item Names");
+//   return res.data;
+        
+//    }
+
+//     catch(e){
+//       console.log(e);
+      
+
+//     }
+//   }
 
   const handleChange = (event) => {
     setSelectedSupplier(event.target.value);
@@ -252,7 +285,7 @@ const[open, setOpen]= React.useState(false);
       </div>
       <div  style={Styles.table1}> 
     
-        <PurchasedTable invoiceNumber={invoiceNumber} setInvoiceNumber={setInvoiceNumber} billDate={billDate} setBillDate={setBillDate} supplierName={supplierName} setSupplierName={setSupplierName} setSelectedSupplier={setSelectedSupplier}/>
+        <PurchasedTable itemNames={itemNames} invoiceNumber={invoiceNumber} setInvoiceNumber={setInvoiceNumber} billDate={billDate} setBillDate={setBillDate} supplierName={supplierName} setSupplierName={setSupplierName} setSelectedSupplier={setSelectedSupplier}/>
 
         </div>
         {/* <div style={Styles.button}>
