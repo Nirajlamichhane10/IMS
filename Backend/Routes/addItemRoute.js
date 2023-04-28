@@ -1,5 +1,5 @@
 const express = require('express');
-const { updateItem, createItem, getItem, deleteItem } = require('../Controller/itemController');
+const { updateItem, createItem, getItem, deleteItem, getItemNames } = require('../Controller/itemController');
 const router = express.Router();
 
 
@@ -11,6 +11,8 @@ router.get("/getItem", getItem);
 router.delete('/delete/item/:id',deleteItem);
 
 router.route('/update/item/:id').put(updateItem);
+
+router.get('/getItemName', getItemNames)
 
 
 module.exports = router;
