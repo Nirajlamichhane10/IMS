@@ -73,7 +73,7 @@ function App() {
 				
 				<Route path="/sellItem" element={<SellItem/>}/>
 				
-				<Route path="/forgetPassword" element={<ForgetPassword/>}/>
+				
 
 				
 
@@ -88,8 +88,15 @@ function App() {
 		</div>
 	</Router>	
 	):(
-        <Firstpage isLogin={isLogin} setLogin={setLogin} tokenId={tokenId}  />
-		// uniqueId={uniqueId} setUniqueId={setUniqueId}
+		<>
+		<Router>
+		{/* <Firstpage isLogin={isLogin} setLogin={setLogin} tokenId={tokenId}  /> */}
+		<Routes>
+		<Route path="/"  element={<Firstpage isLogin={isLogin} setLogin={setLogin} tokenId={tokenId}/>} />
+		<Route path="/forgetPassword" element={<ForgetPassword/>}/>
+		</Routes>
+		</Router>
+		</>
     );
 }
 

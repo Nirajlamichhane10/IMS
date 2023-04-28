@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import Alertbar from '../../components/Alertbar';
 import styles from "./styles.module.css";
+import { Link } from 'react-router-dom';
 
 import { v4 as uuid } from 'uuid';
 
@@ -44,6 +45,10 @@ const Login = (props) => {
 		setOpen(false);
 	};
 
+	const handleForgetPassword=()=>{
+		window.location = "/forgetPassword";
+	}
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -73,7 +78,7 @@ const Login = (props) => {
 				setMessage("Sucessfully login");
 				setStatus("success");
 				setOpen(true);
-
+				window.location = "/";
 			}
 
             
@@ -87,7 +92,7 @@ const Login = (props) => {
 			}
 			console.log(response.message);
 			
-			window.location = "/";
+			
 		} catch (error) {
 			console.log(e);
 			
@@ -132,7 +137,7 @@ const Login = (props) => {
 							Sign In
 						</button>
 
-						<button type="submit"  className={styles.forget_btn}>
+						<button onClick={handleForgetPassword}  className={styles.forget_btn}>
 							Forgot Password ?
 						</button>
 

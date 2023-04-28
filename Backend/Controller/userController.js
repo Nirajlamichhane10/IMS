@@ -1,5 +1,17 @@
 const User = require("../models/user");
 
+exports.getUser = async (req, res) =>{
+try { 
+ const tempUsers = await User.find();
+ res.send(tempUsers);
+}
+catch(error){
+  res.send(error);
+}
+};
+
+
+
 exports.authenticateUser = async (req, res) => {
   try {
     const userDetails = await User.find({ username: req.headers.username });
@@ -17,7 +29,7 @@ exports.authenticateUser = async (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
-  const user = new User({ username: "Niraj", password: "Niraj" });
+  const user = new User({ pin :1234, username: "Niraj", password: "Niraj" });
   try {
     const response = await user.save();
     res.send("yay i have sucessfully updated your post");
@@ -26,3 +38,22 @@ exports.createUser = async (req, res) => {
   }
 };
 
+ //update  for user
+ exports.updateUser = async (req, res, next) => {
+  let foundUser= await User.findById(req.params.id);
+  
+  if (!foundUser){
+    // return next("User not found",404);
+    res.send("user not found")
+  }
+  updatedUser = await User.findByIdAndUpdate(req.params.id,req.body,{
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  })
+  // res.status(200).json({
+  //   success:true,
+  //   updatedUser,
+  // })
+  res.send("User updated sucessfully");
+}

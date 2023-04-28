@@ -1,6 +1,7 @@
 
 import * as React from 'react';
 import MaterialTable , { MTableToolbar } from 'material-table';
+import { MTableEditField } from "material-table";
 
 
 import { ListItem, ThemeProvider, createTheme } from '@mui/material';
@@ -86,7 +87,8 @@ const tableIcons = {
 
 export default function PurchasedTable(props) {
   const { useState } = React;
-  const [itemList,setItemList]=React.useState([]);
+  const [itemNames,setItemNames]= useState([]);
+  
   const [invoice,setInvoice]=React.useState({
     invoiceNumber:"",
     billDate:"null",
@@ -95,17 +97,6 @@ export default function PurchasedTable(props) {
   });
   
   const defaultMaterialTheme = createTheme();
-    const [columns, setColumns] = useState([
-
- 
-      { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 2: 'Chicken', 3: 'water(Made in nepal)', 4: 'Butter'}},
-      { title: 'Unit', field: 'unitOfItem', },
-      { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
-      { title: 'Price', field: 'price', initialEditValue: 0 },
-      { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
-     
-      
-    ]);
 
 
 
@@ -124,13 +115,13 @@ export default function PurchasedTable(props) {
   const[testArray, setTestArray]= React.useState(["Rice","coke","fancy"]);
 
 
-  useEffect(() => {
-    fetchItemName();
+  // useEffect(() => {
+  //   fetchItemName();
 
     
 
     
-  }, []);
+  // }, []);
 
 
   
@@ -140,7 +131,7 @@ export default function PurchasedTable(props) {
 
   const test=()=>{
     console.log("lookup Object");
-    console.log(itemList);
+    console.log(itemNames);
   }
 
  // reset 
@@ -161,28 +152,7 @@ export default function PurchasedTable(props) {
 
   }
   
-  const fetchItemName= async() => {
-  try{
-      const res = await axios.get(' http://localhost:5000/addItem/getItem');
-      // setItemNameArray(res.data); 
-      let obj = { 0: "Select Item" };
-      let count=1;
-
-// Loop through the array and append key-value pairs to the object
-    res.data.map((item) => {
-    obj[count] = item.itemName;
-      count++;
-    });
-          setItemList(obj);
-  }
-  catch(e){
-    console.log(e);
     
-
-  }
- }
-
-
 
 
 
@@ -257,6 +227,51 @@ const calculateGrandTotal = (data) =>{
 
 }
 
+const fetchItemName=async () => {
+  try{
+ 
+     const res = await axios.get(' http://localhost:5000/addItem/getItem');
+//       // setItemNameArray(res.data); 
+//       let obj = {0: "Select Item"};
+//     let count=1;
+
+// // Loop through the array and append key-value pairs to the object
+//        res.data.map((item) => {
+//         obj[count] = item.itemName;
+//         count++;
+//          });
+//         //  const str = JSON.stringify(obj); // convert the object to a JSON string
+//         // const parsedObj = JSON.parse(str);
+//        setItemNames(obj);
+//       console.log("item Names");
+setItemNames(res.data);
+     
+}
+
+ catch(e){
+   console.log(e);
+   
+
+ }
+}
+  const [columns, setColumns] = useState([
+
+  
+    { title: 'Item  Name', field: 'itemName' , initialEditValue: 'Select items',   lookup: itemNames
+    // .reduce((lookup, item) => {
+    // //   lookup[item.itemName] = item.itemName;
+    // //   return lookup;
+    // // }, {}),
+},
+    { title: 'Unit', field: 'unitOfItem'},
+    { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
+    { title: 'Price', field: 'price', initialEditValue: 0 },
+    { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
+  
+    
+  ]);
+
+  
 
    return (
     
@@ -305,15 +320,12 @@ const calculateGrandTotal = (data) =>{
                 newData.total=total;
                 setData([...data, newData]);
                 const tempItem={
-                  "itemName":itemList[newData.itemName],
+                  "itemName":itemNames[newData.itemName],
                   "unitOfItem":newData.unitOfItem,
                   "quantity":newData.quantity,
                   "price":newData.price,
                   "total":total};
                 setItems([...items, {...tempItem} ]);
-               console.log("Total Data");
-                console.log(newData);
-                console.log(newData.price); 
 
               //   // Update the grand total
               // const updatedGrandTotal = calculateGrandTotal([...data, newData]);
@@ -349,6 +361,13 @@ const calculateGrandTotal = (data) =>{
               }, 1000)
               
             }),
+            editField: (props) => (
+              <MTableEditField
+                {...props}
+                columnDef={{ ...props.columnDef, lookup: columns[0].lookup }}
+              />
+            ),
+        
         }}
         
       />
@@ -365,9 +384,9 @@ const calculateGrandTotal = (data) =>{
         <CollapsibleTable invoice={invoice} grandTotal={grandTotal}/>
         </div>
       </div>
-      {/* <Button onClick={test} >
+      <Button onClick={test} >
       Test
-        </Button> */}
+        </Button>
       </div>
     )
 
