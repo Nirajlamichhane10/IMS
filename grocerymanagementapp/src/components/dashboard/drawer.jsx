@@ -36,8 +36,8 @@ import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import SellIcon from '@mui/icons-material/Sell';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-// import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
-// import RecentActorsIcon from '@mui/icons-material/RecentActors';
+import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import StoreIcon from '@mui/icons-material/Store';
 
 
@@ -480,7 +480,7 @@ export default function MiniDrawer() {
                     </ListItemText>
                     </ListItem>
                 
-                {/* <ListItem component={Link} to ={"/statement"} onClick={handleDrawerClose} style={Styles.icont}>
+                <ListItem component={Link} to ={"/supplierTableInvoice"} onClick={handleDrawerClose} style={Styles.icont}>
                     <PermContactCalendarIcon/>
                     <ListItemText>
                     <Typography >
@@ -499,8 +499,8 @@ export default function MiniDrawer() {
                               Customers Statement
                                </span>
                             </Typography>
-                      </ListItemText> */}
-                {/* </ListItem> */}
+                      </ListItemText> 
+                 </ListItem> 
 
             
             

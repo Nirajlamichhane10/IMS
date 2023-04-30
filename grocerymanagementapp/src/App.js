@@ -19,6 +19,7 @@ import CollapsibleTable from './components/pages/purchaseItem/newTable';
 import MyStock from './components/pages/myStock/myStock';
 import Profile from './components/Profile/Profile';
 import ForgetPassword from './components/Firstpage/forgetpassword';
+import SupplierTableInvoice from './components/pages/supplierStatement/supplierInvoice';
 
 
 
@@ -72,6 +73,11 @@ function App() {
 				<Route path="/myStock" element={<MyStock/>}/>
 				
 				<Route path="/sellItem" element={<SellItem/>}/>
+
+				
+				<Route path="/supplierTableInvoice" element={<SupplierTableInvoice/>}/>
+
+
 				
 				
 

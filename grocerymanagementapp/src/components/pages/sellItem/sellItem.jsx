@@ -28,7 +28,7 @@ const Styles={
 
   },
   box:{
-    margin:"90px 0px 50px -220px",
+    margin:"90px 0px 50px -180px",
   },
   sellItem:{
         
@@ -216,9 +216,9 @@ export default function SellItem() {
       </div>
 
 
-      <div>
+      {/* <div>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}>&copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
-      </div>
+      </div> */}
       </div>
 
     );
