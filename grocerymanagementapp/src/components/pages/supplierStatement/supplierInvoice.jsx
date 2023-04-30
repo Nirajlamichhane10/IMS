@@ -74,7 +74,7 @@ const tableIcons = {
     
 };
 
-export default function SupplierTableInvoice() {
+export default function SupplierTableInvoice(props) {
     const { useState,useEffect } = React;
     const defaultMaterialTheme = createTheme();
 
@@ -137,15 +137,21 @@ export default function SupplierTableInvoice() {
             {
               icon: 'save',
               tooltip: 'Save User',
-              onClick: (event, rowData) => alert("You saved " + rowData.name)
+              onClick: (event, rowData) =>{
+              // props.history.push(rowData,'','/reciptTable');
+              window.location='/reciptTable';
+              console.log("row data");
+              console.log(rowData);
+
             }
+          }
           ]}
           // adding action button 
         components={{
             Action: props => (
               <Button
                 onClick={(event) => 
-                    console.log("hello")}
+                  props.action.onClick(event, props.data)}
                 color="primary"
                 variant="contained"
                 style={{textTransform: 'none'}}

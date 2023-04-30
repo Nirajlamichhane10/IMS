@@ -1,4 +1,4 @@
-<MaterialTable style={Styles.table}
+{/* <MaterialTable style={Styles.table}
 title="Added Items"
 
 icons={tableIcons}
@@ -82,4 +82,4 @@ editable={{
     }),
 }}
 
-/>
+/> */}

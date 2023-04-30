@@ -54,6 +54,23 @@ const getInvoice = async (req, res ) => {
 }
 
 
+// fetching data using  invoice number 
+const getInvoiceData = async (req, res ) => {
+    try {
+        const invoiceNumber = req.body.invoiceNumber;
+        console.log("invoice number");
+        console.log(invoiceNumber);
+        const response = await sellItem.find({
+            'invoiceNumber':invoiceNumber
+        });
+        res.json(response);
+    }
+    catch(error){
+        res.send(error);
+    }
+}
+
+
 // // seaching by invoice number 
 // const getSellInvoice = async (req, res ) => {
 //     try {
@@ -90,5 +107,6 @@ const getInvoice = async (req, res ) => {
     postSell,
     getSell,
     getInvoice,
+    getInvoiceData,
    
 };

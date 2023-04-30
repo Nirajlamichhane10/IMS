@@ -15,13 +15,15 @@ import SellItem from './components/pages/sellItem/sellItem';
 import Dashboard from './components/dashboard/Dashboard';
 import AddSuppliers from './components/pages/addSupplier/addSuppliers';
 import AddCustomers from './components/pages/addCustomer/addCustomers';
-import CollapsibleTable from './components/pages/purchaseItem/newTable';
+
 import MyStock from './components/pages/myStock/myStock';
 import Profile from './components/Profile/Profile';
 import ForgetPassword from './components/Firstpage/forgetpassword';
 import SupplierTableInvoice from './components/pages/supplierStatement/supplierInvoice';
 import CustomerTableInvoice from './components/pages/customerStatement/customerInvoice';
-
+import PrintPurchaseBill from './components/pages/purchaseItem/printPage';
+import ReciptTable from './components/pages/supplierStatement/reciptTable';
+import ReciptTableSell from './components/pages/customerStatement/reciptTableSell';
 
 
 
@@ -60,7 +62,7 @@ function App() {
 
 				<Route path="/addItem" element={<AddItem/>}/>
 
-				<Route path="/testTable" element={<CollapsibleTable/>}/>
+			
 
 				<Route path="/purchaseItem" element={<PurchaseItem/>}/>
 
@@ -80,8 +82,12 @@ function App() {
 
 				<Route path="/customerTableInvoice" element={<CustomerTableInvoice/>}/>
 
-				
-				
+				<Route path="/printPurchaseBill" element={<PrintPurchaseBill/>}/>
+
+				<Route path="/reciptTable" element={<ReciptTable/>}/>
+
+				<Route path="/reciptTableSell" element={<ReciptTableSell/>}/>
+
 
 				
 
