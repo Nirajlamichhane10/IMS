@@ -99,6 +99,7 @@ export default function MyStock() {
       <div style={Styles.table}>
        {/* <StockTable/>  */}
        <MatTable/>
+      
        </div>
       
       
