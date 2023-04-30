@@ -491,7 +491,7 @@ export default function MiniDrawer() {
                       </ListItemText>
                 </ListItem>
 
-                <ListItem component={Link} to ={"/statement"} onClick={handleDrawerClose} style={Styles.icont}>
+                <ListItem component={Link} to ={"/customerTableInvoice"} onClick={handleDrawerClose} style={Styles.icont}>
                     <RecentActorsIcon/>
                     <ListItemText>
                     <Typography >

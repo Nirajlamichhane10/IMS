@@ -20,6 +20,7 @@ import MyStock from './components/pages/myStock/myStock';
 import Profile from './components/Profile/Profile';
 import ForgetPassword from './components/Firstpage/forgetpassword';
 import SupplierTableInvoice from './components/pages/supplierStatement/supplierInvoice';
+import CustomerTableInvoice from './components/pages/customerStatement/customerInvoice';
 
 
 
@@ -77,6 +78,7 @@ function App() {
 				
 				<Route path="/supplierTableInvoice" element={<SupplierTableInvoice/>}/>
 
+				<Route path="/customerTableInvoice" element={<CustomerTableInvoice/>}/>
 
 				
 				

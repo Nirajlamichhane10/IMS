@@ -258,10 +258,10 @@ setItemNames(res.data);
 
   
     { title: 'Item  Name', field: 'itemName' , initialEditValue: 'Select items',   lookup: itemNames
-    // .reduce((lookup, item) => {
-    // //   lookup[item.itemName] = item.itemName;
-    // //   return lookup;
-    // // }, {}),
+    .reduce((lookup, item) => {
+      lookup[item.itemName] = item.itemName;
+      return lookup;
+    }, {}),
 },
     { title: 'Unit', field: 'unitOfItem'},
     { title: 'Quantity', field: 'quantity', initialEditValue: 0 },

@@ -74,7 +74,7 @@ const tableIcons = {
     
 };
 
-export default function SupplierTableInvoice() {
+export default function CustomerTableInvoice() {
     const { useState,useEffect } = React;
     const defaultMaterialTheme = createTheme();
 
@@ -83,7 +83,7 @@ export default function SupplierTableInvoice() {
    
       { title: 'Invoice Number', field: 'invoiceNumber', },
       { title: 'Bill Date', field: 'billDate', },
-      { title: 'Supplier Name', field: 'supplierName',  },
+      { title: 'Customer Name', field: 'customerName',  },
       
     
     ]);
@@ -105,11 +105,11 @@ export default function SupplierTableInvoice() {
 
      const fetchInvoiceData = async()=>{
         try {
-      const SupplierInvoiceData= await axios.get("http://localhost:5000/purchaseItem/getInvoice");
+      const CustomerInvoiceData= await axios.get("http://localhost:5000/sellItem/getInvoice");
 
-      const outputArray = SupplierInvoiceData.data.map(({ 
-        _id, invoiceNumber, billDate, supplierName,items
-     }) => ({ invoiceNumber, billDate, supplierName }));
+      const outputArray = CustomerInvoiceData.data.map(({ 
+        _id, invoiceNumber, billDate, customerName,items
+     }) => ({ invoiceNumber, billDate, customerName }));
 
       setData([...outputArray]);
       console.log("Output array");
@@ -128,7 +128,7 @@ export default function SupplierTableInvoice() {
       <ThemeProvider theme={defaultMaterialTheme}>
       <MaterialTable
         style={Styles.table}
-        title="Supplier Statement Details"
+        title="Customer Statement Details"
         icons={tableIcons}
         columns={columns}
         data={data}
@@ -198,7 +198,7 @@ export default function SupplierTableInvoice() {
       />
       <div>
         <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.addItem}>
-           Supplier Statement:
+           Customer Statement:
            </Typography>
            </div>
    
