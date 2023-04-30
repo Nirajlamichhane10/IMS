@@ -197,7 +197,7 @@ const ForgetPassword = (props) => {
 					<form className={styles.form_container} >
 						<h1>Forget Password </h1>
 						<input
-							type="pin"
+							type="password"
 							placeholder="PIN:"
 							name="pin"
 							onChange={handleChangePin}

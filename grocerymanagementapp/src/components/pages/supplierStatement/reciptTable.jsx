@@ -16,6 +16,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import axios from 'axios';
 import  {useEffect,useState } from 'react';
 import Button from '@mui/material/Button';
+import { useLocation } from 'react-router-dom';
 
 const Styles={
     root:{
@@ -132,7 +133,8 @@ function Row(props) {
 
 export default function ReciptTable(props) {
 
-  
+  const location = useLocation();
+  const myState = location.state;
 
 
 
@@ -142,14 +144,16 @@ export default function ReciptTable(props) {
 
   const Test =()=>{
     console.log("Rows");
-    console.log(invoice.invoiceNumber);
+    // console.log(invoice.invoiceNumber);
     //console.log(invoice);
     console.log(rows);
+  
 
   }
 
+  const invoiceNumber= myState.invoiceNumber;
  
-  const invoiceNumber = "76ef8d82";
+  // const State = props.location.state;
 // 
   useEffect(() => {
     fetchInvoice();
@@ -186,8 +190,8 @@ const calculateGrandTotal = (data) =>{
     
   ));
   console.log("grand total");
-  console.log(grandTotal);
-  console.log(data);
+  // console.log(grandTotal);
+  console.log(data.items);
  setGrandTotal(grandTotal);
 
 
@@ -195,20 +199,19 @@ const calculateGrandTotal = (data) =>{
 
 const rows = [
   
-    createData(invoice.invoiceNumber, invoice.billDate,invoice.supplierName,),
+    createData(invoice.invoiceNumber, invoice.billDate,invoice.supplierName,grandTotal,invoice.items),
   ];
-  function createData( invoiceNumber,billDate,supplierName,grandTotal) {
+  function createData( invoiceNumber,billDate,supplierName,grandTotal,items) {
     return {
     invoiceNumber,
     billDate,
     supplierName,
     grandTotal,
-    history:invoice.items,
+    history:items?items:[],
     };
   }
 
   
-
 
 
   return (
@@ -243,9 +246,9 @@ const rows = [
         </Button>
         </div>
       </div>
-    {/* <Button onClick={Test}>
+    <Button onClick={Test}>
       Test
-    </Button> */}
+    </Button>
     </React.Fragment>
  
   );

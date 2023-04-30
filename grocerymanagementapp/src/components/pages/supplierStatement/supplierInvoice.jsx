@@ -2,6 +2,7 @@ import * as React from 'react';
 import MaterialTable from 'material-table';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 
 import { ThemeProvider, createTheme } from '@mui/material';
 
@@ -77,8 +78,9 @@ const tableIcons = {
 export default function SupplierTableInvoice(props) {
     const { useState,useEffect } = React;
     const defaultMaterialTheme = createTheme();
+    let Navigator = useNavigate();
 
-  
+   
     const [columns, setColumns] = useState([
    
       { title: 'Invoice Number', field: 'invoiceNumber', },
@@ -92,8 +94,16 @@ export default function SupplierTableInvoice(props) {
         
       
     ]);
-    
 
+   // TEST  
+    const Test =()=>{
+    
+      Navigator('/reciptTable');
+
+      
+    
+  
+    }
 
     // using useeffect to fetch data 
 
@@ -138,8 +148,9 @@ export default function SupplierTableInvoice(props) {
               icon: 'save',
               tooltip: 'Save User',
               onClick: (event, rowData) =>{
-              // props.history.push(rowData,'','/reciptTable');
-              window.location='/reciptTable';
+              Navigator('/reciptTable',{state:rowData});
+
+              // window.location='/reciptTable';
               console.log("row data");
               console.log(rowData);
 
@@ -207,7 +218,9 @@ export default function SupplierTableInvoice(props) {
            Supplier Statement:
            </Typography>
            </div>
-   
+           <Button onClick={Test}>
+      Test
+    </Button>
     
     </ThemeProvider>
     

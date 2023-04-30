@@ -24,7 +24,7 @@ export const customerSchema = (data)=> {
   const Cusschema = Joi.object({
       customerName: Joi.string().min(1).max(20).required(),
       customerEmail: Joi.string().email().required(),
-      // customerContact: Joi.string().pattern(/^\d{10}$/).required(),
+      // customerContact: Joi.number().length(10).required(),
       customerContact: Joi.number().required(),
       // customerContact: Joi.number().integer().min(10 ** 9).max(10 ** 10 - 1).required(),
       customerAddress: Joi.string().required(),

@@ -86,7 +86,7 @@ const tableIcons = {
 
 export default function SellTable1(props) {
   const { useState } = React;
-  const [itemList,setItemList]=React.useState([]);
+  const [itemNames,setItemNames]=React.useState([]);
   
   const [invoice,setInvoice]=React.useState({
     invoiceNumber:"",
@@ -96,18 +96,7 @@ export default function SellTable1(props) {
   });
 
   const defaultMaterialTheme = createTheme();
-  const [columns, setColumns] = useState([
- 
-    { title: 'Item  Name', field: 'itemName' , lookup:{0: 'Select Item', 1: 'All-Purpose Flour', 2: 'Sugar', 3: 'Salt', 4: 'Brown Sugar', 5: 'Chocolate Chips', 6: 'Nuts (Almonds, Walnuts, Pecans, etc.)', 7: 'Dried Fruit (Raisins, Cranberries, Apricots, etc.)', 8: 'Milk', 9: 'Eggs', 10: 'Spices (Cinnamon, Garlic Powder, Chili Powder, etc.)'}},
-    { title: 'Unit', field: 'unitOfItem', },
-    { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
-    { title: 'Price', field: 'price', initialEditValue: 0 },
-    { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
-   
-    
-
-    
-  ]);
+  
   const [items, setItems] = React.useState([{}]);
 
   const {invoiceNumber, billDate, customerName, setInvoiceNumber,setCustomerName,setBillDate,setSelectedCustomer}= props;
@@ -128,8 +117,8 @@ export default function SellTable1(props) {
   // TEST
 
   const test=()=>{
-    console.log("lookup Object");
-    console.log(itemList);
+    // console.log("lookup Object");
+    // console.log(itemList);
   }
 
  // reset 
@@ -150,24 +139,7 @@ export default function SellTable1(props) {
 
   }
   
-  const fetchItemName= async() => {
-  try{
-      const res = await axios.get(' http://localhost:5000/addItem/getItem');
-      // setItemNameArray(res.data); 
-      let obj = { 0: "Select Item" };
-      let count=1;
 
-// Loop through the array and append key-value pairs to the object
-    res.data.map((item) => {
-    obj[count] = item.itemName;
-      count++;
-    });
-          setItemList(obj);
-  }
-  catch(e){
-    console.log(e);
-  }
- }
    
   
  
@@ -202,7 +174,7 @@ const handleOnclick = async () => {
   // console.log(customerName);
 
   try{
-    const response = await axios.post("http://localhost:5000/sellItem/sell",{invoiceNumber,billDate,customerName,items});
+    const response = await axios.post("http://localhost:5000/sellItem/sell");
     console.log(response.data);
     setInvoice(response.data);
     calculateGrandTotal(response.data);
@@ -234,7 +206,35 @@ const calculateGrandTotal= (data) =>{
  setGrandTotal(grandTotal);
 
 }
-
+  const fetchItemName= async() => {
+  try{
+      const res = await axios.get(' http://localhost:5000/addItem/getItem');
+      let methodObject = { 0: "Select ItemName" };
+			let count = 1;
+			res.data.map((item) => {
+				methodObject[count] = item.itemName;
+				count++;
+			});
+			console.log("Method Object");
+			console.log(methodObject);
+			setItemNames(methodObject);
+		} catch (e) {
+			console.log(e);
+		}
+	};
+ 
+	const columns = [
+		{
+			title: "Item  Name",
+			field: "itemName",
+			initialEditValue: 0,
+			lookup: itemNames,
+		},
+		{ title: "Unit", field: "unitOfItem" },
+		{ title: "Quantity", field: "quantity", initialEditValue: 0 },
+		{ title: "Price", field: "price", initialEditValue: 0 },
+		{ title: "Total", field: "total", initialEditValue: 0, editable: false },
+	];
 
 
    return (
@@ -278,11 +278,16 @@ const calculateGrandTotal= (data) =>{
                 const total = newData.price * newData.quantity;
                 newData.total=total;
                 setData([...data, newData]);
-                const tempItem={"itemName":itemList[newData.itemName],"unitOfItem":newData.unitOfItem,"quantity":newData.quantity,"price":newData.price,"total":total};
+                const tempItem={
+                  itemName:itemNames[newData.itemName],
+                  unitOfItem:newData.unitOfItem,
+                  quantity:newData.quantity,
+                  price:newData.price,
+                  total:total};
                 setItems([...items, {...tempItem} ]);
-               console.log("Total Data");
-                console.log(newData);
-                console.log(newData.price);
+              //  console.log("Total Data");
+              //   console.log(newData);
+              //   console.log(newData.price);
                
                
                 resolve();

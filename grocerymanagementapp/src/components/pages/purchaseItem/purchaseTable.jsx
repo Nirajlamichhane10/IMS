@@ -1,394 +1,340 @@
-
-import * as React from 'react';
-import MaterialTable , { MTableToolbar } from 'material-table';
+import * as React from "react";
+import MaterialTable, { MTableToolbar } from "material-table";
 import { MTableEditField } from "material-table";
 
+import { ListItem, ThemeProvider, createTheme } from "@mui/material";
 
-import { ListItem, ThemeProvider, createTheme } from '@mui/material';
-
-import { forwardRef } from 'react';
-import AddBox from '@mui/icons-material/AddBox';
-import ArrowDownward from '@mui/icons-material/ArrowDownward';
-import Check from '@mui/icons-material/Check';
-import ChevronLeft from '@mui/icons-material/ChevronLeft';
-import ChevronRight from '@mui/icons-material/ChevronRight';
-import Clear from '@mui/icons-material/Clear';
-import DeleteOutline from '@mui/icons-material/DeleteOutline';
-import Edit from '@mui/icons-material/Edit';
-import FilterList from '@mui/icons-material/FilterList';
-import FirstPage from '@mui/icons-material/FirstPage';
-import LastPage from '@mui/icons-material/LastPage';
-import Remove from '@mui/icons-material/Remove';
-import SaveAlt from '@mui/icons-material/SaveAlt';
-import Search from '@mui/icons-material/Search';
-import ViewColumn from '@mui/icons-material/ViewColumn';
-import { useEffect,useState } from 'react';
-import axios from 'axios';
-import Button from '@mui/material/Button';
-import { log } from 'joi-browser';
-import { v4 as uuid } from 'uuid';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import CollapsibleTable from './newTable';
+import { forwardRef } from "react";
+import AddBox from "@mui/icons-material/AddBox";
+import ArrowDownward from "@mui/icons-material/ArrowDownward";
+import Check from "@mui/icons-material/Check";
+import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import ChevronRight from "@mui/icons-material/ChevronRight";
+import Clear from "@mui/icons-material/Clear";
+import DeleteOutline from "@mui/icons-material/DeleteOutline";
+import Edit from "@mui/icons-material/Edit";
+import FilterList from "@mui/icons-material/FilterList";
+import FirstPage from "@mui/icons-material/FirstPage";
+import LastPage from "@mui/icons-material/LastPage";
+import Remove from "@mui/icons-material/Remove";
+import SaveAlt from "@mui/icons-material/SaveAlt";
+import Search from "@mui/icons-material/Search";
+import ViewColumn from "@mui/icons-material/ViewColumn";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Button from "@mui/material/Button";
+import { log } from "joi-browser";
+import { v4 as uuid } from "uuid";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import CollapsibleTable from "./newTable";
 
 const tableIcons = {
-    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
-    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
-  };
+	Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+	Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+	Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+	Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+	DetailPanel: forwardRef((props, ref) => (
+		<ChevronRight {...props} ref={ref} />
+	)),
+	Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+	Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+	Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+	FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+	LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+	NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+	PreviousPage: forwardRef((props, ref) => (
+		<ChevronLeft {...props} ref={ref} />
+	)),
+	ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+	Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+	SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+	ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
+	ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
+};
 
-
-  const Styles={
-    root:{
-      display :"flex",
-  
-    },
-    table:{
-      alignItems: "center",
-      textAlign: "center",
-      width:"60%",
-      height:"35%",
-      margin:"-25px 10px 10px 250px",
+const Styles = {
+	root: {
+		display: "flex",
+	},
+	table: {
+		alignItems: "center",
+		textAlign: "center",
+		width: "60%",
+		height: "35%",
+		margin: "-25px 10px 10px 300px",
     
-    },
-    buttonprint:{
-      margin:"30px 20px 50px 790px",
-      width:"220px",
-    
-     },
-     button:{
-      margin:"30px 0px 50px 1100px",
-      width:"220px",
-     },
-     collabtable: {
-      margin:"0px 10px 10px -50em",
-      width:"700%",
-      alignItems: "center",
-      textAlign: "center",
-     },
-
+	},
+	buttonprint: {
+		margin: "30px 20px 50px 790px",
+		width: "220px",
+	},
+	button: {
+		margin: "30px 0px 50px 1100px",
+		width: "220px",
+	},
+	collabtable: {
+		margin: "0px 10px 10px -50em",
+		width: "700%",
+		alignItems: "center",
+		textAlign: "center",
+	},
 };
 
 export default function PurchasedTable(props) {
-  const { useState } = React;
-  const [itemNames,setItemNames]= useState([]);
-  
-  const [invoice,setInvoice]=React.useState({
-    invoiceNumber:"",
-    billDate:"null",
-    supplierName:"",
-    items:[],
-  });
-  
-  const defaultMaterialTheme = createTheme();
+	const { useState } = React;
+	var [itemNames, setItemNames] = useState({});
 
+	const [invoice, setInvoice] = React.useState({
+		invoiceNumber: "",
+		billDate: "null",
+		supplierName: "",
+		items: [],
+	});
 
+	const defaultMaterialTheme = createTheme();
 
+	const [items, setItems] = React.useState([{}]);
 
-  const [items, setItems] = React.useState([{}]);
+	const {
+		invoiceNumber,
+		billDate,
+		supplierName,
+		setInvoiceNumber,
+		setSupplierName,
+		setBillDate,
+		setSelectedSupplier,
+	} = props;
 
-  const {invoiceNumber, billDate,supplierName, setInvoiceNumber,setSupplierName,setBillDate,setSelectedSupplier}= props;
-  
+	const [message, setMessage] = React.useState("");
+	const [status, setStatus] = React.useState("");
+	const [grandTotal, setGrandTotal] = React.useState(0);
+	const [open, setOpen] = React.useState(false);
+	const [testArray, setTestArray] = React.useState(["Rice", "coke", "fancy"]);
 
+	useEffect(() => {
+		fetchItemName();
+	}, []);
 
+	// TEST
 
-  const[message, setMessage]= React.useState("");
-  const[status, setStatus]= React.useState("");
-  const[grandTotal, setGrandTotal]= React.useState(0);
-  const[open, setOpen]= React.useState(false);
-  const[testArray, setTestArray]= React.useState(["Rice","coke","fancy"]);
+	const test = () => {
+		// console.log("lookup Object");
+		// console.log(itemNames);
+	};
 
+	// reset
+	const reset = () => {
+		setInvoiceNumber("");
+		setSupplierName("");
+		setSelectedSupplier("Select supplier");
+		setBillDate(null);
+		setItems([{}]);
+		setData([]);
 
-  // useEffect(() => {
-  //   fetchItemName();
+		const unique_id = uuid();
+		const small_id = unique_id.slice(0, 8);
 
-    
+		console.log(small_id);
+		setInvoiceNumber(small_id);
+	};
 
-    
-  // }, []);
+	const [data, setData] = useState([
+		// { itemName: 0, unitOfItem: "ml", quantity: 12, price: 1200, total: 1500 },
+	]);
 
+	// // saving data
+	// const handleSave = async () => {
+	//   try {
+	//     const response = await axios.post("http://localhost:5000/purchaseItem/purchase",{itemName,quantity,price,total,unitOfItem});
+	//     console.log(response.data);
+	//     // do something with response if needed
+	//   } catch (error) {
+	//     console.error(error);
+	//     // handle error if needed
+	//   }
+	// };
+	const handleOnclick = async () => {
+		items.shift();
+		try {
+			const response = await axios.post(
+				"http://localhost:5000/purchaseItem/purchase",
+				{ invoiceNumber, billDate, supplierName, items },
+			);
+			console.log("invoice data");
+			console.log(response.data);
+			setInvoice(response.data);
+			calculateGrandTotal(response.data);
+			setMessage("Items purchased successfully");
+			setStatus("success");
+			setOpen(true);
+			reset();
+		} catch (e) {
+			console.log(e);
+			setMessage("Error Occurred ! Items  can't be added ");
+			setStatus("error");
+			setOpen(true);
+		}
+	};
 
-  
+	// function for row total
+	//         const calculateGrandTotal = (newData) => {
+	//           let grandTotal = 0;
 
+	// for (const row of data) {
+	//     if (row.total) {
+	//       grandTotal += row.total;
+	//     }
+	//   }
+
+	//   return grandTotal;
+	//         }
+
+	const calculateGrandTotal = (data) => {
+		let grandTotal = 0;
+		data.items.map((eachInvoice) => (grandTotal += eachInvoice.total));
+		console.log("grand total");
+		console.log(grandTotal);
+		console.log(data);
+		setGrandTotal(grandTotal);
+	};
+
+	const fetchItemName = async () => {
+		try {
+			const res = await axios.get(" http://localhost:5000/addItem/getItem");
+			let methodObject = { 0: "Select ItemName" };
+			let count = 1;
+			res.data.map((item) => {
+				methodObject[count] = item.itemName;
+				count++;
+			});
+			console.log("Method Object");
+			console.log(methodObject);
+			setItemNames(methodObject);
+		} catch (e) {
+			console.log(e);
+		}
+	};
  
-  // TEST
+	const columns = [
+		{
+			title: "Item  Name",
+			field: "itemName",
+			initialEditValue: 0,
+			lookup: itemNames,
+		},
+		{ title: "Unit", field: "unitOfItem" },
+		{ title: "Quantity", field: "quantity", initialEditValue: 0 },
+		{ title: "Price", field: "price", initialEditValue: 0 },
+		{ title: "Total", field: "total", initialEditValue: 0, editable: false },
+	];
 
-  const test=()=>{
-    console.log("lookup Object");
-    console.log(itemNames);
-  }
+	return (
+		<div>
+			<style>{`@media print {.no-show{display: none;}}`}</style>
+			<ThemeProvider theme={defaultMaterialTheme}>
+				<div className="no-show">
+					<MaterialTable
+						style={Styles.table}
+						showEmptyDataSourceMessage={false}
+						title="Added Items"
+						icons={tableIcons}
+						columns={columns}
+						data={data}
+						// for adding total
+						options={{
+							search: false,
+							paging: false,
+							// showTotal: true,
+							// totalRow: { name: 'Grand Total', total: ()=>{
+							//   let total = 0;
+							//   data.forEach(item => {
+							//     total+= item.quantity * item.price;
+							//   });
+							//   return total;} },
+						}}
+						components={{
+              Toolbar: props => (
+                <div>
+                  <MTableToolbar {...props} />
+                  <div style={{padding: '0px 10px'}}>
+                    <hr/>
+                  </div>
+                </div>
+              ),
+							// Container: (props) => <div {...props} />,
 
- // reset 
-  const reset =()=>{
-    
-    setInvoiceNumber("");
-    setSupplierName("");
-    setSelectedSupplier("Select supplier");
-    setBillDate(null);
-    setItems([{}]);
-    setData([]);
+							// Cell: (props) => <div {...props} />,
+						}}
+						editable={{
+							onRowAdd: (newData) =>
+								new Promise((resolve, reject) => {
+									setTimeout(() => {
+										const total = newData.price * newData.quantity;
+										newData.total = total;
+										setData([...data, newData]);
+										const tempItem = {
+											itemName: itemNames[newData.itemName],
+											unitOfItem: newData.unitOfItem,
+											quantity: newData.quantity,
+											price: newData.price,
+											total: total,
+										};
+										setItems([...items, { ...tempItem }]);
 
-    const unique_id = uuid();
-  				const small_id = unique_id.slice(0,8);
-				
-				console.log(small_id);
-        setInvoiceNumber(small_id);
+										//   // Update the grand total
+										// const updatedGrandTotal = calculateGrandTotal([...data, newData]);
+										// console.log(updatedGrandTotal); // Output: Updated grand total
 
-  }
-  
-    
+										resolve();
+									}, 1000);
+								}),
+							onRowUpdate: (newData, oldData) =>
+								new Promise((resolve, reject) => {
+									setTimeout(() => {
+										const dataUpdate = [...data];
+										const index = oldData.tableData.id;
+										dataUpdate[index] = newData;
+										setData([...dataUpdate]);
 
+										resolve();
+									}, 1000);
+								}),
+							onRowDelete: (oldData) =>
+								new Promise((resolve, reject) => {
+									setTimeout(() => {
+										const dataDelete = [...data];
+										const index = oldData.tableData.id;
+										dataDelete.splice(index, 1);
+										setData([...dataDelete]);
 
+										resolve();
+									}, 1000);
+								}),
+							editField: (props) => (
+								<MTableEditField
+									{...props}
+									columnDef={{ ...props.columnDef, lookup: columns[0].lookup }}
+								/>
+							),
+						}}
+					/>
+				</div>
+			</ThemeProvider>
 
-    const [data, setData] = useState([
-      // { itemName:"Cold Drinks", unitOfItem:"ml", quantity:12, price:1200, total:1500 },
-    
-    ]);
-
-
-  
-
-
-// // saving data 
-// const handleSave = async () => {
-//   try {
-//     const response = await axios.post("http://localhost:5000/purchaseItem/purchase",{itemName,quantity,price,total,unitOfItem});
-//     console.log(response.data);
-//     // do something with response if needed
-//   } catch (error) {
-//     console.error(error);
-//     // handle error if needed
-//   }
-// };
-const handleOnclick = async () => {    
-
-  items.shift();
-  try{
-    const response = await axios.post("http://localhost:5000/purchaseItem/purchase",{invoiceNumber,billDate,supplierName,items});
-    console.log("invoice data");
-    console.log(response.data);
-    setInvoice(response.data);
-    calculateGrandTotal(response.data);
-    setMessage("Items purchased successfully");
-    setStatus("success");
-    setOpen(true);
-    reset();
-  }
-  catch(e){
-    console.log(e);
-    setMessage("Error Occurred ! Items  can't be added ");
-    setStatus("error");
-    setOpen(true);
-  }
-
-};
-       
-// function for row total 
-//         const calculateGrandTotal = (newData) => {
-//           let grandTotal = 0;
-
-// for (const row of data) {
-//     if (row.total) {
-//       grandTotal += row.total;
-//     }
-//   }
-  
-//   return grandTotal;
-//         }
-
-
-const calculateGrandTotal = (data) =>{
-  let grandTotal =0;
-   data.items.map((eachInvoice) => (
-    grandTotal += eachInvoice.total
-    
-  ));
-  console.log("grand total");
-  console.log(grandTotal);
-  console.log(data);
-  setGrandTotal(grandTotal);
-
-
+			<div style={Styles.button}>
+				<div className="no-show">
+					<Button onClick={handleOnclick} variant="contained" size="large">
+						SAVE ITEM
+					</Button>
+				</div>
+				<div style={Styles.collabtable}>
+					<CollapsibleTable invoice={invoice} grandTotal={grandTotal} />
+				</div>
+			</div>
+			<Button onClick={test}>Test</Button>
+		</div>
+	);
 }
-
-const fetchItemName=async () => {
-  try{
- 
-     const res = await axios.get(' http://localhost:5000/addItem/getItem');
-//       // setItemNameArray(res.data); 
-//       let obj = {0: "Select Item"};
-//     let count=1;
-
-// // Loop through the array and append key-value pairs to the object
-//        res.data.map((item) => {
-//         obj[count] = item.itemName;
-//         count++;
-//          });
-//         //  const str = JSON.stringify(obj); // convert the object to a JSON string
-//         // const parsedObj = JSON.parse(str);
-//        setItemNames(obj);
-//       console.log("item Names");
-setItemNames(res.data);
-     
-}
-
- catch(e){
-   console.log(e);
-   
-
- }
-}
-  const [columns, setColumns] = useState([
-
-  
-    { title: 'Item  Name', field: 'itemName' , initialEditValue: 'Select items',   lookup: itemNames
-    .reduce((lookup, item) => {
-      lookup[item.itemName] = item.itemName;
-      return lookup;
-    }, {}),
-},
-    { title: 'Unit', field: 'unitOfItem'},
-    { title: 'Quantity', field: 'quantity', initialEditValue: 0 },
-    { title: 'Price', field: 'price', initialEditValue: 0 },
-    { title: 'Total', field: 'total', initialEditValue: 0,editable: false },
-  
-    
-  ]);
-
-  
-
-   return (
-    
-      <div> 
-         <style>{`@media print {.no-show{display: none;}}`}</style>
-        <ThemeProvider theme={defaultMaterialTheme}>
-        <div className="no-show">
-      <MaterialTable style={Styles.table}
-        title="Added Items"
-        
-        icons={tableIcons}
-        columns={columns}
-        
-        data={data}
-// for adding total
-        options={{
-          search:false,
-          paging:false,
-          // showTotal: true,
-          // totalRow: { name: 'Grand Total', total: ()=>{
-          //   let total = 0;
-          //   data.forEach(item => {
-          //     total+= item.quantity * item.price;
-          //   });
-          //   return total;} },
-        }}
-
-        components={{
-          Toolbar: props => (
-            <div>
-              <MTableToolbar {...props} />
-              <div style={{padding: '0px 10px'}}>
-                <hr/>
-              </div>
-            </div>
-          ),
-        }}
-
-
-
-        editable={{
-          onRowAdd: newData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const total = newData.price * newData.quantity;
-                newData.total=total;
-                setData([...data, newData]);
-                const tempItem={
-                  "itemName":itemNames[newData.itemName],
-                  "unitOfItem":newData.unitOfItem,
-                  "quantity":newData.quantity,
-                  "price":newData.price,
-                  "total":total};
-                setItems([...items, {...tempItem} ]);
-
-              //   // Update the grand total
-              // const updatedGrandTotal = calculateGrandTotal([...data, newData]);
-              // console.log(updatedGrandTotal); // Output: Updated grand total
-                
-               
-               
-                resolve();
-              }, 1000)
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
-
-                
-  
-                resolve();
-              }, 1000)
-            }),
-          onRowDelete: oldData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataDelete = [...data];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setData([...dataDelete]);
-                
-                resolve()
-              }, 1000)
-              
-            }),
-            editField: (props) => (
-              <MTableEditField
-                {...props}
-                columnDef={{ ...props.columnDef, lookup: columns[0].lookup }}
-              />
-            ),
-        
-        }}
-        
-      />
-          </div>
-      </ThemeProvider>
-  
-      <div style={Styles.button} >
-        <div className='no-show'>
-        <Button onClick={handleOnclick} variant="contained" size="large">
-          SAVE ITEM 
-        </Button>
-        </div>
-        <div style={Styles.collabtable}>
-        <CollapsibleTable invoice={invoice} grandTotal={grandTotal}/>
-        </div>
-      </div>
-      <Button onClick={test} >
-      Test
-        </Button>
-      </div>
-    )
-
-  }
-  
