@@ -57,13 +57,13 @@ const tableIcons = {
       alignItems: "center",
       textAlign: "center",
       width:"80%",
-      margin:"200px 10px 10px 7em",
+      margin:"200px 10px 10px 8em",
     
     },
     button:{
         margin:"550px 10px 10px -15em",
     },
-        addItem:{
+        suppState:{
         
         color :"red",  
         textAlign:"center",
@@ -95,15 +95,15 @@ export default function SupplierTableInvoice(props) {
       
     ]);
 
-   // TEST  
-    const Test =()=>{
+  //  // TEST  
+  //   const Test =()=>{
     
-      Navigator('/reciptTable');
+  //     Navigator('/reciptTable');
 
       
     
   
-    }
+  //   }
 
     // using useeffect to fetch data 
 
@@ -214,13 +214,13 @@ export default function SupplierTableInvoice(props) {
         // }}
       />
       <div>
-        <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.addItem}>
+        <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.suppState}>
            Supplier Statement:
            </Typography>
            </div>
-           <Button onClick={Test}>
+           {/* <Button onClick={Test}>
       Test
-    </Button>
+    </Button> */}
     
     </ThemeProvider>
     
