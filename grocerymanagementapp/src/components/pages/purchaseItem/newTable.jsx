@@ -151,13 +151,13 @@ export default function CollapsibleTable(props) {
 //   const [invoice, setInvoice]= React.useState([]);
 //   const {invoiceNumber} =props;
 
-  const Test =()=>{
-    console.log("Rows");
-    console.log(props.invoice.invoiceNumber);
-    //console.log(invoice);
-    console.log(rows);
+  // const Test =()=>{
+  //   console.log("Rows");
+  //   console.log(props.invoice.invoiceNumber);
+  //   //console.log(invoice);
+  //   console.log(rows);
 
-  }
+  // }
 
 
 

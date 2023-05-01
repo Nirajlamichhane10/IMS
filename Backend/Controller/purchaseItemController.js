@@ -61,7 +61,7 @@ const getInvoice = async (req, res ) => {
 const getInvoiceData = async (req, res ) => {
     try {
         const invoiceNumber = req.body.invoiceNumber;
-        console.log("invoice number");
+        // console.log("invoice number");
         // console.log(invoiceNumber);
         const response = await purchaseItem.find({
             'invoiceNumber':invoiceNumber

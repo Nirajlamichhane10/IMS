@@ -174,7 +174,9 @@ const handleOnclick = async () => {
   // console.log(customerName);
 
   try{
-    const response = await axios.post("http://localhost:5000/sellItem/sell");
+    const response = await axios.post("http://localhost:5000/sellItem/sell",
+    {invoiceNumber, billDate, customerName, items}
+    );
     console.log(response.data);
     setInvoice(response.data);
     calculateGrandTotal(response.data);

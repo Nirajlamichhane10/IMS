@@ -42,11 +42,7 @@ button:{
   width:"220px",
 
  },
- buttonprint:{
-  margin:"30px 20px 50px 700px",
-  width:"220px",
 
- },
  
   table1:{
     alignItems: "center",
@@ -93,8 +89,11 @@ export default function SellItem() {
     const fetchCustomers = async () => {
       const res = await axios.get('http://localhost:5000/addCustomer/getCustomer',{customerName});
       setCustomers(res.data);
+      console.log(res.data);
   
     };
+
+    // for invoice number 
     fetchCustomers();
     const unique_id = uuid();
   				const small_id = unique_id.slice(0,8);
@@ -117,19 +116,35 @@ export default function SellItem() {
 
 
 
-  const purchaseData = React.useRef({});
 
 
-  const handleChangeSupplier = (event) => {
-    setCustomerName(event.target.value);
-  };
 
-  const handleOnclick=()=>{
+const[message, setMessage]= React.useState("");
+const[status, setStatus]= React.useState("");
+const[open, setOpen]= React.useState(false);
 
-  }
+const handleChangeInvoiceNumber =(event)=>{
+  setInvoiceNumber(event.target.value);
+  
+ 
+};
+
+const handleChangeBillDate =(event)=>{
+  setBillDate(event.target.value);
+};
+
+
+const handleChangeCustomer = (event) => {
+  setCustomerName(event.target.value);
+};
+
+
+
 
     return (
       <div>
+
+<style>{`@media print {.no-show{display: none;}}`}</style>
       <Box style={Styles.box}
         component="form" 
         sx={{
@@ -209,11 +224,11 @@ export default function SellItem() {
       {/* <SellTable/> */}
       </div>
 
-      <div style={Styles.buttonprint}>
+      {/* <div style={Styles.buttonprint}>
         <Button onClick={handleOnclick} variant="contained" size="large">
           RECEPIT
         </Button>
-      </div>
+      </div> */}
 
 
     

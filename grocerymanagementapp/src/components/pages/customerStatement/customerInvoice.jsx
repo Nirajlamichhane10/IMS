@@ -105,7 +105,7 @@ export default function CustomerTableInvoice() {
 
      const fetchInvoiceData = async()=>{
         try {
-      const CustomerInvoiceData= await axios.get("http://localhost:5000/sellItem/getInvoiceData");
+      const CustomerInvoiceData= await axios.get("http://localhost:5000/sellItem/getInvoice");
 
       const outputArray = CustomerInvoiceData.data.map(({ 
         _id, invoiceNumber, billDate, customerName,items
@@ -138,10 +138,11 @@ export default function CustomerTableInvoice() {
               icon: 'save',
               tooltip: 'Save User',
               onClick: (event, rowData) =>{
-              // onClick: (event, rowData) => alert("You saved " + rowData.name)
-              window.location='/reciptTableSell';
-              console.log("row data");
-              console.log(rowData);
+                Navigator('/reciptTableSell',{state:rowData});
+  
+                // window.location='/reciptTable';
+                console.log("row data");
+                console.log(rowData);
             }
           }
           ]}

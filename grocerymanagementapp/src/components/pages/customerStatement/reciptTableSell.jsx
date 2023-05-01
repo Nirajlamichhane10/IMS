@@ -16,7 +16,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import axios from 'axios';
 import  {useEffect,useState } from 'react';
 import Button from '@mui/material/Button';
-
+import { useLocation } from 'react-router-dom';
 const Styles={
     root:{
       display :"flex",
@@ -134,22 +134,23 @@ export default function ReciptTableSell(props) {
 
   
 
-
+  const location = useLocation();
+  const myState = location.state;
 
   const [invoice, setInvoice]= React.useState([]);
   const [grandTotal, setGrandTotal]= React.useState(0);
 //   const {invoiceNumber} =props;
 
-  const Test =()=>{
-    console.log("Rows");
-    console.log(invoice.invoiceNumber);
-    //console.log(invoice);
-    console.log(rows);
+  // const Test =()=>{
+  //   console.log("Rows");
+  //   console.log(invoice.invoiceNumber);
+  //   //console.log(invoice);
+  //   console.log(rows);
 
-  }
+  // }
 
  
-  const invoiceNumber = "72fb5b11";
+  const invoiceNumber= myState.invoiceNumber;
 // 
   useEffect(() => {
     fetchInvoice();
@@ -162,7 +163,7 @@ export default function ReciptTableSell(props) {
 
   const fetchInvoice = async () => {
     try{
-    const res = await axios.post('http://localhost:5000/purchaseItem/getInvoiceData',{"invoiceNumber":invoiceNumber});
+    const res = await axios.post('http://localhost:5000/sellItem/getInvoiceData',{"invoiceNumber":invoiceNumber});
     setInvoice(res.data[0]);
     console.log("invoice data");
     console.log(invoiceNumber);
@@ -186,8 +187,8 @@ const calculateGrandTotal = (data) =>{
     
   ));
   console.log("grand total");
-  console.log(grandTotal);
-  console.log(data);
+  // console.log(grandTotal);
+  console.log(data.items);
  setGrandTotal(grandTotal);
 
 
@@ -195,17 +196,17 @@ const calculateGrandTotal = (data) =>{
 
 const rows = [
   
-    createData(invoice.invoiceNumber, invoice.billDate,invoice.customerName,),
-  ];
-  function createData( invoiceNumber,billDate,customerName,grandTotal) {
-    return {
-    invoiceNumber,
-    billDate,
-    customerName,
-    grandTotal,
-    history:invoice.items,
-    };
-  }
+  createData(invoice.invoiceNumber, invoice.billDate,invoice.customerName,grandTotal,invoice.items),
+];
+function createData( invoiceNumber,billDate,customerName,grandTotal,items) {
+  return {
+  invoiceNumber,
+  billDate,
+  customerName,
+  grandTotal,
+  history:items?items:[],
+  };
+}
 
   
 
@@ -243,6 +244,13 @@ const rows = [
         </Button>
         </div>
       </div>
+      <div>
+      <div className='no-show'>
+  <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.recipt}>
+  Supplier All Recipt:
+  </Typography>
+  </div>
+  </div>
     {/* <Button onClick={Test}>
       Test
     </Button> */}

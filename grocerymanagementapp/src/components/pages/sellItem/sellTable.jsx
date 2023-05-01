@@ -26,7 +26,12 @@ const Styles={
       margin:"80px 10px 10px -12em",
      
     
-    }
+    },
+    buttonprint:{
+      margin:"30px 20px 50px 700px",
+      width:"220px",
+    
+     },
 }
 
 
@@ -39,6 +44,7 @@ function Row(props) {
 
   return (
     <React.Fragment>
+      <style>{`@media print {.no-show{display: none;}}`}</style>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell>
           <IconButton
@@ -144,6 +150,7 @@ export default function SellTable(props) {
 
   return (
     <React.Fragment>
+        <style>{`@media print {.no-show{display: none;}}`}</style>
     <TableContainer component={Paper} style={Styles.table}>
       <Table aria-label="collapsible table">
         <TableHead>
@@ -161,9 +168,20 @@ export default function SellTable(props) {
         </TableBody>
       </Table>
     </TableContainer>
+
      {/* <Button onClick={Test}>
       Test
     </Button> */}
+          <div style={Styles.buttonprint}>
+          <Button onClick={() => {
+                                        window.print();
+                                    }}
+        variant="contained" size="large">
+       
+       
+          RECEPIT
+        </Button>
+      </div>
     </React.Fragment>
   );
 }
