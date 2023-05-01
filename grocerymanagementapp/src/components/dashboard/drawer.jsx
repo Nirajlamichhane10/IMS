@@ -101,39 +101,7 @@ table:{
   
 
 },
-cards:{
 
-  borderRadius:"20px",
-  width:"220px",
-  textAlign:"center",
-  margin:"110px 30px 50px 400px",
-  boxShadow: "15px 15px 8px lightblue",
- 
-
-
-},
-cards1:{
-
-  borderRadius:"20px",
-  width:"220px",
-  textAlign:"center",
-  margin:"-190px 30px 50px 700px",
-  boxShadow: "15px 15px 8px lightblue",
- 
-
-
-},
-cards2:{
-
-  borderRadius:"20px",
-  width:"220px",
-  textAlign:"center",
-  margin:"-190px 30px 50px 1000px",
-  boxShadow: "15px 15px 8px lightblue",
- 
-
-
-},
 dasdboardback:{
   color:"#D9E5D6",
 },

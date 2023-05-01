@@ -87,7 +87,7 @@ import { grid } from '@mui/system';
     };
 
 
-export default function AddItem() {
+export default function AddItem(props) {
 
 const [itemName, setItemName]= React.useState("");
 const[unitOfItem, setUnitOfItem]=React.useState("");
@@ -299,12 +299,7 @@ const handleOnclick=()=>
      
         </Box>
       
-        {/* <div>
-      <MatTable/>
-      </div> */}
-      {/* <div>
-        <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
-      </div> */}
+     
 
       <Alertbar
       message={message}
@@ -315,8 +310,8 @@ const handleOnclick=()=>
       </div>
       </div>  
 
-      
       );
+     
   
      
    

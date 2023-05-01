@@ -61,7 +61,7 @@ const  Styles={
     borderRadius:"20px",
     width:"220px",
     textAlign:"center",
-    margin:"110px 30px 50px 0px",
+    margin:"110px 30px 50px -15em",
     boxShadow: "15px 15px 8px lightblue",
    
   
@@ -72,7 +72,7 @@ const  Styles={
     borderRadius:"20px",
     width:"220px",
     textAlign:"center",
-    margin:"-190px 30px 50px 20em",
+    margin:"-190px 30px 50px 12em",
     boxShadow: "15px 15px 8px lightblue",
    
   
@@ -90,12 +90,17 @@ const  Styles={
   
   },
   graph:{
-    margin:"110px 30px 50px -20em",
+    margin:"110px 30px 50px -22em",
     
 
   },
   dasdboardback:{
     color:"#D9E5D6",
+  },
+
+  footer:{
+    margin:"110px 30px 50px -45em",
+
   },
   
   
@@ -127,7 +132,7 @@ export default function Dashboard() {
       <div >
       { <DashboardTable/> }
       </div>
-      <div>
+      <div style={Styles.footer}>
         <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
       </div>
     </div>

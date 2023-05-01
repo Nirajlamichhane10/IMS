@@ -53,8 +53,8 @@ const tableIcons = {
     table:{
       alignItems: "center",
       textAlign: "center",
-      width:"115%",
-      margin:"30px 10px 10px -10em",
+      width:"130%",
+      margin:"30px 10px 10px -15em",
     
     },
     edit:{
