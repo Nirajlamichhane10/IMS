@@ -305,10 +305,7 @@ const[open, setOpen]= React.useState(false);
       Test
         </Button> */}
 
-      <div>
-        <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
-      
-      </div>
+   
       </div>
 
 
