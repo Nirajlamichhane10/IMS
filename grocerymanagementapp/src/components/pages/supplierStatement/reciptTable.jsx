@@ -18,6 +18,7 @@ import  {useEffect,useState } from 'react';
 import Button from '@mui/material/Button';
 import { useLocation } from 'react-router-dom';
 
+
 const Styles={
     root:{
       display :"flex",
@@ -26,16 +27,25 @@ const Styles={
     table:{
       alignItems: "center",
       textAlign: "center",
-      width:"55%",
-      margin:"80px 10px 10px -5em",
+      width:"80%",
+      margin:"2em 10px 10px 2em",
     
     
     },
     buttonprint:{
-      margin:"400px 20px 50px -15em",
+      margin:"550px 20px 50px -9em",
       width:"220px",
     
      },
+     recipt:{
+        
+      color :"red",  
+      textAlign:"center",
+       margin:"-6em 0px 50px -26em",
+       
+       display:"flex",
+  },
+
 
   
 }
@@ -142,14 +152,14 @@ export default function ReciptTable(props) {
   const [grandTotal, setGrandTotal]= React.useState(0);
 //   const {invoiceNumber} =props;
 
-  const Test =()=>{
-    console.log("Rows");
-    // console.log(invoice.invoiceNumber);
-    //console.log(invoice);
-    console.log(rows);
+  // const Test =()=>{
+  //   console.log("Rows");
+  //   // console.log(invoice.invoiceNumber);
+  //   //console.log(invoice);
+  //   console.log(rows);
   
 
-  }
+  // }
 
   const invoiceNumber= myState.invoiceNumber;
  
@@ -233,6 +243,7 @@ const rows = [
           ))}
         </TableBody>
       </Table>
+      
 
     </TableContainer>
     <div style={Styles.buttonprint}>
@@ -246,10 +257,20 @@ const rows = [
         </Button>
         </div>
       </div>
-    <Button onClick={Test}>
+      <div>
+      <div className='no-show'>
+  <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.recipt}>
+  Supplier All Recipt:
+  </Typography>
+  </div>
+  </div>
+    {/* <Button onClick={Test}>
       Test
-    </Button>
+    </Button> */}
+  
     </React.Fragment>
+    
  
   );
+
 }
