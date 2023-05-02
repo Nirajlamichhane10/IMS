@@ -59,28 +59,23 @@ const Styles = {
 	root: {
 		display: "flex",
 	},
-	table: {
+	maintable: {
 		alignItems: "center",
-		textAlign: "center",
-		width: "60%",
-		height: "35%",
-		margin: "-25px 10px 10px 300px",
+      textAlign: "center",
+      width:"80%",
+    
+      margin:"25px 10px 10px 190px",
     
 	},
 	buttonprint: {
-		margin: "30px 20px 50px 790px",
+		margin: "30px 20px 50px 700px",
 		width: "220px",
 	},
 	button: {
-		margin: "30px 0px 50px 1100px",
+		margin: "30px 0px 50px 1150px",
 		width: "220px",
 	},
-	collabtable: {
-		margin: "0px 10px 10px -50em",
-		width: "700%",
-		alignItems: "center",
-		textAlign: "center",
-	},
+
 };
 
 export default function PurchasedTable(props) {
@@ -118,12 +113,12 @@ export default function PurchasedTable(props) {
 		fetchItemName();
 	}, []);
 
-	// TEST
+	// // TEST
 
-	const test = () => {
-		// console.log("lookup Object");
-		// console.log(itemNames);
-	};
+	// const test = () => {
+	// 	// console.log("lookup Object");
+	// 	// console.log(itemNames);
+	// };
 
 	// reset
 	const reset = () => {
@@ -237,7 +232,7 @@ export default function PurchasedTable(props) {
 			<ThemeProvider theme={defaultMaterialTheme}>
 				<div className="no-show">
 					<MaterialTable
-						style={Styles.table}
+						style={Styles.maintable}
 						showEmptyDataSourceMessage={false}
 						title="Added Items"
 						icons={tableIcons}
@@ -334,7 +329,7 @@ export default function PurchasedTable(props) {
 					<CollapsibleTable invoice={invoice} grandTotal={grandTotal} />
 				</div>
 			</div>
-			<Button onClick={test}>Test</Button>
+			{/* <Button onClick={test}>Test</Button> */}
 		</div>
 	);
 }

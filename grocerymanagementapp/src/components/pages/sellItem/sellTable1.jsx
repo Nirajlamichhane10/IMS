@@ -57,12 +57,12 @@ const tableIcons = {
       display :"flex",
   
     },
-    table:{
+    maintable:{
       alignItems: "center",
       textAlign: "center",
-      width:"70%",
-      height:"35%",
-      margin:"-25px 10px 10px 100px",
+      width:"80%",
+    
+      margin:"25px 10px 10px 190px",
     
     },
     buttonprint:{
@@ -71,16 +71,10 @@ const tableIcons = {
     
      },
      button:{
-      margin:"20px 0px 50px 1050px",
+      margin:"20px 0px 50px 1150px",
       width:"220px",
      },
-     collabtable: {
-      margin:"0px 10px 10px 420px",
-      width:"60%",
-      alignItems: "center",
-      textAlign: "center",
-    
-     },
+ 
 
 };
 
@@ -241,8 +235,10 @@ const calculateGrandTotal= (data) =>{
 
    return (
       <div> 
+        <style>{`@media print {.no-show{display: none;}}`}</style>
         <ThemeProvider theme={defaultMaterialTheme}>
-      <MaterialTable style={Styles.table}
+        <div className="no-show">
+      <MaterialTable style={Styles.maintable}
         title="Added Items"
         
         icons={tableIcons}
@@ -322,13 +318,17 @@ const calculateGrandTotal= (data) =>{
         }}
         
       />
-          
+         </div> 
       </ThemeProvider>
       <div style={Styles.button}>
+      <div className="no-show">
         <Button onClick={handleOnclick} variant="contained" size="large">
+      
           SAVE ITEM 
         </Button>
+        </div>
       </div>
+
       {/* <Button onClick={test} >
       Test
         </Button> */}
@@ -337,6 +337,7 @@ const calculateGrandTotal= (data) =>{
       <SellTable invoice={invoice} grandTotal={grandTotal}/>
       </div>
       </div>
+      
     )
 
   }

@@ -17,7 +17,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { v4 as uuid } from 'uuid';
-import { log } from 'joi-browser';
+
 
 
 
@@ -30,37 +30,22 @@ const Styles={
 
   },
   box:{
-    margin:"90px 0px 50px -120px",
+    margin:"90px 0px 50px -110px",
   },
   purchaseItem:{
         
     color :"red",  
     textAlign:"center",
-     margin:"50px 0px 50px 300px",
+     margin:"50px 0px 50px 600px",
      width:"270px",
 },
 button:{
-  margin:"20px 0px 50px 900px",
+  margin:"20px 0px 50px 920px",
   width:"220px",
 
  },
 
- 
- 
-  table1:{
-    alignItems: "center",
-    textAlign: "center",
-    width:"150%",
-    margin:"30px 10px 10px -180px",
 
- },
- collabtable: {
-  margin:"0px 10px 10px -100px",
-  width:"150%",
-  alignItems: "center",
-  textAlign: "center",
-
- },
  supplier:{
   width:"20%",
   margin:"6px 8px 0px 0px",

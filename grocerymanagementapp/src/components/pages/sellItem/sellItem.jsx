@@ -28,13 +28,13 @@ const Styles={
 
   },
   box:{
-    margin:"90px 0px 50px -180px",
+    margin:"90px 0px 50px -110px",
   },
   sellItem:{
         
     color :"red",  
     textAlign:"center",
-     margin:"50px 0px 50px 450px",
+     margin:"50px 0px 50px 600px",
      width:"270px",
 },
 button:{
@@ -43,20 +43,6 @@ button:{
 
  },
 
- 
-  table1:{
-    alignItems: "center",
-    textAlign: "center",
-    width:"130%",
-    margin:"30px 10px 10px -50px",
-
- },
- collabtable: {
-  margin:"0px 10px 10px 100px",
-  alignItems: "center",
-  textAlign: "center",
-
- },
  customer:{
   width:"20%",
   margin:"6px 8px 0px 0px",
@@ -153,6 +139,7 @@ const handleChangeCustomer = (event) => {
         noValidate
         autoComplete="off"
       >
+         <div className="no-show">
         <div>
         <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.sellItem}>
            Sell Item:
@@ -207,7 +194,7 @@ const handleChangeCustomer = (event) => {
     </FormControl>
 
 
-         
+         </div>
         </div>
       
       <div  style={Styles.table1}>

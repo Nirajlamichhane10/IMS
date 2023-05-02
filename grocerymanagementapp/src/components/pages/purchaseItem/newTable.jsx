@@ -22,16 +22,15 @@ const Styles={
       display :"flex",
   
     },
-    table:{
+    downtable:{
       alignItems: "center",
       textAlign: "center",
-      width:"55%",
-      margin:"80px 10px 10px 100px",
-     
+      width:"380%",
+      margin:"50px 10px 10px -52em",
     
     },
     buttonprint:{
-      margin:"30px 20px 50px 790px",
+      margin:"30px 20px 50px -25px",
       width:"220px",
     
      },
@@ -190,7 +189,7 @@ export default function CollapsibleTable(props) {
   return (
     <React.Fragment>
        <style>{`@media print {.no-show{display: none;}}`}</style>
-    <TableContainer component={Paper} style={Styles.table}>
+    <TableContainer component={Paper} style={Styles.downtable}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>

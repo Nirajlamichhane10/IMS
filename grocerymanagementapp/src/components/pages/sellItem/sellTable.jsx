@@ -19,16 +19,16 @@ const Styles={
       display :"flex",
   
     },
-    table:{
+    downtable:{
       alignItems: "center",
       textAlign: "center",
-      width:"80%",
-      margin:"80px 10px 10px -12em",
+      width:"60%",
+      margin:"50px 10px 10px 20em",
      
     
     },
     buttonprint:{
-      margin:"30px 20px 50px 700px",
+      margin:"30px 20px 50px 1100px",
       width:"220px",
     
      },
@@ -151,7 +151,7 @@ export default function SellTable(props) {
   return (
     <React.Fragment>
         <style>{`@media print {.no-show{display: none;}}`}</style>
-    <TableContainer component={Paper} style={Styles.table}>
+    <TableContainer component={Paper} style={Styles.downtable}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
@@ -173,6 +173,7 @@ export default function SellTable(props) {
       Test
     </Button> */}
           <div style={Styles.buttonprint}>
+          <div className='no-show'>
           <Button onClick={() => {
                                         window.print();
                                     }}
@@ -181,6 +182,7 @@ export default function SellTable(props) {
        
           RECEPIT
         </Button>
+        </div>
       </div>
     </React.Fragment>
   );

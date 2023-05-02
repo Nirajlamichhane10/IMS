@@ -98,7 +98,7 @@ export default function SupplierTableInvoice(props) {
   //  // TEST  
   //   const Test =()=>{
     
-  //     Navigator('/reciptTable');
+  //     fetchInvoiceData();
 
       
     

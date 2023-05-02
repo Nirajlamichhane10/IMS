@@ -95,6 +95,15 @@ export default function CustomerTableInvoice() {
       
     ]);
     
+      //  // TEST  
+      //  const Test =()=>{
+    
+      //  fetchInvoiceData();
+  
+        
+      
+    
+      // }
 
 
     // using useeffect to fetch data 
@@ -209,7 +218,9 @@ export default function CustomerTableInvoice() {
            Customer Statement:
            </Typography>
            </div>
-   
+           {/* <Button onClick={Test}>
+      Test
+    </Button> */}
     
     </ThemeProvider>
     
