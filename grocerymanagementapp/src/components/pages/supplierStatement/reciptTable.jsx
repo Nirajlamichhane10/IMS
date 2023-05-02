@@ -47,6 +47,7 @@ const Styles={
   },
 
 
+
   
 }
 
@@ -150,16 +151,16 @@ export default function ReciptTable(props) {
 
   const [invoice, setInvoice]= React.useState([]);
   const [grandTotal, setGrandTotal]= React.useState(0);
-//   const {invoiceNumber} =props;
+// //   const {invoiceNumber} =props;
 
-  // const Test =()=>{
-  //   console.log("Rows");
-  //   // console.log(invoice.invoiceNumber);
-  //   //console.log(invoice);
-  //   console.log(rows);
+//   const Test =()=>{
+//     console.log("Rows");
+//     console.log(invoice.invoiceNumber);
+//     //console.log(invoice);
+//     console.log(rows);
   
 
-  // }
+//   }
 
   const invoiceNumber= myState.invoiceNumber;
  
@@ -264,7 +265,7 @@ const rows = [
   </Typography>
   </div>
   </div>
-    {/* <Button onClick={Test}>
+    {/* <Button onClick={Test}  style={Styles.test}>
       Test
     </Button> */}
   

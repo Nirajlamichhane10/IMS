@@ -21,16 +21,16 @@ const Styles={
         
         color :"red",  
         textAlign:"center",
-         margin:"-250px 0px 50px 450px",
+         margin:"-290px 0px 50px 450px",
          width:"350px",
          display:"flex",
     },
     box:{
-      margin:"400px 0px 50px -12em",
+      margin:"400px 0px 50px -9em",
       
     },
     botton:{
-        margin:"30px 0px 0px -1100px",
+        margin:"30px 0px 0px -1030px",
     },
  
 };

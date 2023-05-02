@@ -21,19 +21,19 @@ import { grid } from '@mui/system';
         
         color :"red",  
         textAlign:"center",
-         margin:"10px 0px 50px 220px",
+         margin:"5px 0px 50px 300px",
          width:"220px",
          display:"flex",
     },
      item:{
-      margin:"0px 0px 50px 20px",
+      margin:"0px 0px 50px 150px",
       width:"220px",
       alignItems: "center",
       display:"flex",
 
      },
      itembox:{
-      margin:"-90px 0px 50px 200px",
+      margin:"-90px 0px 50px 300px",
       alignItems: "center",
       display:"flex",
       textAlign:"center",
@@ -41,21 +41,21 @@ import { grid } from '@mui/system';
      },
 
      quantity:{
-      margin:"40px 0px 50px 20px",
+      margin:"40px 0px 50px 150px",
       width:"220px",
       alignItems: "center",
       display:"flex",
 
      },
      quantitybox:{
-      margin:"-100px 0px 50px 200px",
+      margin:"-100px 0px 50px 300px",
       alignItems: "center",
       display:"flex",
       textAlign:"center",
 
      },
      button:{
-      margin:"30px 0px 50px 250px",
+      margin:"-25px 0px 50px 300px",
       width:"220px",
       alignItems: "center",
       display:"flex",
@@ -68,14 +68,14 @@ import { grid } from '@mui/system';
    
      },
     price:{
-      margin:"40px 0px 50px 20px",
+      margin:"40px 0px 50px 150px",
       width:"220px",
       alignItems: "center",
       display:"flex",
 
      },
      pricebox:{
-      margin:"-100px 0px 50px 200px",
+      margin:"-100px 0px 50px 300px",
       alignItems: "center",
       display:"flex",
       textAlign:"center",

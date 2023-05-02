@@ -2,6 +2,7 @@ import * as React from 'react';
 import MaterialTable from 'material-table';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
 
 import { ThemeProvider, createTheme } from '@mui/material';
 
@@ -77,6 +78,7 @@ const tableIcons = {
 export default function CustomerTableInvoice() {
     const { useState,useEffect } = React;
     const defaultMaterialTheme = createTheme();
+    let Navigator = useNavigate();
 
   
     const [columns, setColumns] = useState([
@@ -138,7 +140,7 @@ export default function CustomerTableInvoice() {
               icon: 'save',
               tooltip: 'Save User',
               onClick: (event, rowData) =>{
-                Navigator('/reciptTableSell',{state:rowData});
+              Navigator('/reciptTableSell',{state:rowData});
   
                 // window.location='/reciptTable';
                 console.log("row data");
