@@ -177,7 +177,17 @@ const ForgetPassword = (props) => {
             `http://localhost:5000/auth/update/user/${data._id}`,
             data,
           );
-          window.location = "/";
+		  handleClose();
+setMessage("Password changed successfully!");
+setStatus("success");
+setOpen(true);
+
+// wait for 3 seconds before logging out and redirecting
+setTimeout(function() {
+  // log out user and redirect to home page
+  window.location.href = "/";
+}, 1000); // 1000 milliseconds = 1 seconds
+		 
       
           
          

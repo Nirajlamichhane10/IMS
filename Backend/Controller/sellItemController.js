@@ -55,7 +55,7 @@ const getInvoice = async (req, res ) => {
 
 
 // fetching data using  invoice number 
-const getInvoiceData = async (req, res ) => {
+const getInvoiceSellData = async (req, res ) => {
     try {
         const invoiceNumber = req.body.invoiceNumber;
         // console.log("invoice number");
@@ -107,6 +107,6 @@ const getInvoiceData = async (req, res ) => {
     postSell,
     getSell,
     getInvoice,
-    getInvoiceData,
+    getInvoiceSellData,
    
 };

@@ -75,14 +75,23 @@ export default function MatTable() {
       { title: 'Unit Of Item', field: 'unitOfItem', },
       { title: 'In Stock', field: 'quantity',
 
-      render: rowData => {
-				return rowData.quantity > rowData.minimum ? (
-					<Chip label={rowData.quantity} color="primary" style={{ marginRight: 5 }} />
-				) : (
-					<Chip label={rowData.quantity} color="secondary" style={{ marginRight: 5 }} />
-				);
-			},
-    },
+				render: rowData => {
+          if (rowData.quantity > rowData.minimum) {
+            return (
+              <Chip label={rowData.quantity} color="primary" style={{ marginRight: 5 }} />
+            );
+          } else if (rowData.quantity > 0) {
+            return (
+              <Chip label={rowData.quantity} color="secondary" style={{ marginRight: 5 }} />
+            );
+          } else {
+            return (
+              <Chip label="Out of stock" color="default" style={{ marginRight: 5 }} />
+            );
+          }
+        }
+      },
+
       { title: 'Minimum', field: 'minimum',  },
       { title: 'Price', field: 'price',  },
       
@@ -102,6 +111,8 @@ export default function MatTable() {
       const AddItemData= await axios.get("http://localhost:5000/addItem/getItem");
       setData([...AddItemData.data]);
       console.log(AddItemData.data);
+    
+      
       
     }
   

@@ -159,19 +159,22 @@ export default function ReciptTableSell(props) {
 
  
   const invoiceNumber= myState.invoiceNumber;
-// 
-  useEffect(() => {
-    fetchInvoice();
+// test button
+   // TEST  
+       const Test =()=>{
     
-
+      fetchInvoice();
+  
+        
+      
     
-  }, []);
+      }
 
   
 
   const fetchInvoice = async () => {
     try{
-    const res = await axios.post('http://localhost:5000/sellItem/getInvoiceData',{"invoiceNumber":invoiceNumber});
+    const res = await axios.post('http://localhost:5000/sellItem/getInvoiceSellData',{"invoiceNumber":invoiceNumber});
     setInvoice(res.data[0]);
     console.log("invoice data");
     console.log(invoiceNumber);
@@ -259,9 +262,9 @@ function createData( invoiceNumber,billDate,customerName,grandTotal,items) {
   </Typography>
   </div>
   </div>
-    {/* <Button onClick={Test}>
+    <Button onClick={Test}>
       Test
-    </Button> */}
+    </Button>
     </React.Fragment>
  
   );

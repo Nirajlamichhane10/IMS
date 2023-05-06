@@ -51,8 +51,8 @@ const tableIcons = {
     table:{
       alignItems: "center",
       textAlign: "center",
-      width:"90%",
-      margin:"-400px 10px 10px 120px",
+      width:"182%",
+      margin:"-400px 10px 10px -250px",
     
     }
 

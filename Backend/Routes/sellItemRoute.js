@@ -5,7 +5,7 @@ const sellController = require("../Controller/sellItemController");
 router.post('/sell', sellController.postSell);
 router.get('/getSell', sellController.getSell);
 router.get('/getInvoice', sellController.getInvoice);
-router.get('/getInvoiceData', sellController.getInvoiceData);
+router.get('/getInvoiceSellData', sellController.getInvoiceSellData);
 
 
 module.exports = router;

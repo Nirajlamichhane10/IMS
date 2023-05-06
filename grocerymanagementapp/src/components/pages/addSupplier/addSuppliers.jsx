@@ -26,11 +26,11 @@ const Styles={
          display:"flex",
     },
     box:{
-      margin:"400px 0px 50px -9em",
+      margin:"400px 0px 50px -550px",
       
     },
     botton:{
-        margin:"30px 0px 0px -1030px",
+        margin:"30px 0px 0px -900px",
     },
  
 };
@@ -193,9 +193,7 @@ export default function AddSuppliers() {
     <div >
         <SupplierTable reloadData={reloadData} setReloadData={setReloadData}/>
       </div>
-      <div>
-        <p style={{color: "green",margin:"100px 10px 10px 500px",}}> &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
-      </div>
+      
 <Alertbar
 message={message}
 status={status}

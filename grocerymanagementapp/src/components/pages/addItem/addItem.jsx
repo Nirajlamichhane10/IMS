@@ -8,7 +8,7 @@ import axios from 'axios';
 import Alertbar from '../../Alertbar';
 import { addItemSchema } from '../../validationJoi/Validation';
 import { grid } from '@mui/system';
-
+import PrintPurchaseBill from '../purchaseItem/printPage';
 
 
  // adding css 
@@ -295,18 +295,19 @@ const handleOnclick=()=>
 
           ADD ITEM
         </Button>
+       
       </div>
      
         </Box>
       
-     
-
+    
       <Alertbar
       message={message}
       status={status}
       open={open}
       handleClose={handleClose}
       />
+    
       </div>
       </div>  
 
