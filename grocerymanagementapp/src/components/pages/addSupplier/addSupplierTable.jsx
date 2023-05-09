@@ -182,10 +182,16 @@ export default function SupplierTable(props) {
           //     }, 1000)
           //   }),
         }}
+        options={{
+          exportButton: true
+        }}
         
       />
       {/* <button onClick={test}>Test</button> */}
+      
       </ThemeProvider>
+      
     )
+    
   }
   

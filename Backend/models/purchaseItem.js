@@ -27,6 +27,7 @@ const purchaseItemSchema = new mongoose.Schema({
   invoiceNumber: { type: String, required: true },
   billDate: { type: Date, required: true },
   supplierName: { type: String, required: true },
+  grandTotal:{type :Number, required:true},
   items: [
     {
       // itemId: { type: mongoose.Schema.Types.ObjectId, ref: 'addItem', required: true },

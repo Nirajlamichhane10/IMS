@@ -92,6 +92,9 @@ export default function PurchasedTable(props) {
 	const defaultMaterialTheme = createTheme();
 
 	const [items, setItems] = React.useState([{}]);
+	const [selectedItem, setSelectedItem] = React.useState(null);
+	const [unitList, setUnitList]= React.useState({});
+	const [priceList, setPriceList]= React.useState({});
 
 	const {
 		invoiceNumber,
@@ -115,10 +118,10 @@ export default function PurchasedTable(props) {
 
 	// // TEST
 
-	// const test = () => {
-	// 	// console.log("lookup Object");
-	// 	// console.log(itemNames);
-	// };
+	const test = () => {
+		console.log("unit list ");
+		console.log(unitList[1]);
+	};
 
 	// reset
 	const reset = () => {
@@ -208,7 +211,26 @@ export default function PurchasedTable(props) {
 			console.log("Method Object");
 			console.log(methodObject);
 			setItemNames(methodObject);
+// for unit of item 
+			let unitObject = { 0: "Select unit" };
+			 count = 1;
+			res.data.map((item) => {
+				unitObject[count] = item.unitOfItem;
+				count++;
+			});
+			setUnitList(unitObject);
+
+			// for price 
+			// for unit of item 
+			let priceObject = { 0: "Select unit" };
+			 count = 1;
+			res.data.map((item) => {
+				priceObject[count] = item.price;
+				count++;
+			});
+			setPriceList(priceObject);
 		} catch (e) {
+			
 			console.log(e);
 		}
 	};
@@ -218,11 +240,23 @@ export default function PurchasedTable(props) {
 			title: "Item  Name",
 			field: "itemName",
 			initialEditValue: 0,
-			lookup: itemNames,
+			lookup: itemNames,	
 		},
-		{ title: "Unit", field: "unitOfItem" },
-		{ title: "Quantity", field: "quantity", initialEditValue: 0 },
-		{ title: "Price", field: "price", initialEditValue: 0 },
+		{ title: "Unit", field: "unitOfItem",lookup:{0:'Select Unit'},initialEditValue: 0,
+		render: rowData => {
+			return(unitList[rowData.itemName]);
+
+		}
+	},
+		{ title: "Quantity", field: "quantity", initialEditValue: 0, },
+		{ title: "Price", field: "price", initialEditValue: 0 ,
+		editable: false,
+		render: rowData => {
+			return(priceList[rowData.itemName]);
+
+		}
+	
+	},
 		{ title: "Total", field: "total", initialEditValue: 0, editable: false },
 	];
 
@@ -267,14 +301,14 @@ export default function PurchasedTable(props) {
 							onRowAdd: (newData) =>
 								new Promise((resolve, reject) => {
 									setTimeout(() => {
-										const total = newData.price * newData.quantity;
+										const total = parseInt(priceList[newData.itemName]) * parseInt(newData.quantity);
 										newData.total = total;
 										setData([...data, newData]);
 										const tempItem = {
 											itemName: itemNames[newData.itemName],
-											unitOfItem: newData.unitOfItem,
+											unitOfItem: unitList[newData.itemName],
 											quantity: newData.quantity,
-											price: newData.price,
+											price: priceList[newData.itemName],
 											total: total,
 										};
 										setItems([...items, { ...tempItem }]);
@@ -282,6 +316,10 @@ export default function PurchasedTable(props) {
 										//   // Update the grand total
 										// const updatedGrandTotal = calculateGrandTotal([...data, newData]);
 										// console.log(updatedGrandTotal); // Output: Updated grand total
+										// console.log('total');
+										// console.log(newData.price);
+										// console.log(newData.quantity);
+										// console.log(total);
 
 										resolve();
 									}, 1000);
@@ -329,7 +367,7 @@ export default function PurchasedTable(props) {
 					<CollapsibleTable invoice={invoice} grandTotal={grandTotal} />
 				</div>
 			</div>
-			{/* <Button onClick={test}>Test</Button> */}
+			<Button onClick={test}>Test</Button>
 		</div>
 	);
 }

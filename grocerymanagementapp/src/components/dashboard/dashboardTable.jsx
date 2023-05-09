@@ -23,6 +23,7 @@ import SaveAlt from '@mui/icons-material/SaveAlt';
 import Search from '@mui/icons-material/Search';
 import ViewColumn from '@mui/icons-material/ViewColumn';
 import { TextField, Chip } from '@material-ui/core';
+import Snackbar from '@mui/material';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -84,12 +85,17 @@ export default function DashboardTable() {
             return (
               <Chip label={rowData.quantity} color="secondary" style={{ marginRight: 5 }} />
             );
-          } else {
-            return (
+          } else if (rowData.quantity == 0) {
+            return ( 
+              
               <Chip label="Out of stock" color="default" style={{ marginRight: 5 }} />
             );
           }
-        }
+         
+        },
+        validate: rowData => rowData.quantity < 0  ? 'Quanityt cannot be less than 0 ' : ''
+
+
       },
 
       { title: 'Minimum', field: 'minimum',  },
@@ -158,6 +164,9 @@ export default function DashboardTable() {
     //             reject(error);
     //           }
     //         }),
+        }}
+        options={{
+          exportButton: true
         }}
       />
     </ThemeProvider>

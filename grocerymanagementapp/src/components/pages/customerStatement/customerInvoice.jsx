@@ -212,7 +212,11 @@ export default function CustomerTableInvoice() {
             
             // }),
         // }}
+        options={{
+          exportButton: true
+        }}
       />
+      
       <div>
         <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.addItem}>
            Customer Statement:

@@ -161,14 +161,21 @@ export default function ReciptTableSell(props) {
   const invoiceNumber= myState.invoiceNumber;
 // test button
    // TEST  
-       const Test =()=>{
+      //  const Test =()=>{
     
-      fetchInvoice();
+      // fetchInvoice();
   
         
       
     
-      }
+      // }
+       useEffect(() => {
+        fetchInvoice();
+        
+    
+        
+      }, []);
+    
 
   
 
@@ -242,6 +249,7 @@ function createData( invoiceNumber,billDate,customerName,grandTotal,items) {
           ))}
         </TableBody>
       </Table>
+      
 
     </TableContainer>
     <div style={Styles.buttonprint}>
@@ -262,9 +270,9 @@ function createData( invoiceNumber,billDate,customerName,grandTotal,items) {
   </Typography>
   </div>
   </div>
-    <Button onClick={Test}>
+    {/* <Button onClick={Test}>
       Test
-    </Button>
+    </Button> */}
     </React.Fragment>
  
   );

@@ -212,6 +212,9 @@ export default function SupplierTableInvoice(props) {
             
             // }),
         // }}
+        options={{
+          exportButton: true
+        }}
       />
       <div>
         <Typography  color="text.secondary" variant="h4" gutterBottom style={Styles.suppState}>
@@ -221,7 +224,9 @@ export default function SupplierTableInvoice(props) {
            {/* <Button onClick={Test}>
       Test
     </Button> */}
-    
+
     </ThemeProvider>
     
+    
     )}
+    

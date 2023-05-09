@@ -178,8 +178,12 @@ export default function CustomerTable(props) {
           //     }, 1000)
             //}),
         }}
+        options={{
+          exportButton: true
+        }}
       />
       {/* <button onClick={test}>Test</button> */}
+      
       </ThemeProvider>
     )
   }

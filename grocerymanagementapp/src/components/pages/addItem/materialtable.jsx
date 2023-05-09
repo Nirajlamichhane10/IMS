@@ -75,23 +75,27 @@ export default function MatTable() {
       { title: 'Unit Of Item', field: 'unitOfItem', },
       { title: 'In Stock', field: 'quantity',
 
-				render: rowData => {
-          if (rowData.quantity > rowData.minimum) {
-            return (
-              <Chip label={rowData.quantity} color="primary" style={{ marginRight: 5 }} />
-            );
-          } else if (rowData.quantity > 0) {
-            return (
-              <Chip label={rowData.quantity} color="secondary" style={{ marginRight: 5 }} />
-            );
-          } else {
-            return (
-              <Chip label="Out of stock" color="default" style={{ marginRight: 5 }} />
-            );
-          }
+      render: rowData => {
+        if (rowData.quantity > rowData.minimum) {
+          return (
+            <Chip label={rowData.quantity} color="primary" style={{ marginRight: 5 }} />
+          );
+        } else if (rowData.quantity > 0) {
+          return (
+            <Chip label={rowData.quantity} color="secondary" style={{ marginRight: 5 }} />
+          );
+        } else if (rowData.quantity == 0) {
+          return ( 
+            
+            <Chip label="Out of stock" color="default" style={{ marginRight: 5 }} />
+          );
         }
+       
       },
+      validate: rowData => rowData.quantity < 0  ? 'Quantity cannot be less than 0 ' : ''
 
+
+    },
       { title: 'Minimum', field: 'minimum',  },
       { title: 'Price', field: 'price',  },
       

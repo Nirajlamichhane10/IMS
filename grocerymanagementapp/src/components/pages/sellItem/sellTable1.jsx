@@ -103,6 +103,9 @@ export default function SellTable1(props) {
   const[open, setOpen]= React.useState(false);
   const[testArray, setTestArray]= React.useState(["Rice","coke","fancy"]);
   const[grandTotal, setGrandTotal]= React.useState(0);
+  const[listQuantity, setListQuantity] = React.useState({});
+  const[listUnit, setUnit] = React.useState({});
+  
 
   useEffect(() => {
     fetchItemName();
@@ -211,9 +214,30 @@ const calculateGrandTotal= (data) =>{
 				methodObject[count] = item.itemName;
 				count++;
 			});
-			console.log("Method Object");
-			console.log(methodObject);
+	
 			setItemNames(methodObject);
+
+      // for quantity
+      let quantityObject = { 0: "Select ItemName" };
+			 count = 1;
+			res.data.map((item) => {
+				quantityObject[count] = item.quantity;
+				count++;
+			});
+	
+			setListQuantity(quantityObject);
+
+// for unit 
+ // for quantity
+ let unitObject = { 0: "Select unit" };
+ count = 1;
+res.data.map((item) => {
+  unitObject[count] = item.unitOfItem;
+  count++;
+});
+
+setUnit(unitObject);
+
 		} catch (e) {
 			console.log(e);
 		}
@@ -226,8 +250,16 @@ const calculateGrandTotal= (data) =>{
 			initialEditValue: 0,
 			lookup: itemNames,
 		},
-		{ title: "Unit", field: "unitOfItem" },
-		{ title: "Quantity", field: "quantity", initialEditValue: 0 },
+    { title: "Unit", field: "unitOfItem",lookup:{0:'Select Unit'},initialEditValue: 0,
+		render: rowData => {
+			return(listUnit[rowData.itemName]);
+
+		}
+	},
+		{ title: "Quantity", field: "quantity", initialEditValue: 0,
+    validate: rowData => rowData.quantity > listQuantity[rowData.itemName]  ? 'Quantity cannot be greater than stock quantity ' : ''
+  
+  },
 		{ title: "Price", field: "price", initialEditValue: 0 },
 		{ title: "Total", field: "total", initialEditValue: 0, editable: false },
 	];
@@ -278,7 +310,7 @@ const calculateGrandTotal= (data) =>{
                 setData([...data, newData]);
                 const tempItem={
                   itemName:itemNames[newData.itemName],
-                  unitOfItem:newData.unitOfItem,
+                  unitOfItem:listUnit[newData.itemName],
                   quantity:newData.quantity,
                   price:newData.price,
                   total:total};

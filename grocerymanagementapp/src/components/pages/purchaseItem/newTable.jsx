@@ -34,6 +34,7 @@ const Styles={
       width:"220px",
     
      },
+ 
 
   
 }
@@ -90,13 +91,15 @@ function Row(props) {
                       <TableCell>{historyRow.unitOfItem}</TableCell>
                       <TableCell align="right">{historyRow.quantity}</TableCell>
                       <TableCell align="right">{historyRow.price}</TableCell>
-                      <TableCell align="right">{historyRow.total}</TableCell>
+                      <TableCell align="right">{historyRow.total}</TableCell> 
                     </TableRow>
                   ))}
-                  
+              
+                 
                 <TableCell align="right" > Grand Total</TableCell>
                   <TableCell align="right" >{row.grandTotal}</TableCell>
-              
+                
+                  
                  
                 </TableBody>
             
