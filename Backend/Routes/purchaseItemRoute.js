@@ -23,6 +23,7 @@ router.get('/getInvoice', purchaseController.getInvoice);
 router.post('/getInvoiceData', purchaseController.getInvoiceData);
 
 
+
 module.exports = router;
 
 

@@ -16,18 +16,17 @@ const bull = (
 );
 
 export default function BasicCard(props) {
+ 
   return (
     <Card sx={{ minWidth: 150 }}>
       <CardContent>
         <Typography sx={{ fontSize: 18  }} color="text.secondary"   gutterBottom>
-        {props.text}
+        { props.text}
         </Typography>
         <Typography variant="body2">
-         $ 1150   
+         {props.value}  
         </Typography>
-      <CardActions>
-        <Button size="small">See ALL details</Button>
-      </CardActions>
+     
       </CardContent>
     </Card>
   );

@@ -95,6 +95,9 @@ export default function PurchasedTable(props) {
 	const [selectedItem, setSelectedItem] = React.useState(null);
 	const [unitList, setUnitList]= React.useState({});
 	const [priceList, setPriceList]= React.useState({});
+	
+	
+
 
 	const {
 		invoiceNumber,

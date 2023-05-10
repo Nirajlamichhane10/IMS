@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DataTable from './table';
 import BasicCard from'./cards';
+import axios from "axios";
 
 import DashboardTable from './dashboardTable';
 
@@ -72,7 +73,7 @@ const  Styles={
     borderRadius:"20px",
     width:"220px",
     textAlign:"center",
-    margin:"-190px 30px 50px 12em",
+    margin:"-140px 30px 50px 12em",
     boxShadow: "15px 15px 8px lightblue",
    
   
@@ -83,8 +84,9 @@ const  Styles={
     borderRadius:"20px",
     width:"220px",
     textAlign:"center",
-    margin:"-190px 30px 50px 40em",
+    margin:"-140px 30px 50px 40em",
     boxShadow: "15px 15px 8px lightblue",
+  
    
   
   
@@ -110,20 +112,80 @@ const  Styles={
 
 export default function Dashboard() {
 
-  const [text1,setText1]= React.useState("Total Sales");
-  const [text2,setText2]= React.useState("Total Purchase");
-  const [text3,setText3]= React.useState("Total Stock Value");
+  const [text1,setText1]= React.useState("TOTAL SALES");
+  const [text2,setText2]= React.useState("TOTAL PURCHASES");
+  const [text3,setText3]= React.useState("TOTAL STOCK VALUE");
+  const [grandTotal, setGrandTotal] = React.useState();
+  const [purchaseGrandTotal, setPurchaseGrandTotal] = React.useState(0);
+  const [sellGrandTotal, setSellGrandTotal] = React.useState(0);
+  const [stockGrandTotal, setStockGrandTotal] = React.useState(0);
 
+
+
+
+ // for fetch purchase Item 
+  useEffect(() => {
+		fetchPurchaseItem();
+    fetchSellItem();
+	}, []);
+
+  const fetchPurchaseItem = async () => {
+		try {
+			const res = await axios.get(" http://localhost:5000/purchaseItem/getPurchase");
+
+    let allGrandTotal = 0 ;
+    res.data.map((item) => {
+      allGrandTotal+=item.grandTotal;
+      
+
+    }
+    )
+    console.log("all grandTotal");
+    console.log(allGrandTotal);
+    setPurchaseGrandTotal(allGrandTotal);
+ 
+
+    } catch (e) {
+			
+			console.log(e);
+		}
+  }
+
+  const fetchSellItem = async () => {
+		try {
+			const res = await axios.get("http://localhost:5000/sellItem/getSell");
+
+    let allGrandTotal = 0 ;
+    res.data.map((item) => {
+      allGrandTotal+=item.grandTotal;
+      
+
+    }
+    )
+    console.log("all grandTotal");
+    console.log(allGrandTotal);
+    setSellGrandTotal(allGrandTotal);
+ 
+
+    } catch (e) {
+			
+			console.log(e);
+		}
+  }
+ 
   return (
+
+    
+    
     <div>
         <div style={Styles.cards}>
-        <BasicCard text={text1}/>
+        <BasicCard text={text1}value={sellGrandTotal}/>
         </div>
         <div style={Styles.cards1}>
-        <BasicCard text={text2}/>
+        <BasicCard text={text2} value={purchaseGrandTotal}/>
         </div>
         <div style={Styles.cards2}>
-        <BasicCard text={text3}/>
+        <BasicCard text={text3} value={stockGrandTotal}/>
         </div>
     <div style={Styles.graph}>
       <GraphicalRepresentation/>

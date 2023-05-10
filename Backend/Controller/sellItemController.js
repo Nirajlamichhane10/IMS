@@ -6,8 +6,10 @@ const postSell = async (req, res) => {
         invoiceNumber: req.body.invoiceNumber, 
         billDate: req.body.billDate,
         customerName: req.body.customerName,
+        grandTotal: req.body.grandTotal,
         items: req.body.items
     });
+    newItem.grandTotal = calculateGrandTotal(req.body.items);
 
     try {
         const response = await newSellItem.save();
@@ -38,6 +40,22 @@ const getSell = async (req, res) => {
         res.send(error);
     }
 };
+
+
+//for graand total
+
+const calculateGrandTotal = (data) => {
+    let grandTotal = 0;
+    data.map((eachInvoice) => (grandTotal += eachInvoice.total));
+    // console.log("grand total");
+    // console.log(grandTotal);
+    // console.log(data);
+    return grandTotal;
+    
+};
+
+
+
 
 // seaching by invoice number 
 const getInvoice = async (req, res ) => {
