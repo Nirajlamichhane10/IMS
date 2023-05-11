@@ -30,6 +30,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import CollapsibleTable from "./newTable";
+import Alertbar from '../../Alertbar';
 
 const tableIcons = {
 	Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -96,7 +97,9 @@ export default function PurchasedTable(props) {
 	const [unitList, setUnitList]= React.useState({});
 	const [priceList, setPriceList]= React.useState({});
 	
-	
+	const[message, setMessage]= React.useState("");
+    const[status, setStatus]= React.useState("");
+    const[open, setOpen]= React.useState(false);
 
 
 	const {
@@ -109,22 +112,23 @@ export default function PurchasedTable(props) {
 		setSelectedSupplier,
 	} = props;
 
-	const [message, setMessage] = React.useState("");
-	const [status, setStatus] = React.useState("");
+
 	const [grandTotal, setGrandTotal] = React.useState(0);
-	const [open, setOpen] = React.useState(false);
 	const [testArray, setTestArray] = React.useState(["Rice", "coke", "fancy"]);
 
 	useEffect(() => {
 		fetchItemName();
 	}, []);
 
-	// // TEST
+	// // // TEST
 
-	const test = () => {
-		console.log("unit list ");
-		console.log(unitList[1]);
-	};
+	// const test = () => {
+	// 	console.log("unit list ");
+	// 	console.log(unitList[1]);
+	// };
+
+
+
 
 	// reset
 	const reset = () => {
@@ -134,13 +138,43 @@ export default function PurchasedTable(props) {
 		setBillDate(null);
 		setItems([{}]);
 		setData([]);
+		generatedInvoiceNumber();
 
-		const unique_id = uuid();
-		const small_id = unique_id.slice(0, 8);
 
-		console.log(small_id);
-		setInvoiceNumber(small_id);
+		// const unique_id = uuid();
+		// const small_id = unique_id.slice(0, 8);
+
+		// console.log(small_id);
+		// setInvoiceNumber(small_id);
 	};
+
+
+
+	const generatedInvoiceNumber = async () =>{
+		try {
+		  const res = await axios.get(" http://localhost:5000/purchaseInvoice/getPurchaseInvoice");
+		  
+		  let tempInvoiceNumber = res.data[0].invoiceNumber;
+		  
+		  let parts = tempInvoiceNumber.split('-'); // split the string by hyphens
+		  let numericPart = parts[4]; // extract the last part (01)
+		  let incrementedNumericPart = (parseInt(numericPart, 10) + 1).toString().padStart(2, '0'); // increment the numeric part and pad it with leading zeros
+		  parts[4] = incrementedNumericPart; // update the numeric part in the array
+		  let newInvoiceNumber = parts.join('-'); // join the array back into a string
+		  console.log(newInvoiceNumber); // "GMS-P-2080-81-02"
+	
+		  const updateRes = await axios.post("http://localhost:5000/purchaseInvoice/updatePurchaseInvoice",{id:res.data[0]._id,invoiceNumber:newInvoiceNumber});
+		  console.log(updateRes);
+		  const newRes = await axios.get(" http://localhost:5000/purchaseInvoice/getPurchaseInvoice");
+		  setInvoiceNumber(newRes.data[0].invoiceNumber);
+	
+	
+	
+		}catch(e){
+		  console.log(e);
+		}
+	
+	  }
 
 	const [data, setData] = useState([
 		// { itemName: 0, unitOfItem: "ml", quantity: 12, price: 1200, total: 1500 },
@@ -367,11 +401,19 @@ export default function PurchasedTable(props) {
 						SAVE ITEM
 					</Button>
 				</div>
+				
+				<Alertbar
+      message={message}
+      status={status}
+      open={open}
+     
+      />
+    
 				<div style={Styles.collabtable}>
 					<CollapsibleTable invoice={invoice} grandTotal={grandTotal} />
 				</div>
 			</div>
-			<Button onClick={test}>Test</Button>
+			{/* <Button onClick={test}>Test</Button> */}
 		</div>
 	);
 }

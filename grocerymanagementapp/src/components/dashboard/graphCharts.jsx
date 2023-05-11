@@ -12,11 +12,11 @@ import {
   Bar,
 } from "recharts";
 
-export default function GraphicalRepresentation() {
+export default function GraphicalRepresentation(props) {
   const data = [
-    { name: "Total Sales", money: 2000000000 },
-    { name: "Total Purchase", money: 1500000000 },
-    { name: "Total Stock Value", money: 1000000000 },
+    { name: "Total Sales", money: props.sellGrandTotal },
+    { name: "Total Purchase", money: props.purchaseGrandTotal },
+    { name: "Total Stock Value", money: props.stockGrandTotal },
   
   ];
 

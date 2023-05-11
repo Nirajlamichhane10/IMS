@@ -115,14 +115,39 @@ export default function PurchaseItem() {
 
     // for invoice number 
      fetchSuppliers();
-    const unique_id = uuid();
-  				const small_id = unique_id.slice(0,8);
-				// localStorage.setItem("invoiceNumber",small_id);
-				console.log(small_id);
-        setInvoiceNumber(small_id);
+     generatedInvoiceNumber();
+    // const unique_id = uuid();
+  	// 			const small_id = unique_id.slice(0,8);
+		// 		// localStorage.setItem("invoiceNumber",small_id);
+		// 		console.log(small_id);
+    //     // setInvoiceNumber(small_id);
     
   }, []);
 
+
+  const generatedInvoiceNumber = async () =>{
+    try {
+      const res = await axios.get(" http://localhost:5000/purchaseInvoice/getPurchaseInvoice");
+      setInvoiceNumber(res.data[0].invoiceNumber);
+      // let tempInvoiceNumber = res.data[0].invoiceNumber;
+      
+      // let parts = tempInvoiceNumber.split('-'); // split the string by hyphens
+      // let numericPart = parts[3]; // extract the last part (01)
+      // let incrementedNumericPart = (parseInt(numericPart, 10) + 1).toString().padStart(2, '0'); // increment the numeric part and pad it with leading zeros
+      // parts[3] = incrementedNumericPart; // update the numeric part in the array
+      // let newInvoiceNumber = parts.join('-'); // join the array back into a string
+      // console.log(newInvoiceNumber); // "GMS-P-2080-81-02"
+
+      // const updateRes = await axios.post("http://localhost:5000/purchaseInvoice/updatePurchaseInvoice",{id:res.data[0]._id,invoiceNumber:newInvoiceNumber});
+      // console.log(updateRes);
+
+
+
+    }catch(e){
+      console.log(e);
+    }
+
+  }
 // const fetchItemName=async () => {
 //      try{
     
@@ -210,6 +235,7 @@ const[open, setOpen]= React.useState(false);
           
 {/* // invoice no  */}
           <TextField
+           disabled
             id="outlined-error"
             label="Invoice.No"
 
@@ -218,6 +244,7 @@ const[open, setOpen]= React.useState(false);
             onChange={(event) => {
               setInvoiceNumber(event.target.value);
             }}
+
            
             
           />

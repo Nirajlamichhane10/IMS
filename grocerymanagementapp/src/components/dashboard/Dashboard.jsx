@@ -61,6 +61,7 @@ const  Styles={
   
     borderRadius:"20px",
     width:"220px",
+   
     textAlign:"center",
     margin:"110px 30px 50px -15em",
     boxShadow: "15px 15px 8px lightblue",
@@ -127,6 +128,8 @@ export default function Dashboard() {
   useEffect(() => {
 		fetchPurchaseItem();
     fetchSellItem();
+    fetchStockItem();
+
 	}, []);
 
   const fetchPurchaseItem = async () => {
@@ -172,6 +175,30 @@ export default function Dashboard() {
 			console.log(e);
 		}
   }
+
+
+  const fetchStockItem = async () => {
+		try {
+			const res = await axios.get("http://localhost:5000/addItem/getItem");
+
+    let allStockTotal = 0 ;
+    res.data.map((item) => {
+      let stockTotal = item.quantity * item.price;
+      allStockTotal  += stockTotal;
+      
+
+    }
+    )
+    console.log("all stock");
+    console.log(allStockTotal);
+    setStockGrandTotal(allStockTotal);
+ 
+
+    } catch (e) {
+			
+			console.log(e);
+		}
+  }
  
   return (
 
@@ -189,7 +216,12 @@ export default function Dashboard() {
         <BasicCard text={text3} value={`Rs. ${stockGrandTotal}`}/>
         </div>
     <div style={Styles.graph}>
-      <GraphicalRepresentation/>
+      <GraphicalRepresentation
+      sellGrandTotal={sellGrandTotal}
+      purchaseGrandTotal={purchaseGrandTotal}
+      stockGrandTotal={stockGrandTotal}
+      
+      />
     </div>
       
       <div >

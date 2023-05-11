@@ -33,6 +33,7 @@ const supplierRoute = require("./Routes/addSupplierRoute");
 const purchaseItemRoute = require("./Routes/purchaseItemRoute");
 const sellItemRoute = require("./Routes/sellItemRoute");
 const addCustomerRoute = require("./Routes/addCustomerRoute");
+const purchaseInvoiceRoute = require("./Routes/purchaseInvoiceRoute");
 
 app.use(cors());
 app.use(express.json());
@@ -42,6 +43,7 @@ app.use("/addSupplier",supplierRoute);
 app.use("/addCustomer",addCustomerRoute);
 app.use("/purchaseItem",purchaseItemRoute);
 app.use("/sellItem",sellItemRoute);
+app.use("/purchaseInvoice",purchaseInvoiceRoute);
 
 
 
