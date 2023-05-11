@@ -245,6 +245,7 @@ export default function PurchasedTable(props) {
 			initialEditValue: 0,
 			lookup: itemNames,	
 		},
+		
 		{ title: "Unit", field: "unitOfItem",lookup:{0:'Select Unit'},initialEditValue: 0,
 		render: rowData => {
 			return(unitList[rowData.itemName]);

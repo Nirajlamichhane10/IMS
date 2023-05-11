@@ -9,7 +9,7 @@ const postSell = async (req, res) => {
         grandTotal: req.body.grandTotal,
         items: req.body.items
     });
-    newItem.grandTotal = calculateGrandTotal(req.body.items);
+    newSellItem.grandTotal = calculateGrandTotal(req.body.items);
 
     try {
         const response = await newSellItem.save();

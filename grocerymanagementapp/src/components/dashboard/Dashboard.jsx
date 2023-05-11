@@ -179,13 +179,14 @@ export default function Dashboard() {
     
     <div>
         <div style={Styles.cards}>
-        <BasicCard text={text1}value={sellGrandTotal}/>
+        <BasicCard text={text1} value={`Rs. ${sellGrandTotal}`} />
+      
         </div>
         <div style={Styles.cards1}>
-        <BasicCard text={text2} value={purchaseGrandTotal}/>
+        <BasicCard text={text2} value={`Rs. ${purchaseGrandTotal}`}/>
         </div>
         <div style={Styles.cards2}>
-        <BasicCard text={text3} value={stockGrandTotal}/>
+        <BasicCard text={text3} value={`Rs. ${stockGrandTotal}`}/>
         </div>
     <div style={Styles.graph}>
       <GraphicalRepresentation/>
