@@ -129,16 +129,7 @@ const handleChangePrice =(event)=>{
 };
 
 
- // for Alertbar of Snackbar
-   
-const handleClose = (event, reason) => {
-  if (reason === 'clickaway') {
-    return;
-  }
 
-  setOpen(false);
-  
-};
 
 // Validations in Add Items
 
