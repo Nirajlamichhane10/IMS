@@ -81,29 +81,42 @@ export default function SellItem() {
 
     // for invoice number 
     fetchCustomers();
-    const unique_id = uuid();
-  				const small_id = unique_id.slice(0,8);
+    generatedInvoiceNumber();
+
+    // const unique_id = uuid();
+  	// 			const small_id = unique_id.slice(0,8);
 				
-				console.log(small_id);
-        setInvoiceNumber(small_id);
+		// 		console.log(small_id);
+    //     setInvoiceNumber(small_id);
     
   }, []);
+
+  const generatedInvoiceNumber = async () =>{
+    try {
+      const res = await axios.get(" http://localhost:5000/sellInvoice/getSellInvoice");
+      setInvoiceNumber(res.data[0].invoiceNumber);
+
+
+    }catch(e){
+      console.log(e);
+    }
+
+  }
+
+
+
+
+
+
+
 
 
   const handleChange = (event) => {
     setSelectedCustomer(event.target.value);
     setCustomerName(event.target.value);
-    console.log("customer");
-    console.log(selectedCustomer);
+  
     console.log(customerName);
   };
-
-
-
-
-
-
-
 
 const[message, setMessage]= React.useState("");
 const[status, setStatus]= React.useState("");
@@ -147,6 +160,7 @@ const handleChangeCustomer = (event) => {
 
 {/* // invoice no  */}
           <TextField
+          disabled
             id="outlined-error"
             label="Invoice.No"
            

@@ -127,17 +127,43 @@ export default function SellTable1(props) {
     setBillDate(null);
     setItems([{}]);
     setData([]);
+    generatedInvoiceNumber();
 
-    const unique_id = uuid();
-  				const small_id = unique_id.slice(0,8);
+    // const unique_id = uuid();
+  	// 			const small_id = unique_id.slice(0,8);
 				
-				console.log(small_id);
-        setInvoiceNumber(small_id);
+		// 		console.log(small_id);
+    //     setInvoiceNumber(small_id);
 
   }
   
 
    
+	const generatedInvoiceNumber = async () =>{
+		try {
+		  const res = await axios.get(" http://localhost:5000/sellInvoice/getSellInvoice");
+		  
+		  let tempInvoiceNumber = res.data[0].invoiceNumber;
+		  
+		  let parts = tempInvoiceNumber.split('-'); // split the string by hyphens
+		  let numericPart = parts[4]; // extract the last part (01)
+		  let incrementedNumericPart = (parseInt(numericPart, 10) + 1).toString().padStart(2, '0'); // increment the numeric part and pad it with leading zeros
+		  parts[4] = incrementedNumericPart; // update the numeric part in the array
+		  let newInvoiceNumber = parts.join('-'); // join the array back into a string
+		  console.log(newInvoiceNumber); // "GMS-P-2080-81-02"
+	
+		  const updateRes = await axios.post("http://localhost:5000/sellInvoice/updateSellInvoice",{id:res.data[0]._id,invoiceNumber:newInvoiceNumber});
+		  console.log(updateRes);
+		  const newRes = await axios.get(" http://localhost:5000/sellInvoice/getSellInvoice");
+		  setInvoiceNumber(newRes.data[0].invoiceNumber);
+	
+	
+	
+		}catch(e){
+		  console.log(e);
+		}
+	
+	  }
   
  
     

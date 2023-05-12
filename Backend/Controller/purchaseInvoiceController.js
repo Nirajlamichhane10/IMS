@@ -23,8 +23,8 @@ exports.createPurchaseInvoice = async (req, res) => {
  
 
   exports.updatePurchaseInvoice = async (req, res, next) => {
-    console.log("invoice number");
-    console.log(req.body.invoiceNumber);
+    // console.log("invoice number");
+    // console.log(req.body.invoiceNumber);
     let tempPurchaseInvoice= await purchaseInvoice.findById(req.body.id);
     
   
