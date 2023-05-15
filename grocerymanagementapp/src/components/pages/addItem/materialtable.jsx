@@ -110,15 +110,12 @@ export default function MatTable() {
       
     },[]);
 
- 
-    const fetchData = async()=>{
-      const AddItemData= await axios.get("http://localhost:5000/addItem/getItem");
-      setData([...AddItemData.data]);
-      console.log(AddItemData.data);
-    
-      
-      
-    }
+
+    const fetchData = async () => {
+      const response = await axios.get("http://localhost:5000/addItem/getItem");
+      const reversedData = [...response.data].reverse();
+      setData(reversedData);
+    };
   
     return (
 
@@ -168,6 +165,7 @@ export default function MatTable() {
             
             }),
         }}
+    
       />
     </ThemeProvider>
     )}
