@@ -86,6 +86,7 @@ export default function SupplierTableInvoice(props) {
       { title: 'Invoice Number', field: 'invoiceNumber', },
       { title: 'Bill Date', field: 'billDate', },
       { title: 'Supplier Name', field: 'supplierName',  },
+      { title: 'Payment', field: 'payment',  },
       
     
     ]);
@@ -118,8 +119,8 @@ export default function SupplierTableInvoice(props) {
       const SupplierInvoiceData= await axios.get("http://localhost:5000/purchaseItem/getInvoice");
 
       const outputArray = SupplierInvoiceData.data.map(({ 
-        _id, invoiceNumber, billDate, supplierName,items
-     }) => ({ invoiceNumber, billDate, supplierName }));
+        _id, invoiceNumber, billDate, supplierName,payment,items
+     }) => ({ invoiceNumber, billDate, supplierName ,payment}));
 
       setData([...outputArray]);
       console.log("Output array");

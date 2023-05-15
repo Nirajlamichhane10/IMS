@@ -48,6 +48,15 @@ button:{
   margin:"6px 8px 0px 0px",
 
  },
+ invoice:{
+  margin:"6px 8px 0px 100px",
+
+ },
+ payment:{
+ 
+  margin:"6px 8px 0px 0px",
+
+ },
 
 
 
@@ -55,13 +64,14 @@ button:{
 export default function SellItem() {
 
   const [invoiceNumber,setInvoiceNumber]= React.useState('');
-  const [billDate, setBillDate] = React.useState(null);
+  const [billDate, setBillDate] = React.useState(new Date());
   // const [itemName, setItemName]= React.useState("");
   // const [quantity, setQuantity]= React.useState(0);
   // const [price, setPrice ]= React.useState(0);
   // const [total, setTotal ]=React.useState(0);
   const [customerName, setCustomerName] = React.useState('');
   const [items, setItems] = React.useState([{}]);
+  const [payment, setPayment] = React.useState('');
   //   // for calender
 
 
@@ -137,7 +147,9 @@ const handleChangeCustomer = (event) => {
   setCustomerName(event.target.value);
 };
 
-
+const handleChangePayement = (event) => {
+  setPayment(event.target.value);
+};
 
 
     return (
@@ -159,7 +171,7 @@ const handleChangeCustomer = (event) => {
            </Typography>
 
 {/* // invoice no  */}
-          <TextField
+          <TextField style={Styles.invoice}
           disabled
             id="outlined-error"
             label="Invoice.No"
@@ -207,12 +219,30 @@ const handleChangeCustomer = (event) => {
       </Select>
     </FormControl>
 
+    <FormControl 
+    fullWidth sx={{ width: 280 }} style={Styles.payment}>
+  <InputLabel id="demo-simple-select-label">Payment Methods</InputLabel>
+  <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={payment}
+    label="Payment"
+    onChange={(event) => {
+      setPayment(event.target.value);
+      // handleChange(event);
+    }}
+  >
+    <MenuItem value={'Cash'}>Cash</MenuItem>
+    <MenuItem value={'Online Payment'}> Online Payment</MenuItem>
+  </Select>
+</FormControl>
+
 
          </div>
         </div>
       
       <div  style={Styles.table1}>
-        <SellTable1 invoiceNumber={invoiceNumber} setInvoiceNumber={setInvoiceNumber} billDate={billDate} setBillDate={setBillDate} customerName={customerName} setCustomerName={setCustomerName} setSelectedCustomer={setSelectedCustomer}/>
+        <SellTable1 invoiceNumber={invoiceNumber} setInvoiceNumber={setInvoiceNumber} billDate={billDate} setBillDate={setBillDate} customerName={customerName} payment={payment}  setPayment={setPayment}  setCustomerName={setCustomerName} setSelectedCustomer={setSelectedCustomer}/>
         </div>
         {/* <div style={Styles.button}>
         <Button onClick={handleOnclick} variant="contained" size="large">

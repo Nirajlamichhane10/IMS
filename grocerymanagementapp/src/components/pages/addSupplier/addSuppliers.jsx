@@ -79,7 +79,9 @@ export default function AddSuppliers() {
     setLabel(event.target.value);
   };
 
-
+  const [data, setData] = React.useState([
+      
+  ]);
 
   
   //handle reload 
@@ -87,16 +89,24 @@ export default function AddSuppliers() {
     handleReload();
   },[]);
 
-// reloading 
-  
-    const handleReload = async()=>{
-      const SupplierData= await axios.get("http://localhost:5000/addSupplier/getSupplier");
-      setReloadData([...SupplierData.data]);
-      // console.log(SupplierData.data);
-      
 
-  }
-   
+  // reloading and sorting
+  const handleReload = async () => {
+    try {
+      const SupplierData = await axios.get("http://localhost:5000/addSupplier/getSupplier");
+      const sortedData = SupplierData.data.sort((a, b) => b.id - a.id); // sort data in reverse order
+      setData([...sortedData]);
+      setReloadData([...sortedData]); // update the state variable used for reloading
+    } catch (e) {
+      console.log(e);
+      setMessage("Error Occurred while reloading data!");
+      setStatus("error");
+      setOpen(true);
+    }
+  } 
+
+
+
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -133,7 +143,7 @@ export default function AddSuppliers() {
 
       }
     }
-  
+
     catch(e){
       console.log(e);
       setMessage("Error Occurred ! Supplier can't be added ");

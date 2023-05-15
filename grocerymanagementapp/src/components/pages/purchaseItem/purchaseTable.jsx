@@ -31,6 +31,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import CollapsibleTable from "./newTable";
 import Alertbar from '../../Alertbar';
+import { purchaseItemSchema } from "../../validationJoi/Validation";
 
 const tableIcons = {
 	Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -87,6 +88,7 @@ export default function PurchasedTable(props) {
 		invoiceNumber: "",
 		billDate: "null",
 		supplierName: "",
+		payment:"",
 		items: [],
 	});
 
@@ -106,10 +108,12 @@ export default function PurchasedTable(props) {
 		invoiceNumber,
 		billDate,
 		supplierName,
+		payment,
 		setInvoiceNumber,
 		setSupplierName,
 		setBillDate,
 		setSelectedSupplier,
+		setPayment,
 	} = props;
 
 
@@ -135,6 +139,7 @@ export default function PurchasedTable(props) {
 		setInvoiceNumber("");
 		setSupplierName("");
 		setSelectedSupplier("Select supplier");
+		setPayment("");
 		setBillDate(null);
 		setItems([{}]);
 		setData([]);
@@ -180,6 +185,18 @@ export default function PurchasedTable(props) {
 		// { itemName: 0, unitOfItem: "ml", quantity: 12, price: 1200, total: 1500 },
 	]);
 
+
+	 // for Alertbar of Snackbar
+   
+const handleClose = (event, reason) => {
+	if (reason === 'clickaway') {
+	  return;
+	}
+  
+	setOpen(false);
+	
+  };
+
 	// // saving data
 	// const handleSave = async () => {
 	//   try {
@@ -194,18 +211,38 @@ export default function PurchasedTable(props) {
 	const handleOnclick = async () => {
 		items.shift();
 		try {
+			const purchaseItemData ={supplierName,payment,items};
+            const result=purchaseItemSchema(purchaseItemData);
+            if (result.error){
+				setMessage(" please fill all required fields ");
+				console.log("with error");
+                console.log(result);
+			    setStatus("error");
+			    setOpen(true);
+			
+			
+			}
+			if (!result.error){
+
 			const response = await axios.post(
 				"http://localhost:5000/purchaseItem/purchase",
-				{ invoiceNumber, billDate, supplierName, items },
+				{ invoiceNumber, billDate, supplierName, payment, items },
 			);
 			console.log("invoice data");
 			console.log(response.data);
 			setInvoice(response.data);
 			calculateGrandTotal(response.data);
-			setMessage("Items purchased successfully");
+			console.log("without error ");
+            console.log(result);
+			setMessage("Items added successfully");
 			setStatus("success");
 			setOpen(true);
 			reset();
+
+			}
+			
+
+
 		} catch (e) {
 			console.log(e);
 			setMessage("Error Occurred ! Items  can't be added ");
@@ -406,7 +443,7 @@ export default function PurchasedTable(props) {
       message={message}
       status={status}
       open={open}
-     
+      handleClose={handleClose}
       />
     
 				<div style={Styles.collabtable}>

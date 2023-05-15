@@ -30,6 +30,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import SellTable from './sellTable';
+import Alertbar from '../../Alertbar';
+import { sellItemSchema } from '../../validationJoi/Validation';
 
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -86,6 +88,7 @@ export default function SellTable1(props) {
     invoiceNumber:"",
     billDate:"null",
     customerName:"",
+    payment:"",
     items:[],
   });
 
@@ -93,7 +96,7 @@ export default function SellTable1(props) {
   
   const [items, setItems] = React.useState([{}]);
 
-  const {invoiceNumber, billDate, customerName, setInvoiceNumber,setCustomerName,setBillDate,setSelectedCustomer}= props;
+  const {invoiceNumber, billDate, customerName, payment, setInvoiceNumber,setCustomerName, setPayment, setBillDate,setSelectedCustomer}= props;
   
 
 
@@ -124,6 +127,7 @@ export default function SellTable1(props) {
     setInvoiceNumber("");
     setCustomerName("");
     setSelectedCustomer("Select customer");
+    setPayment("");
     setBillDate(null);
     setItems([{}]);
     setData([]);
@@ -173,7 +177,14 @@ export default function SellTable1(props) {
     
     ]);
 
-
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      
+      setOpen(false);
+      
+      };
   
 
 
@@ -191,14 +202,21 @@ export default function SellTable1(props) {
 const handleOnclick = async () => {    
 
   items.shift();
-  // console.log("ITEMS");
-  // console.log(items);
-  // console.log("Customer Name");
-  // console.log(customerName);
 
   try{
+    const sellItemData ={customerName,payment,items};
+    const result=sellItemSchema(sellItemData);
+    if (result.error){
+				setMessage(" please fill all required fields ");
+				console.log("with error");
+        console.log(result);
+			  setStatus("error");
+			  setOpen(true);
+    }
+        if (!result.error){
+
     const response = await axios.post("http://localhost:5000/sellItem/sell",
-    {invoiceNumber, billDate, customerName, items}
+    {invoiceNumber, billDate, customerName, payment, items}
     );
     console.log(response.data);
     setInvoice(response.data);
@@ -206,8 +224,16 @@ const handleOnclick = async () => {
     setMessage("Items purchased successfully");
     setStatus("success");
     setOpen(true);
+    setMessage("Items added successfully");
+		setStatus("success");
+		setOpen(true);
     reset();
   }
+
+}
+
+
+
   catch(e){
     console.log(e);
     setMessage("Error Occurred ! customer can't be added ");
@@ -386,6 +412,13 @@ setUnit(unitObject);
         </Button>
         </div>
       </div>
+
+      <Alertbar
+      message={message}
+      status={status}
+      open={open}
+      handleClose={handleClose}
+      />
 
       {/* <Button onClick={test} >
       Test

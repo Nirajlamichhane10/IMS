@@ -64,6 +64,7 @@ function Row(props) {
         <TableCell >{row.invoiceNumber}</TableCell>
         <TableCell align="right" >{row.billDate}</TableCell>
         <TableCell  align="right"  >{row.supplierName}</TableCell>
+        <TableCell  align="right"  >{row.payment}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -137,13 +138,14 @@ export default function CollapsibleTable(props) {
   
   const rows = [
   
-    createData(props.invoice.invoiceNumber, props.invoice.billDate,props.invoice.supplierName,props.grandTotal),
+    createData(props.invoice.invoiceNumber, props.invoice.billDate,props.invoice.supplierName, props.invoice.payment,props.grandTotal),
   ];
-  function createData( invoiceNumber,billDate,supplierName,grandTotal) {
+  function createData( invoiceNumber,billDate,supplierName,payment,grandTotal) {
     return {
     invoiceNumber,
     billDate,
     supplierName,
+    payment,
     grandTotal,
     history:props.invoice.items,
     };
@@ -200,6 +202,8 @@ export default function CollapsibleTable(props) {
             <TableCell>Invoice Number</TableCell>
             <TableCell align="right">Bill Date</TableCell>
             <TableCell align="right">Supplier Name</TableCell>
+            <TableCell align="right">Payment</TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody>

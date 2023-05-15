@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const bcrypt = require('bcryptjs');
 
 exports.getUser = async (req, res) =>{
 try { 
@@ -15,10 +16,17 @@ catch(error){
 exports.authenticateUser = async (req, res) => {
   try {
     const userDetails = await User.find({ username: req.headers.username });
-
+    const validatepassword = await bcrypt.compare(
+      req.headers.password,
+      userDetails[0].password,
+  );
+  // console.log("validaing password");
+  // console.log(!validatepassword);
+  // console.log(req.headers.password);
+  // console.log(userDetails[0].password);
     if (userDetails.length == 0) {
       res.send({ message: "User Not Found" });
-    } else if (userDetails[0].password === req.headers.password) {
+    } else if (validatepassword) {
       res.send({ message: "authenticated" });
     } else {
       res.send({ message: "password incorrect" });
@@ -29,7 +37,9 @@ exports.authenticateUser = async (req, res) => {
 };
 
 exports.createUser = async (req, res) => {
-  const user = new User({ pin :1234, username: "Niraj", password: "Niraj" });
+  const password = "Niraj";
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const user = new User({ pin :1234, username: "Niraj", password:hashedPassword });
   try {
     const response = await user.save();
     res.send("yay i have sucessfully updated your post");
@@ -41,6 +51,8 @@ exports.createUser = async (req, res) => {
  //update  for user
  exports.updateUser = async (req, res, next) => {
   let foundUser= await User.findById(req.params.id);
+  const hashedPassword = await bcrypt.hash(req.body.password, 10);
+  req.body.password = hashedPassword;
   
   if (!foundUser){
     // return next("User not found",404);

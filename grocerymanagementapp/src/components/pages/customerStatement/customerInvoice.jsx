@@ -86,9 +86,10 @@ export default function CustomerTableInvoice() {
       { title: 'Invoice Number', field: 'invoiceNumber', },
       { title: 'Bill Date', field: 'billDate', },
       { title: 'Customer Name', field: 'customerName',  },
-      
+      { title: 'Payment', field: 'payment',  },
     
     ]);
+    
   
     const [data, setData] = useState([
         
@@ -119,8 +120,8 @@ export default function CustomerTableInvoice() {
       const CustomerInvoiceData= await axios.get("http://localhost:5000/sellItem/getInvoice");
 
       const outputArray = CustomerInvoiceData.data.map(({ 
-        _id, invoiceNumber, billDate, customerName,items
-     }) => ({ invoiceNumber, billDate, customerName }));
+        _id, invoiceNumber, billDate, customerName,payment,items
+     }) => ({ invoiceNumber, billDate, customerName , payment}));
 
       setData([...outputArray]);
       console.log("Output array");
@@ -157,6 +158,7 @@ export default function CustomerTableInvoice() {
             }
           }
           ]}
+          
           // adding action button 
         components={{
             Action: props => (
@@ -226,6 +228,8 @@ export default function CustomerTableInvoice() {
       Test
     </Button> */}
     
+    
     </ThemeProvider>
+    
     
     )}

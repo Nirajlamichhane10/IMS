@@ -6,6 +6,7 @@ const postPurchase = async (req, res) => {
         invoiceNumber: req.body.invoiceNumber,
         billDate: req.body.billDate,
         supplierName: req.body.supplierName,
+        payment: req.body.payment,
         grandTotal: req.body.grandTotal,
         items: req.body.items
     });

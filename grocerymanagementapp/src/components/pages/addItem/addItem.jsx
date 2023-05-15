@@ -21,7 +21,7 @@ import PrintPurchaseBill from '../purchaseItem/printPage';
         
         color :"red",  
         textAlign:"center",
-         margin:"5px 0px 50px 300px",
+         margin:"-15px 0px 50px 300px",
          width:"220px",
          display:"flex",
     },

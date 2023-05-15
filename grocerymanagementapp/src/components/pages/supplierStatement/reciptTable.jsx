@@ -76,6 +76,7 @@ function Row(props) {
         <TableCell >{row.invoiceNumber}</TableCell>
         <TableCell align="right" >{row.billDate}</TableCell>
         <TableCell  align="right"  >{row.supplierName}</TableCell>
+        <TableCell  align="right"  >{row.payment}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -210,13 +211,14 @@ const calculateGrandTotal = (data) =>{
 
 const rows = [
   
-    createData(invoice.invoiceNumber, invoice.billDate,invoice.supplierName,grandTotal,invoice.items),
+    createData(invoice.invoiceNumber, invoice.billDate,invoice.supplierName,invoice.payment, grandTotal,invoice.items),
   ];
-  function createData( invoiceNumber,billDate,supplierName,grandTotal,items) {
+  function createData( invoiceNumber,billDate,supplierName,payment,grandTotal,items) {
     return {
     invoiceNumber,
     billDate,
     supplierName,
+    payment,
     grandTotal,
     history:items?items:[],
     };
@@ -236,6 +238,7 @@ const rows = [
             <TableCell>Invoice Number</TableCell>
             <TableCell align="right">Bill Date</TableCell>
             <TableCell align="right">Supplier Name</TableCell>
+            <TableCell align="right">Payment</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -49,16 +49,27 @@ export const customerSchema = (data)=> {
   }
 
 
-  // user.js 
+// for purchase item validation 
 
-  // export const userSchema = (data)=> {
-  //   const useschema = Joi.object({
-      
-  //     username: Joi.string().min(1).max(100).required(),
-  //     password: Joi.string().min(1).max(100).required(),
-  //   });
-  //   return useschema.validate(data);
-
-
-  // }
+export const purchaseItemSchema = (data) => {
+  const purchaseitemschema = Joi.object({
+    supplierName: Joi.string().required(),
+    payment:  Joi.string().required(),
+    items: Joi.array().min(1),
   
+  });
+  return purchaseitemschema.validate(data);
+};
+
+
+// for sell item validation 
+
+export const sellItemSchema = (data) => {
+  const sellitemschema = Joi.object({
+    customerName: Joi.string().required(),
+    payment:  Joi.string().required(),
+    items: Joi.array().min(1),
+  
+  });
+  return sellitemschema.validate(data);
+};

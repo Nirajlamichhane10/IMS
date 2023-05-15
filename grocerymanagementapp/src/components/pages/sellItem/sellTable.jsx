@@ -61,6 +61,7 @@ function Row(props) {
         <TableCell >{row.invoiceNumber}</TableCell>
         <TableCell align="right" >{row.billDate}</TableCell>
         <TableCell  align="right"  >{row.customerName}</TableCell>
+        <TableCell  align="right"  >{row.payment}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -126,14 +127,15 @@ function Row(props) {
 export default function SellTable(props) {
   const rows = [
   
-    createData(props.invoice.invoiceNumber, props.invoice.billDate,props.invoice.customerName,props.grandTotal),
+    createData(props.invoice.invoiceNumber, props.invoice.billDate,props.invoice.customerName, props.invoice.payment,props.grandTotal),
   ];
 
-  function createData(  invoiceNumber,billDate,customerName,grandTotal) {
+  function createData(  invoiceNumber,billDate,customerName,payment,grandTotal) {
     return {
     invoiceNumber,
     billDate,
     customerName,
+    payment,
     grandTotal,
     history:props.invoice.items,
     };
@@ -159,6 +161,7 @@ export default function SellTable(props) {
             <TableCell>Invoice Number</TableCell>
             <TableCell align="right">Bill Date</TableCell>
             <TableCell align="right">Customer Name</TableCell>
+            <TableCell align="right">Payment</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

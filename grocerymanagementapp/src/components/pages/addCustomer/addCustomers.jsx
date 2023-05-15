@@ -25,11 +25,11 @@ const Styles={
          display:"flex",
     },
     box:{
-      margin:"400px 0px 50px -480px",
+      margin:"400px 0px 50px -490px",
       
     },
     botton:{
-      margin:"30px 0px 0px -965px",
+      margin:"30px 0px 0px -880px",
     },
  
 };

@@ -50,8 +50,8 @@ const tableIcons = {
     table:{
       alignItems: "center",
       textAlign: "center",
-      width:"152%",
-      margin:"-400px 10px 10px -200px",
+      width:"160%",
+      margin:"-400px 10px 10px -235px",
     
     }
 
@@ -180,7 +180,9 @@ export default function CustomerTable(props) {
         }}
         options={{
           exportButton: true
+          
         }}
+
       />
       {/* <button onClick={test}>Test</button> */}
       

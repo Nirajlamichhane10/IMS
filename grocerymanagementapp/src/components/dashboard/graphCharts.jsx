@@ -14,9 +14,9 @@ import {
 
 export default function GraphicalRepresentation(props) {
   const data = [
-    { name: "Total Sales", money: props.sellGrandTotal },
-    { name: "Total Purchase", money: props.purchaseGrandTotal },
-    { name: "Total Stock Value", money: props.stockGrandTotal },
+    { name: "TOTAL SALES", money: props.sellGrandTotal },
+    { name: "TOTAL PURCHASES", money: props.purchaseGrandTotal },
+    { name: "TOTAL STOCK VALUE", money: props.stockGrandTotal },
   
   ];
 
