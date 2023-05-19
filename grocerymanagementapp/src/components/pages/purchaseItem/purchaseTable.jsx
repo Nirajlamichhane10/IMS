@@ -96,7 +96,7 @@ export default function PurchasedTable(props) {
 
 	const [items, setItems] = React.useState([{}]);
 	const [selectedItem, setSelectedItem] = React.useState(null);
-	const [unitList, setUnitList]= React.useState({});
+	// const [unitList, setUnitList]= React.useState({});
 	const [priceList, setPriceList]= React.useState({});
 	
 	const[message, setMessage]= React.useState("");
@@ -118,11 +118,7 @@ export default function PurchasedTable(props) {
 
 
 	const [grandTotal, setGrandTotal] = React.useState(0);
-	const [testArray, setTestArray] = React.useState(["Rice", "coke", "fancy"]);
-
-	useEffect(() => {
-		fetchItemName();
-	}, []);
+	
 
 	// // // TEST
 
@@ -273,6 +269,12 @@ const handleClose = (event, reason) => {
 		setGrandTotal(grandTotal);
 	};
 
+// using useeffect
+	useEffect(() => {
+		fetchItemName();
+	}, []);
+
+
 	const fetchItemName = async () => {
 		try {
 			const res = await axios.get(" http://localhost:5000/addItem/getItem");
@@ -285,14 +287,14 @@ const handleClose = (event, reason) => {
 			console.log("Method Object");
 			console.log(methodObject);
 			setItemNames(methodObject);
-// for unit of item 
-			let unitObject = { 0: "Select unit" };
-			 count = 1;
-			res.data.map((item) => {
-				unitObject[count] = item.unitOfItem;
-				count++;
-			});
-			setUnitList(unitObject);
+// // for unit of item 
+// 			let unitObject = { 0: "Select unit" };
+// 			 count = 1;
+// 			res.data.map((item) => {
+// 				unitObject[count] = item.unitOfItem;
+// 				count++;
+// 			});
+// 			setUnitList(unitObject);
 
 			// for price 
 			// for unit of item 
@@ -317,12 +319,12 @@ const handleClose = (event, reason) => {
 			lookup: itemNames,	
 		},
 		
-		{ title: "Unit", field: "unitOfItem",lookup:{0:'Select Unit'},initialEditValue: 0,
-		render: rowData => {
-			return(unitList[rowData.itemName]);
+	// 	{ title: "Unit", field: "unitOfItem",lookup:{0:'Select Unit'},initialEditValue: 0,
+	// 	render: rowData => {
+	// 		return(unitList[rowData.itemName]);
 
-		}
-	},
+	// 	}
+	// },
 		{ title: "Quantity", field: "quantity", initialEditValue: 0, },
 		{ title: "Price", field: "price", initialEditValue: 0 ,
 		editable: false,
@@ -381,7 +383,7 @@ const handleClose = (event, reason) => {
 										setData([...data, newData]);
 										const tempItem = {
 											itemName: itemNames[newData.itemName],
-											unitOfItem: unitList[newData.itemName],
+											// unitOfItem: unitList[newData.itemName],
 											quantity: newData.quantity,
 											price: priceList[newData.itemName],
 											total: total,

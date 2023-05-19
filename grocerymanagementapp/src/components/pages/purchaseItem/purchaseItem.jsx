@@ -114,8 +114,9 @@ export default function PurchaseItem() {
   const [suppliers, setSuppliers] = React.useState([]);
   const [selectedSupplier, setSelectedSupplier] = React.useState('');
 
+  // supplier name 
   useEffect(() => {
-    // fetchItemName();
+   
     const fetchSuppliers = async () => {
       const res = await axios.get('http://localhost:5000/addSupplier/getSupplier',{supplierName});
       setSuppliers(res.data);
@@ -124,68 +125,25 @@ export default function PurchaseItem() {
     };
 
 
-    // for invoice number 
+  
      fetchSuppliers();
      generatedInvoiceNumber();
-    // const unique_id = uuid();
-  	// 			const small_id = unique_id.slice(0,8);
-		// 		// localStorage.setItem("invoiceNumber",small_id);
-		// 		console.log(small_id);
-    //     // setInvoiceNumber(small_id);
+   
     
   }, []);
 
-
+// for invoice number 
   const generatedInvoiceNumber = async () =>{
     try {
       const res = await axios.get(" http://localhost:5000/purchaseInvoice/getPurchaseInvoice");
       setInvoiceNumber(res.data[0].invoiceNumber);
-      // let tempInvoiceNumber = res.data[0].invoiceNumber;
-      
-      // let parts = tempInvoiceNumber.split('-'); // split the string by hyphens
-      // let numericPart = parts[3]; // extract the last part (01)
-      // let incrementedNumericPart = (parseInt(numericPart, 10) + 1).toString().padStart(2, '0'); // increment the numeric part and pad it with leading zeros
-      // parts[3] = incrementedNumericPart; // update the numeric part in the array
-      // let newInvoiceNumber = parts.join('-'); // join the array back into a string
-      // console.log(newInvoiceNumber); // "GMS-P-2080-81-02"
-
-      // const updateRes = await axios.post("http://localhost:5000/purchaseInvoice/updatePurchaseInvoice",{id:res.data[0]._id,invoiceNumber:newInvoiceNumber});
-      // console.log(updateRes);
-
-
 
     }catch(e){
       console.log(e);
     }
 
   }
-// const fetchItemName=async () => {
-//      try{
-    
-//         const res = await axios.get(' http://localhost:5000/addItem/getItemName');
-//   //       // setItemNameArray(res.data); 
-//   //       let obj = {0: "Select Item"};
-//   //     let count=1;
 
-//   // // Loop through the array and append key-value pairs to the object
-//   //        res.data.map((item) => {
-//   //         obj[count] = item.itemName;
-//   //         count++;
-//   //          });
-//   //         //  const str = JSON.stringify(obj); // convert the object to a JSON string
-//   //         // const parsedObj = JSON.parse(str);
-//   //        setItemNames(obj);
-//   //       console.log("item Names");
-//   return res.data;
-        
-//    }
-
-//     catch(e){
-//       console.log(e);
-      
-
-//     }
-//   }
 
   const handleChange = (event) => {
     setSelectedSupplier(event.target.value);
@@ -318,8 +276,14 @@ const[open, setOpen]= React.useState(false);
       // handleChange(event);
     }}
   >
-    <MenuItem value={'Cash'}>Cash</MenuItem>
-    <MenuItem value={'Online Payment'}> Online Payment</MenuItem>
+    <MenuItem value={'cash'}>Cash on delivery </MenuItem>
+    <MenuItem value={'esewa'}> E-sewa </MenuItem>
+    <MenuItem value={'khalti'}> Khalti </MenuItem>
+    <MenuItem value={'connectips'}> Connect IPS </MenuItem>
+    <MenuItem value={'mobilebanking'}> Mobile Banking </MenuItem>
+    <MenuItem value={'halfpay'}> Half Pay </MenuItem>
+    <MenuItem value={'paymentleft'}> Payement Left </MenuItem>
+  
   </Select>
 </FormControl>
 

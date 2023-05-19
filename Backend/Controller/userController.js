@@ -41,13 +41,15 @@ exports.createUser = async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = new User({ pin :1234, username: "Niraj", password:hashedPassword });
   try {
-    const response = await user.save();
+    const response = await user.save(); 
     res.send("yay i have sucessfully updated your post");
   } catch (e) {
     res.send("sorry i cannot post your information");
   }
 };
 
+
+//forget password
  //update  for user
  exports.updateUser = async (req, res, next) => {
   let foundUser= await User.findById(req.params.id);

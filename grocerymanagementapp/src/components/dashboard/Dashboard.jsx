@@ -154,6 +154,8 @@ export default function Dashboard() {
 		}
   }
 
+
+  // foe sell total 
   const fetchSellItem = async () => {
 		try {
 			const res = await axios.get("http://localhost:5000/sellItem/getSell");
@@ -176,7 +178,7 @@ export default function Dashboard() {
 		}
   }
 
-
+// for stcok item 
   const fetchStockItem = async () => {
 		try {
 			const res = await axios.get("http://localhost:5000/addItem/getItem");

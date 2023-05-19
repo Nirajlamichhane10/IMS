@@ -186,6 +186,10 @@ export default function SellTable(props) {
           RECEPIT
         </Button>
         </div>
+        <p style={{color: "green",margin:"30px 10px 10px -950px",}}> 
+        "EAT HEALTHY ! BE HEALTHY"<br />
+        "Thank you for shopping with us! We appreciate your business"<br /><br/><br/>
+        &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
       </div>
     </React.Fragment>
   );

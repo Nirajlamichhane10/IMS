@@ -232,8 +232,15 @@ const handleChangePayement = (event) => {
       // handleChange(event);
     }}
   >
-    <MenuItem value={'Cash'}>Cash</MenuItem>
-    <MenuItem value={'Online Payment'}> Online Payment</MenuItem>
+   
+   <MenuItem value={'cash'}>Cash on delivery </MenuItem>
+    <MenuItem value={'esewa'}> E-sewa </MenuItem>
+    <MenuItem value={'khalti'}> Khalti </MenuItem>
+    <MenuItem value={'connectips'}> Connect IPS </MenuItem>
+    <MenuItem value={'mobilebanking'}> Mobile Banking </MenuItem>
+    <MenuItem value={'halfpay'}> Half Pay </MenuItem>
+    <MenuItem value={'paymentleft'}> Payement Left </MenuItem>
+  
   </Select>
 </FormControl>
 

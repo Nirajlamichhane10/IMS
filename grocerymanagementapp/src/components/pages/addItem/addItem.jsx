@@ -8,7 +8,7 @@ import axios from 'axios';
 import Alertbar from '../../Alertbar';
 import { addItemSchema } from '../../validationJoi/Validation';
 import { grid } from '@mui/system';
-import PrintPurchaseBill from '../purchaseItem/printPage';
+
 
 
  // adding css 
@@ -21,7 +21,7 @@ import PrintPurchaseBill from '../purchaseItem/printPage';
         
         color :"red",  
         textAlign:"center",
-         margin:"-15px 0px 50px 300px",
+         margin:"-18px 0px 50px 300px",
          width:"220px",
          display:"flex",
     },
@@ -99,6 +99,7 @@ const[item, setItem]=React.useState({});
 const[message, setMessage]= React.useState("");
 const[status, setStatus]= React.useState("");
 const[open, setOpen]= React.useState(false);
+const [school, setSchool] = React.useState("");
 
 
 
@@ -129,6 +130,8 @@ const handleChangePrice =(event)=>{
 };
 
 
+
+
  // for Alertbar of Snackbar
    
 const handleClose = (event, reason) => {
@@ -143,7 +146,9 @@ const handleClose = (event, reason) => {
 // Validations in Add Items
 
 
-const handleOnclick=()=>
+
+
+const handleOnclick= async()=>
 {
   // setItem({itemName,unitOfItem,quantity,minimum});
   try{
@@ -159,8 +164,8 @@ const handleOnclick=()=>
 
     }
     if (!result.error){
-
-    const response = axios.post("http://localhost:5000/addItem/item",{itemName,unitOfItem,quantity,minimum,price});
+    
+    const response = await axios.post("http://localhost:5000/addItem/item",{itemName,unitOfItem,quantity,minimum,price});
     console.log("without error ");
     console.log(result);
     setMessage("Items added successfully");
@@ -297,7 +302,8 @@ const handleOnclick=()=>
         </Button>
        
       </div>
-     
+
+   
         </Box>
       
     

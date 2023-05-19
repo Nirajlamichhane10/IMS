@@ -21,7 +21,7 @@ import Profile from './components/Profile/Profile';
 import ForgetPassword from './components/Firstpage/forgetpassword';
 import SupplierTableInvoice from './components/pages/supplierStatement/supplierInvoice';
 import CustomerTableInvoice from './components/pages/customerStatement/customerInvoice';
-import PrintPurchaseBill from './components/pages/purchaseItem/printPage';
+
 import ReciptTable from './components/pages/supplierStatement/reciptTable';
 import ReciptTableSell from './components/pages/customerStatement/reciptTableSell';
 
@@ -82,7 +82,7 @@ function App() {
 
 				<Route path="/customerTableInvoice" element={<CustomerTableInvoice/>}/>
 
-				<Route path="/printPurchaseBill" element={<PrintPurchaseBill/>}/>
+		
 
 				<Route path="/reciptTable" element={<ReciptTable/>}/>
 

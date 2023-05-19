@@ -47,9 +47,7 @@ const calculateGrandTotal = (data) => {
     
 };
 
-
-
-
+// 
 const getPurchase = async (req, res) => {
     try {
         const response = await purchaseItem.find();

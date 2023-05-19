@@ -231,6 +231,7 @@ export default function MiniDrawer() {
 								onClick={() => {
 									localStorage.removeItem("token");
 									window.location.reload(true);
+                  window.location="/";
 								}}
 							>
 								Logout
@@ -275,7 +276,7 @@ export default function MiniDrawer() {
     </Menu>
   );
 
-
+// drawer code start from here 
 
   const handleDrawerOpen = () => {
     setOpen(true);

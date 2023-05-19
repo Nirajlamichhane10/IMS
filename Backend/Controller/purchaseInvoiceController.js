@@ -11,6 +11,7 @@ exports.createPurchaseInvoice = async (req, res) => {
     }
   };
 
+// invoice in purchase table and another table 
   exports.getPurchaseInvoice = async (req, res) => {
     
     try {

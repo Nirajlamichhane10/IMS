@@ -19,6 +19,7 @@ import Button from '@mui/material/Button';
 import { useLocation } from 'react-router-dom';
 
 
+
 const Styles={
     root:{
       display :"flex",
@@ -44,6 +45,10 @@ const Styles={
        margin:"-6em 0px 50px -26em",
        
        display:"flex",
+  },
+  footer:{
+    margin:"450px 30px 50px -45em",
+
   },
 
 
@@ -228,7 +233,9 @@ const rows = [
 
 
   return (
+    
     <React.Fragment>
+    
        <style>{`@media print {.no-show{display: none;}}`}</style>
     <TableContainer component={Paper} style={Styles.table}>
       <Table aria-label="collapsible table">
@@ -259,7 +266,12 @@ const rows = [
         variant="contained" size="large">
           RECEIPT
         </Button>
+       
+       
         </div>
+        <p style={{color: "green",margin:"-50px 10px 10px -950px",}}> 
+        "EAT HEALTHY ! BE HEALTHY"<br />
+        &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
       </div>
       <div>
       <div className='no-show'>
@@ -268,14 +280,17 @@ const rows = [
   </Typography>
   </div>
   </div>
+  
     {/* <Button onClick={Test}  style={Styles.test}>
       Test
     </Button> */}
+   
   
     </React.Fragment>
-    
+ 
  
   );
   
+ 
 
 }

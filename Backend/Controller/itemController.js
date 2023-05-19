@@ -53,14 +53,14 @@ exports.createItem = async (req, res) => {
   })
 }
 
-// get item names 
+// get item names for lookup
 exports.getItemNames = async (req,res, next ) =>{
   try{
     const itemNames = await addItem.find();
     let obj = {};
     let count=1;
 
-// Loop through the array and append key-value pairs to the object
+
         itemNames.map((item) => {
         obj[item._id] = item.itemName;
         count++;
@@ -70,14 +70,33 @@ exports.getItemNames = async (req,res, next ) =>{
 
          console.log("Item Names test");
          console.log(obj);
-        //  const str = JSON.stringify(obj); // convert the object to a JSON string
-        // const parsedObj = JSON.parse(str);
-      //  setItemNames(obj);
-      // res.send(itemNames);
       
   }
   catch(error){
     res.send(error);
+  }
+};
+
+// unit of items gettinf from the add item page 
+
+exports.getUnitOfItem = async (req, res) =>{
+  try {
+    const unitOfItem = await addItem.find();
+    let obj ={};
+    let count =1;
+
+
+    unitOfItem.map((product) =>{
+      obj[product._id] = product.unitOfItem;
+      count ++;
+    });
+
+    res.send(obj);
+    console.log("unit of items");
+    console.log(obj);
+  }
+  catch(e){
+    res.send(e);
   }
 };
 

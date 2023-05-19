@@ -265,6 +265,9 @@ function createData( invoiceNumber,billDate,customerName,payment,grandTotal,item
           RECEIPT
         </Button>
         </div>
+        <p style={{color: "green",margin:"-50px 10px 10px -950px",}}> 
+        "EAT HEALTHY ! BE HEALTHY"<br />
+        &copy;{new Date().getFullYear()} Nirajlamichhane | All Copyright Reserved "grocery management system" </p>
       </div>
       <div>
       <div className='no-show'>

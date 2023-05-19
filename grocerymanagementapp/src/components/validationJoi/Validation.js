@@ -9,7 +9,7 @@ const Supschema = Joi.object({
 
     supplierName: Joi.string().min(1).max(20).required(),
     supplierEmail: Joi.string().email().required(),
-    supplierContact: Joi.number().required(),
+    supplierContact: Joi.string().regex(/^[0-9]{10}$/).length(10).required(),
     supplierAddress: Joi.string().required(),
     
   });
@@ -24,9 +24,7 @@ export const customerSchema = (data)=> {
   const Cusschema = Joi.object({
       customerName: Joi.string().min(1).max(20).required(),
       customerEmail: Joi.string().email().required(),
-      // customerContact: Joi.number().length(10).required(),
-      customerContact: Joi.number().required(),
-      // customerContact: Joi.number().integer().min(10 ** 9).max(10 ** 10 - 1).required(),
+      customerContact: Joi.string().regex(/^[0-9]{10}$/).length(10).required(),
       customerAddress: Joi.string().required(),
       
     });
