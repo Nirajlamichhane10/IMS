@@ -119,8 +119,7 @@ export default function SupplierTableInvoice(props) {
       const SupplierInvoiceData= await axios.get("http://localhost:5000/purchaseItem/getInvoice");
 
       const outputArray = SupplierInvoiceData.data.map(({ 
-        _id, invoiceNumber, billDate, supplierName,payment,items
-     }) => ({ invoiceNumber, billDate, supplierName ,payment}));
+        _id, invoiceNumber, billDate, supplierName,payment,items }) => ({ invoiceNumber, billDate, supplierName ,payment}));
 
       setData([...outputArray]);
       console.log("Output array");
@@ -225,6 +224,7 @@ export default function SupplierTableInvoice(props) {
            {/* <Button onClick={Test}>
       Test
     </Button> */}
+    
 
     </ThemeProvider>
     
